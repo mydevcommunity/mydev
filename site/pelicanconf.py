@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
+import os
+
+HERE = os.path.abspath(os.path.dirname(__file__))
+PATH = os.path.join(HERE, 'content')
 
 AUTHOR = u'team@mydev.domain'
 SITENAME = u'Laman Kolaboratif MyDev'
