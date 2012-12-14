@@ -1,4 +1,5 @@
 Title: Automated Testing Dalam Pembangunan Perisian
+Date: 2012-12-15 01:19
 Tags: testing, automated
 
 _Testing_ adalah sebahagian daripada proses pembangunan perisian komputer. Setiap kali baris-baris kod ditulis, diubah atau dipadam, ia mesti melalui proses testing bagi memastikan program tersebut masih lagi berjalan sebagaimana yang diharapkan. Ini bermakna kita sama sekali tidak boleh mengelak daripada melakukan _testing_ terhadap program atau aplikasi yang kita bangunkan.
