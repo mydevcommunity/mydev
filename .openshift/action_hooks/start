@@ -1,0 +1,12 @@
+#!/bin/bash
+# The logic to start up your application should be put in this
+# script. The application will work only if it binds to
+# $OPENSHIFT_INTERNAL_IP:8080
+mkdir -p $OPENSHIFT_HOMEDIR/app-root/data/public/default
+mkdir -p $OPENSHIFT_HOMEDIR/app-root/data/public/custom
+mkdir -p $OPENSHIFT_HOMEDIR/app-root/data/conf
+cp $OPENSHIFT_HOMEDIR/app-root/repo/diy/conf/* $OPENSHIFT_HOMEDIR/app-root/data/conf/
+sed -i "s/OPENSHIFT_INTERNAL_IP/$OPENSHIFT_INTERNAL_IP/g" $OPENSHIFT_HOMEDIR/app-root/data/conf/*
+sed -i "s#OPENSHIFT_HOMEDIR#$OPENSHIFT_HOMEDIR#g" $OPENSHIFT_HOMEDIR/app-root/data/conf/*
+sed -i "s#OPENSHIFT_DIY_LOG_DIR#$OPENSHIFT_DIY_LOG_DIR#g" $OPENSHIFT_HOMEDIR/app-root/data/conf/*
+httpd -f $OPENSHIFT_HOMEDIR/app-root/data/conf/httpd.conf

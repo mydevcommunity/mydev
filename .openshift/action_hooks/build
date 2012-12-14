@@ -1,0 +1,13 @@
+#!/bin/bash
+# This is a simple build script and will be executed on your CI system if 
+# available.  Otherwise it will execute while your application is stopped
+# before the deploy step.  This script gets executed directly, so it
+# could be python, php, ruby, etc.
+
+INPUT_DIR=${OPENSHIFT_HOMEDIR}/app-root/repo/site/content
+OUTPUT_DIR=${OPENSHIFT_HOMEDIR}/app-root/repo/site/output
+PELICAN_CONF=${OPENSHIFT_HOMEDIR}/app-root/repo/site/pelicanconf.py
+
+virtualenv ${OPENSHIFT_DATA_DIR}/venv
+${OPENSHIFT_DATA_DIR}/venv/bin/pip install pelican Markdown
+${OPENSHIFT_DATA_DIR}/venv/bin/pelican ${INPUT_DIR} -o ${OUTPUT_DIR} -s ${PELICAN_CONF}

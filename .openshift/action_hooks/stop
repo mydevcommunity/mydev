@@ -1,0 +1,4 @@
+#!/bin/bash
+# The logic to stop your application should be put in this script.
+httpd -f $OPENSHIFT_HOMEDIR/app-root/data/conf/httpd.conf -k stop
+exit 0
