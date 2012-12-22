@@ -11,6 +11,11 @@ Senarai buku-buku yang direkomen oleh ahli-ahli komuniti MyDev. Senarai ini adal
 1. [Eric Sink on the Business of Software](http://www.amazon.com/Eric-Business-Software-Experts-Voice/dp/1590596234)
 1. [Refactoring](http://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672)
 1. [Patterns of Enterprise Application Architecture](http://www.amazon.com/Patterns-Enterprise-Application-Architecture-Martin/dp/0321127420)
+1. [Domain-Driven Design](http://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/)
+1. [Applying UML and Patterns: An Introduction to Object-Oriented Analysis and Design and Iterative Development (3rd Edition)](http://www.amazon.com/Applying-UML-Patterns-Introduction-Object-Oriented/dp/0131489062)
+1. [Design Patterns: Elements of Reusable Object-Oriented Software](http://www.amazon.com/Design-Patterns-Object-Oriented-Professional-Computing/dp/0201634988)
+1. [High Performance MySQL: Optimization, Backups, and Replication](http://www.amazon.com/High-Performance-MySQL-Optimization-Replication/dp/1449314287)
+1. [Enterprise Integration Patterns](http://www.amazon.com/o/asin/0321200683/ref=nosim/enterpriseint-20)
 
 [1]:https://plus.google.com/u/0/105721265741813048018/posts/chsdf4ekQ8S
 [2]:https://plus.google.com/u/0/communities/104883828501447858589
