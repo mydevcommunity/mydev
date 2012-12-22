@@ -17,5 +17,8 @@ Senarai buku-buku yang direkomen oleh ahli-ahli komuniti MyDev. Senarai ini adal
 1. [High Performance MySQL: Optimization, Backups, and Replication](http://www.amazon.com/High-Performance-MySQL-Optimization-Replication/dp/1449314287)
 1. [Enterprise Integration Patterns](http://www.amazon.com/o/asin/0321200683/ref=nosim/enterpriseint-20)
 
+Sebarang tambahan kepada senarai di atas adalah dialu-alukan. Anda boleh melakukannya sama ada dengan 'fork' [repo mydev][3] di github dan membuat 'pull request' atau menambahnya ke [topik perbincangan][1] di [komuniti G+][2].
+
 [1]:https://plus.google.com/u/0/105721265741813048018/posts/chsdf4ekQ8S
 [2]:https://plus.google.com/u/0/communities/104883828501447858589
+[3]:https://github.com/mydevcommunity/mydev
