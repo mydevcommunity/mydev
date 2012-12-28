@@ -1,5 +1,5 @@
 Title: Jargon Pengaturcaraan
-Date: 2012-12-28 10:14 AM
+Date: 2012-12-28 10:14
 Tags: jargon, programming
 
 **Jargon** adalah perkataan atau frasa istimewa yang sukar difahami. Di dalam bidang pembangunan perisian -- sama seperti bidang profesional lain -- seringkali terdapat perkataan-perkataan sukar ini. Artikel ini bertujuan untuk mengumpulkan jargon tersebut berserta dengan penerangan ringkas mengenainya sebagai rujukan mudah.
