@@ -64,7 +64,7 @@ Gunakan fungsi _find_ (Ctrl+F) dalam pelayar web anda untuk membuat carian dan u
 
 1. **Version Control System (VCS)** : Sistem untuk menyimpan fail-fail aturcara. Ia membenarkan perubahan demi perubahan (versi) disimpan dan pengguna boleh mengambil mana-mana versi yang terdahulu untuk digunakan. Jika digunakan dalam team, ia memudahkan perkongsian kod dan mengelakkan pertembungan perubahan (_conflict_) antara berbilang pengguna melalui proses _merge_. Antara VCS yang popular ialah CVS (nama product, Concurrent Versioning System), Subversion, Mercurial, Git, dan Bazaar.
 
-1. **Web Service** : Satu kaedah untuk mengurangkan kos masa dan tenaga manusia. Situasi di mana aplikasi web menggantikan servis asal yang biasanya menggunakan borang dan masa dan ruang. 
+1. **Web Service** : Satu method standard untuk komputer di internet untuk memberi akses program atau fungsi yang boleh dicapai dan digunakan dari komputer lain
 
 1. **Z-Index** : ?
 
