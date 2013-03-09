@@ -16,7 +16,7 @@ Gunakan fungsi _find_ (Ctrl+F) dalam pelayar web anda untuk membuat carian dan u
 
 1. **Class Diagram** : Rajah berbentuk blok-blok yang mewakili `class`. Ia menunjukkan struktur `class` dan hubungan antaranya. Sebahagian dari UML.
 
-1. **Cloud Computing** : ?
+1. **Cloud Computing** : Penggunaan sumber komputer (hardware dan software) yang dihantar sebagai servis melalui network (Internet)
 
 1. **Data Layer** :  Salah satu layer dalam N-Layered Architecture. Menempatkan aturcara yang berinteraksi dengan storan/simpanan/pangkalan data.
 
@@ -36,11 +36,11 @@ Gunakan fungsi _find_ (Ctrl+F) dalam pelayar web anda untuk membuat carian dan u
 
 1. **Persistence** : Storan atau simpanan. Biasanya pangkalan data, sistem fail dan sebagainya.
 
-1. **Platform as a Service (PaaS)** : ?
+1. **Platform as a Service (PaaS)** : Satu kategori servis komputer cloud di mana ia membekal platform dan kaedah komputer sebagai servis. Ia adalah salah satu model servis pengkomputeran cloud. Dalam model ini, pembekal membekalkan rangkaian, pelayan, storan dan servis servis lain. Pengguna pula menggunakan alatan dan sebagainya yang dibekalkan pembekal untuk membina software.
 
 1. **Presentation Layer** : Salah satu layer dalam N-Layered Architecture. Menempatkan antaramuka pengguna (UI).
 
-1. **Representational State Transfer (REST)** : ?
+1. **Representational State Transfer (REST)** : Adalah gaya seni bina perisian untuk sistem membekal seperti World Wide Web. REST telah muncul sebagai reka bentuk model perkhidmatan web yang utama.
 
 1. **Sequence Diagram** : Rajah yang menunjukkan aliran perjalanan sistem
 
@@ -50,7 +50,7 @@ Gunakan fungsi _find_ (Ctrl+F) dalam pelayar web anda untuk membuat carian dan u
 
 1. **Simple Object Access Protocol (SOAP)** : ?
 
-1. **Software as a Service (SaaS)** : ?
+1. **Software as a Service (SaaS)** : Software sebagai servis. Satu model penghantaran software di mana software dan data berkaitan dihos pada cloud. SaaS biasanya diakses pengguna menggunakan thin client seperti web browser. Ia telah menjadi satu model penghantaran software yang biasa bagi banyak aplikasi perniagaan seperti akaun, kolaborasi, pengurusan hubungan pengguna (CRM), sistem pengurusan informasi (MIS), perancangan sumber enterprise (ERP), invoice, pengurusan sumber pengguna (HRM), pengurusan kandungan (CM), dan pengurusan helpdesk. Salah satu modal untuk menjual bagi syarikat syarikat ini ialah potensi untuk mengurangkan kos sokongan IT dengan melepaskan sokongan hardware, penyelenggaraan software, dan sokongan kepada pembekal SaaS.
 
 1. **Subject Matter Expert** : Rujuk _Domain Expert_.
 
@@ -64,7 +64,7 @@ Gunakan fungsi _find_ (Ctrl+F) dalam pelayar web anda untuk membuat carian dan u
 
 1. **Version Control System (VCS)** : Sistem untuk menyimpan fail-fail aturcara. Ia membenarkan perubahan demi perubahan (versi) disimpan dan pengguna boleh mengambil mana-mana versi yang terdahulu untuk digunakan. Jika digunakan dalam team, ia memudahkan perkongsian kod dan mengelakkan pertembungan perubahan (_conflict_) antara berbilang pengguna melalui proses _merge_. Antara VCS yang popular ialah CVS (nama product, Concurrent Versioning System), Subversion, Mercurial, Git, dan Bazaar.
 
-1. **Web Service** : ?
+1. **Web Service** : Satu kaedah untuk mengurangkan kos masa dan tenaga manusia. Situasi di mana aplikasi web menggantikan servis asal yang biasanya menggunakan borang dan masa dan ruang. 
 
 1. **Z-Index** : ?
 
