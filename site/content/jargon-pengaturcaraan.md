@@ -40,7 +40,7 @@ Gunakan fungsi _find_ (Ctrl+F) dalam pelayar web anda untuk membuat carian dan u
 
 1. **Presentation Layer** : Salah satu layer dalam N-Layered Architecture. Menempatkan antaramuka pengguna (UI).
 
-1. **Representational State Transfer (REST)** : Adalah gaya seni bina perisian untuk sistem membekal seperti World Wide Web. REST telah muncul sebagai reka bentuk model perkhidmatan web yang utama.
+1. **Representational State Transfer (REST)** : Adalah gaya seni bina perisian untuk sistem seperti World Wide Web. Semua permintaan kepada penghubung mesti mengandungi maklumat yang diperlukan seperti method dan data yang diperlukan. Berlawanan dengan cara laman web yang biasa menggunakan cookies dan session untuk menyelenggara data diantara sesi. 
 
 1. **Sequence Diagram** : Rajah yang menunjukkan aliran perjalanan sistem
 
