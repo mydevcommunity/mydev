@@ -5,4 +5,6 @@ python:
 # command to install dependencies
 #install: "pip install pelican Markdown --use-mirrors"
 # command to run tests
+
+# travis-ci always cd into our project root after checking out the source
 script: PYTHONPATH=./packages.zip nosetests -s
