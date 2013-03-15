@@ -10,5 +10,4 @@ PELICAN_CONF=${OPENSHIFT_HOMEDIR}/app-root/repo/site/pelicanconf.py
 PROJECT_ROOT=${OPENSHIFT_HOMEDIR}/app-root/repo
 
 virtualenv ${OPENSHIFT_DATA_DIR}/venv
-${OPENSHIFT_DATA_DIR}/venv/bin/pip install argparse
 ${OPENSHIFT_DATA_DIR}/venv/bin/python ${PROJECT_ROOT}/build.py -t ${PROJECT_ROOT}/site/themes/notmyidea-cms/ ${INPUT_DIR} -o ${OUTPUT_DIR} -s ${PELICAN_CONF}
