@@ -5,11 +5,11 @@ import os
 HERE = os.path.abspath(os.path.dirname(__file__))
 PATH = os.path.join(HERE, 'content')
 
-AUTHOR = u'team@mydev.domain'
+AUTHOR = u'team@mydev.my'
 SITENAME = u'Laman Kolaboratif MyDev'
-SITEURL = ''
+SITEURL = 'www.mydev.my'
 
-TIMEZONE = 'Europe/Paris'
+#TIMEZONE = u'Asia/Kuala_Lumpur'
 
 DEFAULT_LANG = u'en'
 

@@ -1,6 +1,5 @@
 Title: Tentang Kami
 
-
 ## Tentang MyDev
 
 MyDev adalah komuniti software developers di Malaysia. Anda dijemput untuk menyertai kami dan menyumbang dalam perbincangan sekitar topik pembangunan perisian dan web, teknologi maklumat, kerjaya, dan sebagainya. Atau paling tidak boleh melepak dengan geng-geng sekepala :)
