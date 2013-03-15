@@ -89,8 +89,11 @@ ol {
 
 .post-info {
     float:right;
-    margin:10px;
-    padding:5px;
+    margin: 0 0 0 20px;
+    padding: 10px;
+    background: #eee;
+    border-radius: 5px;
+    font-size: 80%;
 }
 
 .post-info p{
@@ -365,11 +368,10 @@ li:last-child .hentry, #content > .hentry {border: 0; margin: 0;}
 	#posts-list .hentry {padding-left: 10px; position: relative;}
 	
 	#posts-list footer {
-		left: 10px;
-		position: relative;
-        float: left;
-		top: 0.5em;
+		float: left;
 		width: 190px;
+		margin-right: 20px;
+		margin-left: 0;
 	}
 	
 	/* About the Author */
@@ -423,3 +425,16 @@ li:last-child .hentry, #content > .hentry {border: 0; margin: 0;}
 	
 	#add-comment input[type='submit'] {float: right; margin: 0 .5em;}
 	#add-comment * {margin-bottom: .5em;}
+
+
+	/* Custom */
+
+	#intro a:link, #sidebar a {
+		display: inline;
+		color: #C74350;
+		border: 0;
+	}
+
+	#intro a:hover {
+		color: white;
+	}

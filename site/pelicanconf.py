@@ -5,22 +5,22 @@ import os
 HERE = os.path.abspath(os.path.dirname(__file__))
 PATH = os.path.join(HERE, 'content')
 
-AUTHOR = u'team@mydev.domain'
+AUTHOR = u'team@mydev.my'
 SITENAME = u'Laman Kolaboratif MyDev'
-SITEURL = ''
+SITEURL = 'http://www.mydev.my'
 
-TIMEZONE = 'Europe/Paris'
+TIMEZONE = 'Asia/Kuala_Lumpur'
 
 DEFAULT_LANG = u'en'
 
 # Blogroll
-LINKS =  (('Pelican', 'http://docs.notmyidea.org/alexis/pelican/'),
-          ('Python.org', 'http://python.org'),
-          ('Jinja2', 'http://jinja.pocoo.org'),
-          ('You can modify those links in your config file', '#'),)
+# LINKS =  (('Pelican', 'http://docs.notmyidea.org/alexis/pelican/'),
+#           ('Python.org', 'http://python.org'),
+#           ('Jinja2', 'http://jinja.pocoo.org'),
+#           ('You can modify those links in your config file', '#'),)
 
 # Social widget
-SOCIAL = (('You can add links in your config file', '#'),
-          ('Another social link', '#'),)
+# SOCIAL = (('You can add links in your config file', '#'),
+#           ('Another social link', '#'),)
 
 DEFAULT_PAGINATION = 5
