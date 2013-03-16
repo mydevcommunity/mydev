@@ -206,6 +206,15 @@ OK
 ### Apa itu _assert_ ?
 _Assertion_ merupakan satu proses menguji nilai pada bahagian-bahagian tertentu aturcara bagi memastikan ia sentiasa benar sebagaimana yang diharapkan oleh pengaturcara. Kegagalan pada _assertion_ boleh dianggap sebagai kegagalan langsung aturcara tersebut dan ia mesti dibetulkan. Ini berbeza dengan _error handling_ dimana ia sesuatu yang dijangka akan berlaku dan pengaturcara hanya perlu memastikan langkah-langkah sepatutnya dilakukan untuk menangani _error_ tersebut.[^1]
 
+### Apa itu _regression_ ?
+_Regress_ adalah berlawanan kepada _progress_, maksudnya kita bergerak ke belakang. Bug yang sudah dibetulkan muncul balik akibat penambahan baru pada code. Ia biasa berlaku dalam development apabila kita fix sesuatu bug dan kemudian deploy code tersebut ke server live, selepas beberapa ketika akan dapat komplen akan isu baru dan bila diselidiki ia adalah disebabkan oleh fix sebelum ini. Satu kelebihan automated tests adalah boleh detect regression dengan lebih cepat, sebelum code sampai ke production.
+
+### Bagaimana menguruskan test yang melibatkan beberapa data berlainan tapi logik yang sama ?
+Boleh gunakan teknik seperti [data provider][1] (minit 19:13) atau [test generator][2].
+
+### Boleh tulis test dulu sebelum menulis kode ?
+Ya boleh. Ia dinamakan Test Driven Development (TDD). Dalam TDD, kita akan mulakan menulis satu set test terhadap komponen yang hendak dibangunkan. Test biasanya akan pass input-input yang diperlukan oleh function atau class terbabit dan akan check _return value_ sama ada menepati requirement atau tidak. Pada peringkat ini kesemua function atau class yang hendak di test adalah stub dan test akan fail. Seterusnya kita akan mula implement function atau class berkenaan sehingga semua test pass. Bagaimanapun secara realiti TDD jarang dapat dipraktikkan sepenuhnya. Code biasanya ditulis tanpa sebarang test dan bila ia mula mencapai peringkat tertentu barulah test ditulis untuk memastikan ia berfungsi sebagaimana diharapkan.
+
 ## Penulis
 Nama-nama di bawah adalah penyumbang kepada tulisan ini:-
 
@@ -216,3 +225,6 @@ Nama-nama di bawah adalah penyumbang kepada tulisan ini:-
 * Ikhwan Hayat (ikhwanhayat) - https://github.com/ikhwanhayat
 
 [^1]: http://en.wikipedia.org/wiki/Assertion_(computing)
+
+[1]:http://www.youtube.com/watch?v=84j61_aI0q8&feature=player_embedded#t=1130s
+[2]:https://gist.github.com/k4ml/5165424
