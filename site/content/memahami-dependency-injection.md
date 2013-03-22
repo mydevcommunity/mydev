@@ -328,3 +328,5 @@ Container akan mengambil tugas membina `WeatherService` dan menyambungkan semua 
 _Dependency Injection_ tidak akan dapat difahami jika kita tidak memahami apa itu _dependency_ dan bagaimana ia boleh wujud. Setelah memahaminya, _Dependency Injection_ dapat digunakan untuk mengurus _dependency_ dan seterusnya membantu kita mencapai _modularity_ dan _flexibility_ yang diidam-idamkan dalam sistem kita. Gunakan juga _DI Container_ untuk memudahkan tugas kita menghubungkan _dependency_ antara _object_.
 
 _NOTA: Kod dalam artikel ini adalah khusus untuk memahami Dependency Injection. Ia mungkin mengabaikan aspek lain seperti keselamatan dan sebagainya._
+
+Perbincangan mengenai artikel ini ada di [sini](https://plus.google.com/105721265741813048018/posts/Av85xxdHXUx).
