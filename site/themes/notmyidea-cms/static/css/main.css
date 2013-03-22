@@ -106,9 +106,12 @@ dl {margin: 0 0 1.5em 0;}
 dt {font-weight: bold;}
 dd {margin-left: 1.5em;}
 
-pre{background-color: #272822; padding: 10px; color: #f8f8f2; margin: 10px; overflow: auto; 
-	font-family: Monaco, Consolas, 'Bitstream Vera Sans', 'DejaVu Sans Mono', 'Courier New', monospace;
-	font-size: 10pt; }
+pre {background-color: #272822; padding: 10px; color: #f8f8f2; margin: 10px; overflow: auto; 
+        font-family: Monaco, Consolas, 'Bitstream Vera Sans', 'DejaVu Sans Mono', 'Courier New', monospace;
+        font-size: 12px; }
+
+code {font-family: Monaco, Consolas, 'Bitstream Vera Sans', 'DejaVu Sans Mono', 'Courier New', monospace;
+        font-size: 12px; }
 
 /* Quotes */
 blockquote {
