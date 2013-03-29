@@ -24,4 +24,4 @@ SOCIAL = (('You can add links in your config file', '#'),
 
 DEFAULT_PAGINATION = 5
 
-MD_EXTENSIONS = ['toc']
+MD_EXTENSIONS = ['toc', 'codehilite', 'extra']
