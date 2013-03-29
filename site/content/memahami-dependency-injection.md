@@ -59,6 +59,7 @@ Your IP is 10.10.10.10
 City: Kuala Lumpur
 Weather: Heavy Rain
 ```
+[TOC]
 
 Kita dapati _class_ ini perlu melakukan beberapa perkara iaitu pertama ia menerima input, kemudian ia mencari bandar pengguna, lalu mencari cuaca, dan akhirnya memaparkannya.
 
