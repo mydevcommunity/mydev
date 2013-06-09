@@ -4,5 +4,13 @@
 # up again.  This script gets executed directly, so it could be python, php,
 # ruby, etc.
 #
+mkdir -p $OPENSHIFT_HOMEDIR/app-root/data/public/default
+mkdir -p $OPENSHIFT_HOMEDIR/app-root/data/public/custom
+mkdir -p $OPENSHIFT_HOMEDIR/app-root/data/conf
+
+cp $OPENSHIFT_HOMEDIR/app-root/repo/diy/conf/* $OPENSHIFT_HOMEDIR/app-root/data/conf/
+sed -i "s/OPENSHIFT_DIY_IP/$OPENSHIFT_DIY_IP/g" $OPENSHIFT_HOMEDIR/app-root/data/conf/*
+sed -i "s#OPENSHIFT_HOMEDIR#$OPENSHIFT_HOMEDIR#g" $OPENSHIFT_HOMEDIR/app-root/data/conf/*
+sed -i "s#OPENSHIFT_DIY_LOG_DIR#$OPENSHIFT_DIY_LOG_DIR#g" $OPENSHIFT_HOMEDIR/app-root/data/conf/*
 
 cp -a ${OPENSHIFT_HOMEDIR}/app-root/repo/site/output/* ${OPENSHIFT_DATA_DIR}/public/default/
