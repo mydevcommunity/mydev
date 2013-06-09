@@ -8,6 +8,7 @@ PATH = os.path.join(HERE, 'content')
 AUTHOR = u'team@mydev.my'
 SITENAME = u'Laman Kolaboratif MyDev'
 SITEURL = 'http://www.mydev.my'
+RELATIVE_URLS = False
 TIMEZONE = 'Asia/Kuala_Lumpur'
 
 DEFAULT_LANG = u'en'
