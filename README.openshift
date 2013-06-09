@@ -1,5 +1,13 @@
 Feel free to change or remove this file, it is informational only.
 
+Building
+========
+After setting up new DIY application at openshift and checking out the initial source code:-
+
+    cd blog
+    git remote add upstream -m master git://github.com/mydevcommunity/mydev.git
+    git pull -s recursive -X theirs upstream master
+
 Get started
 ===========
 1. Add framework of choice to your repo.
