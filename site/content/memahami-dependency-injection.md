@@ -2,6 +2,8 @@ Title: Memahami Dependency Injection
 Date: 2013-03-22
 Author: ikhwanhayat
 
+[TOC]
+
 __Dependency Injection__ adalah suatu teknik rekabentuk perisian untuk menjadikannya lebih _modular_ dan _flexible_. Ia kadangkala juga disebut sebagai __Dependency Inversion__ atau __Inversion of Control (IoC)__. Maksud sebenar setiap satu frasa sedikit berbeza, namun untuk permulaan bolehlah dianggap semuanya membawa maksud yang hampir serupa.
 
 ## Apa Itu Dependency
@@ -130,15 +132,15 @@ svc.ShowForIp("10.10.10.10");
 Cuba lihat, _class_ `WeatherService` nampak lebih bersih bukan? Kurang berserabut apabila tugasnya telah dipecahkan kepada _class_ lain. Baik, pada tahap ini anda dapat lihat bagaimana satu _class_ besar dipecahkan kepada _class_ lebih kecil. Aturcara yang baru ini boleh dikatakan lebih _modular_ dari sebelumnya.
 
 
-Namun, _class_ `WeatherService` ini bergantung kepada _class_ `CityFinder` dan `WeatherFinder` untuk berfungsi. Untuk mencapai _modularity_, kita menghadapi satu masalah lain pula iaitu _dependency_. Adanya _dependency_ membuatkan perubahan sukar dilakukan, kerana perubahan pada satu tempat akan mempengaruhi tempat lain. Namun jika tiada _dependency_ langsung maka _class_ `WeatherService` ini langsung tidak dapat berfungsi!
+Namun, _class_ `WeatherService` ini **bergantung kepada** _class_ `CityFinder` dan `WeatherFinder` untuk berfungsi. Untuk mencapai _modularity_, kita menghadapi satu masalah lain pula iaitu _dependency_ (kebergantungan). Adanya _dependency_ membuatkan perubahan sukar dilakukan, kerana perubahan pada satu tempat akan mempengaruhi tempat lain. Namun jika tiada _dependency_ langsung maka _class_ `WeatherService` ini langsung tidak dapat berfungsi!
 
 ## Mengurus Dependency
 
 Kita perlukan cara untuk menguruskan _dependency_ ini. Salah satu caranya ialah menggunakan teknik _Dependency Injection_.
 
-Dalam _class_ `WeatherService` ini, _dependency_nya pada CityFinder dan WeatherFinder adalah kuat kerana ia perlu meng_instantiate_ _class-class_ sendiri ini sebelum menggunakannya. Jika kita ingin mengubahnya pada masa akan datang, kita perlu korek semula class `WeatherService` ini dan lakukan perubahan di dalamnya.
+Dalam _class_ `WeatherService` ini, _dependency_ pada CityFinder dan WeatherFinder adalah kuat kerana ia perlu _instantiate_ _class-class_ ini sendiri sebelum menggunakannya. Jika kita ingin mengubahnya pada masa akan datang, kita perlu korek semula _class_ `WeatherService` ini dan lakukan perubahan di dalamnya.
 
-Lebih baik jika tugas meng_instatiate_ _class-class_ ini dilakukan oleh "orang lain". "Orang lain" ini kemudiannya akan memberikan _instance_ _class-class_ yang diperlukan kepada `WeatherService` untuk digunakan. Mari kita lihat apa yang saya maksudkan.
+Lebih baik jika tugas untuk _instantiate_ _class-class_ ini dilakukan oleh "orang lain". "Orang lain" ini kemudiannya akan memberikan _instance_ _class-class_ yang diperlukan kepada `WeatherService` untuk digunakan. Mari kita lihat apa yang saya maksudkan.
 
 ```csharp
 
