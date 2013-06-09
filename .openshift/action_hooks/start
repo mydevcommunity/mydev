@@ -3,9 +3,4 @@
 # script. The application will work only if it binds to
 # $OPENSHIFT_INTERNAL_IP:8080
 
-PPID=`netstat -natp | grep 8080 | awk '{print $7}' | cut -d'/' -f1`
-if [ ! -z $PPID ]; then
-  kill $PPID
-fi
-
 httpd -f $OPENSHIFT_HOMEDIR/app-root/data/conf/httpd.conf
