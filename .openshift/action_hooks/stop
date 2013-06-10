@@ -1,9 +1,9 @@
 #!/bin/bash
 
-APACHE_CONF=${OPENSHIFT_HOMEDIR}/app-root/data/conf/http.conf
+APACHE_CONF=${OPENSHIFT_HOMEDIR}/app-root/data/conf/httpd.conf
 
 if [ -f ${APACHE_CONF} ]; then
-    httpd -f $OPENSHIFT_HOMEDIR/app-root/data/conf/httpd.conf -k stop
+    httpd -f ${APACHE_CONF} -k stop
     exit 0
 fi
 
