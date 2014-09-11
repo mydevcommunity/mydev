@@ -1,0 +1,16 @@
+{% extends "index.html" %}
+{% block title %}Author:{{ author }} - {{ SITENAME }}{% endblock %}
+{% block metadesc %}{{ SITETAGALT }} Posts by author {{ author }}{% endblock %}
+
+
+{% block content_header %}
+<ol class="breadcrumb">
+    <li><a href="{{ SITEURL }}/" title="Home" rel="home">
+		<i class="fa fa-home fa-fw fa-lg"></i> </a></li>
+    <li>Authors </li>
+    <li class="active">{{ author }}</li>
+</ol>
+{% endblock %}
+{% block article %}
+{% include "includes/index_summaries.html" %}
+{% endblock article %}
