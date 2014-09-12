@@ -31,10 +31,16 @@ Jika anda memerlukan editor WYSIWYG untuk Markdown, salah satu _online editor_ y
 
 Jika anda ingin membuat perubahan terhadap _theme_ atau perkara lain yang bukan _content_. Anda mungkin perlu _generate_ laman ini sendiri di komputer anda untuk memastikan semuanya baik sebelum melakukan pull request. Caranya ialah:
 
-1. Pastikan Python sudah diinstall. Dapatkan Python dari distribusi rasmi [Python.org](http://python.org/download/) atau lain-lain seperti [Portable Python](http://portablepython.com/).
-1. Larikan arahan ini pada terminal/command line: `python build.py site/content -t site/themes/notmyidea-cms -o site/output -s site/pelicanconf.py`
-1. HTML yang terjana dapat dilihat di dalam folder `site\output`.
-1. Anda boleh buka fail HTML tersebut menggunakan _browser_.
+* Pastikan Python sudah diinstall. Dapatkan Python dari distribusi rasmi [Python.org](http://python.org/download/) atau lain-lain seperti [Portable Python](http://portablepython.com/).
+* Larikan arahan ini pada terminal/command line:-
+
+```console
+mkdir -p app-root && ln -s ../ app-root/repo
+OPENSHIFT_HOMEDIR=. OPENSHIFT_DATA_DIR=.env .openshift/action_hooks/build
+PORT=9090 IP=127.0.0.1 python server.py
+```
+
+* Anda boleh buka akses melalui browser http://127.0.0.1:9090/
 
 Jika anda menggunakan Cloud9, arahan sama boleh dilarikan di terminal dalam workspace Cloud9 anda. Cloud9 sudah terbina dalam dengan Python dan Git.
 

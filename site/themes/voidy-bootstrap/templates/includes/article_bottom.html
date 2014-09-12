@@ -1,0 +1,4 @@
+
+{% if article.author %}
+{% include "includes/authors_bio/" + article.author.name + ".html" %}
+{% endif %}
