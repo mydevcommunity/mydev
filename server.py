@@ -22,7 +22,7 @@ PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 ROUTES = (
     # [url_prefix ,  directory_path]
     ['/media', '/var/www/media'],
-    ['', os.path.join(PROJECT_ROOT, 'output')]  # empty string for the 'default' match
+    ['', os.path.join(PROJECT_ROOT, 'app-root/repo/site/output')]  # empty string for the 'default' match
 )
 
 class RequestHandler(SimpleHTTPRequestHandler):

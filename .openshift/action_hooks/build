@@ -10,4 +10,9 @@ PELICAN_CONF=${OPENSHIFT_HOMEDIR}/app-root/repo/site/pelicanconf.py
 PROJECT_ROOT=${OPENSHIFT_HOMEDIR}/app-root/repo
 
 virtualenv ${OPENSHIFT_DATA_DIR}/venv
-${OPENSHIFT_DATA_DIR}/venv/bin/python ${PROJECT_ROOT}/build.py -t ${PROJECT_ROOT}/site/themes/notmyidea-cms/ ${INPUT_DIR} -o ${OUTPUT_DIR} -s ${PELICAN_CONF}
+${OPENSHIFT_DATA_DIR}/venv/bin/pip install -r ${PROJECT_ROOT}/requirements.txt
+${OPENSHIFT_DATA_DIR}/venv/bin/python ${PROJECT_ROOT}/build.py --verbose -t ${PROJECT_ROOT}/site/themes/voidy-bootstrap/ ${INPUT_DIR} -o ${OUTPUT_DIR} -s ${PELICAN_CONF}
+
+echo 'OPENSHIFT_HOMEDIR: ' $OPENSHIFT_HOMEDIR
+echo 'OPENSHIFT_DATA_DIR: ' $OPENSHIFT_DATA_DIR
+echo 'INPUT_DIR: ' $INPUT_DIR
