@@ -20,9 +20,11 @@ LINKS =  (('Pelican', 'http://docs.notmyidea.org/alexis/pelican/'),
            ('You can modify those links in your config file', '#'),)
 
 # Social widget - This is required
-SOCIAL = (('You can add links in your config file', '#'),
-           ('Another social link', '#'),)
+#SOCIAL = (('You can add links in your config file', '#'),
+#           ('Another social link', '#'),)
 
 DEFAULT_PAGINATION = 5
 
 MD_EXTENSIONS = ['toc', 'codehilite', 'extra']
+
+STYLESHEETS = ('pygments.css',)
