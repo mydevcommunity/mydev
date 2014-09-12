@@ -27,4 +27,4 @@ DEFAULT_PAGINATION = 5
 
 MD_EXTENSIONS = ['toc', 'codehilite', 'extra']
 
-STYLESHEETS = ('pygments.css',)
+STYLESHEETS = ('pygment.css',)
