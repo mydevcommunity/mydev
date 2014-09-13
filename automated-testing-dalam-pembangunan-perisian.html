@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Automated Testing Dalam Pembangunan Perisian - Laman Kolaboratif MyDev</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="team@mydev.my" />
+	    	    	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
+    	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />	
+    	
+              <link rel="stylesheet" href="http://www.mydev.my/theme/css/pygment.css" />
+	      
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="shortcut icon" href="http://www.mydev.my/favicon.ico" />
+
+            <link href="http://www.mydev.my/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Laman Kolaboratif MyDev Atom Feed" />
+            <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-41580964-1', '');
+  ga('send', 'pageview');
+
+</script>
+  </head>
+
+  <body>
+    <div class="navbar navbar-default" role="navigation">
+      <div class="container">
+	   <div class="navbar-header">
+		<button type="button" class="navbar-toggle" 
+				data-toggle="collapse" data-target="#main-navbar-collapse">
+		  <span class="sr-only">Toggle navigation</span>
+		  <span class="icon-bar"></span>
+		  <span class="icon-bar"></span>
+		  <span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="http://www.mydev.my/" rel="home">Home</a>
+       </div>
+
+      <div class="collapse navbar-collapse" id="main-navbar-collapse">
+        <ul class="nav navbar-nav">
+          <!-- <li> <a href="http://www.mydev.my/">Home</a> </li> -->
+                                               <li><a href="http://www.mydev.my/pages/tentang-kami.html">Tentang Kami</a></li>
+                        <li class="divider"></li>
+                    <li><a href="http://www.mydev.my/archives.html">Archives</a></li>
+          <li class="divider"></li>
+                      <li><a href="http://www.mydev.my/feeds/all.atom.xml" 
+                   type="application/atom+xml" rel="alternate">
+                <i class="fa fa-rss fa-fw fa-lg"></i> </a></li>
+                  </ul> <!-- /nav -->
+      </div> <!-- /navbar-collapse -->
+	  </div> <!-- /container -->
+    </div> <!-- /navbar -->
+
+	<div class="jumbotron" id="overview">
+	  <div class="container">
+		<h1><a href="http://www.mydev.my/">Laman Kolaboratif MyDev</a></h1>
+		<p class="lead"></p>
+	  </div>
+	</div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9" id="content">
+		                  <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting">
+  <header>
+  	<div class="article-header">
+    <abbr class="article-prehead">
+	  Sat 15 December 2012
+	</abbr> <!-- /.article-prehead -->
+	<h1>
+	  <a href="http://www.mydev.my/automated-testing-dalam-pembangunan-perisian.html" rel="bookmark"
+		 title="Permalink to Automated Testing Dalam Pembangunan Perisian">
+		Automated Testing Dalam Pembangunan Perisian
+	  </a>
+	</h1>
+    <div class="article-posthead">
+	  <p>
+                  Posted by <a href="http://www.mydev.my/author/teammydevmy.html">team@mydev.my</a>
+        		in 
+		<a href="http://www.mydev.my/category/misc.html">
+		  misc</a>
+		&nbsp;&nbsp;
+					  </p>
+	</div> <!-- /.article-posthead -->
+</div> <!-- /.article-header -->    </header>
+  <div class="content-body" itemprop="text articleBody">
+        	<div class="toc">
+<ul>
+<li><a href="#manual-testing">Manual Testing</a></li>
+<li><a href="#automated-testing">Automated Testing</a></li>
+<li><a href="#kategori-test">Kategori Test</a></li>
+<li><a href="#test-framework">Test Framework</a></li>
+<li><a href="#contoh-test-mengikut-bahasa-pengaturcaraan">Contoh Test mengikut bahasa pengaturcaraan</a><ul>
+<li><a href="#unit-test-dalam-c-net">Unit Test dalam C# (.NET)</a></li>
+<li><a href="#unit-test-python">Unit Test Python</a></li>
+</ul>
+</li>
+<li><a href="#soalan-lazim">Soalan Lazim</a><ul>
+<li><a href="#apa-itu-assert">Apa itu assert ?</a></li>
+<li><a href="#apa-itu-regression">Apa itu regression ?</a></li>
+<li><a href="#bagaimana-menguruskan-test-yang-melibatkan-beberapa-data-berlainan-tapi-logik-yang-sama">Bagaimana menguruskan test yang melibatkan beberapa data berlainan tapi logik yang sama ?</a></li>
+<li><a href="#boleh-tulis-test-dulu-sebelum-menulis-kode">Boleh tulis test dulu sebelum menulis kode ?</a></li>
+</ul>
+</li>
+<li><a href="#penulis">Penulis</a></li>
+</ul>
+</div>
+<p><em>Testing</em> adalah sebahagian daripada proses pembangunan perisian komputer. Setiap kali baris-baris kod ditulis, diubah atau dipadam, ia mesti melalui proses testing bagi memastikan program tersebut masih lagi berjalan sebagaimana yang diharapkan. Ini bermakna kita sama sekali tidak boleh mengelak daripada melakukan <em>testing</em> terhadap program atau aplikasi yang kita bangunkan.</p>
+<h2 id="manual-testing">Manual Testing</h2>
+<p>Testing biasanya dilakukan secara manual dengan pengaturcara cuba menjalankan aturcara atau aplikasi yang dibangunkan dan memerhatikan sama ada ia mengeluarkan output yang dikehendaki ataupun semua <em>features</em> berfungsi sebagai mana diharapkan. Ambil contoh aturcara ringkas berikut:-</p>
+<div class="codehilite"><pre>    <span class="n">function</span> <span class="n">add</span><span class="p">(</span><span class="n">num1</span><span class="p">,</span> <span class="n">num2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">num1</span> <span class="o">+</span> <span class="n">num2</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">print</span> <span class="n">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">.</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span> <span class="c"># akan paparkan 3</span>
+    <span class="k">print</span> <span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">.</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span> <span class="c"># akan paparkan 4</span>
+</pre></div>
+
+
+<p>Andaikan aturcara diatas ditulis menggunakan bahasa PHP dan disimpan dalam fail bernama <code>add.php</code>. Untuk menguji aturcara ini, pengaturcara akan <code>execute</code> fail tersebut dan memerhatikan sama ada ia memaparkan out yang diharapkan iaitu:-</p>
+<div class="codehilite"><pre><span class="mi">3</span>
+<span class="mi">4</span>
+</pre></div>
+
+
+<p>Aturcara tersebut mungkin boleh dijalankan seperti berikut:-</p>
+<div class="codehilite"><pre>    php add.php
+    3
+    4
+</pre></div>
+
+
+<p>Di atas kita dapati aturcara tersebut memaparkan output yang kita kehendaki. Sekarang kita andaikan berlaku sedikit kesilapan dalam kod tersebut. Katakan ia ditulis seperti berikut:-</p>
+<div class="codehilite"><pre>    <span class="n">function</span> <span class="n">add</span><span class="p">(</span><span class="n">num1</span><span class="p">,</span> <span class="n">num2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">num1</span> <span class="o">*</span> <span class="n">num2</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">print</span> <span class="n">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">.</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span> <span class="c"># akan paparkan 3</span>
+    <span class="k">print</span> <span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">.</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span> <span class="c"># akan paparkan 4</span>
+</pre></div>
+
+
+<p>Apabila dijalankan, kita akan dapati outputnya berlainan:-</p>
+<div class="codehilite"><pre><span class="mi">2</span>
+<span class="mi">4</span>
+</pre></div>
+
+
+<p>Ini bermakna program tersebut gagal dalam proses <em>testing</em> kita. Cara <em>testing</em> seperti diatas walaupun mudah untuk difahami dan diamalkan ia menjadi amat tidak efektif apabila program semakin berkembang dan kompleks. Ia juga tidak efektif kerana bergantung semata-mata kepada keupayaan mata kita untuk mengesan perbezaan pada output yang dipaparkan. Bukan mahu menidakkan keupayaan mata namun manusia sememangnya tidak sesuai untuk melakukan kerja-kerja leceh dan remeh seperti ini. Disinilah fungsi komputer supaya manusia boleh menumpukan kepada kerja-kerja yang lebih memerlukan daya fikir, intelek serta kreativiti yang tinggi.</p>
+<h2 id="automated-testing">Automated Testing</h2>
+<p>Dalam proses <em>testing</em> secara manual di atas, kita bergantung kepada tenaga manusia untuk memerhatikan semasa program dijalankan, ia menghasilkan output yang dikehendaki atau tidak. Dalam <em>automated testing</em> kita akan menulis satu aturcara lain bagi menguji aturcara yang dibangunkan. Ini membolehkan kita untuk <em>delegate</em> tugas-tugas menguji tersebut kepada komputer yang sudah semestinya lebih efisyen untuk melaksanakannya.</p>
+<p>Contoh kod sebelum ini boleh ditulis seperti berikut untuk <fill in>:-</p>
+<div class="codehilite"><pre><span class="x">    function add($num1, $num2) {</span>
+<span class="x">        return $num1 * $num2;</span>
+<span class="x">    }</span>
+
+<span class="x">    assert(add(1, 2) === 3);</span>
+<span class="x">    assert(add(2, 2) === 4);</span>
+</pre></div>
+
+
+<p>Apabila dijalankan kita akan melihat output seperti berikut:-</p>
+<div class="codehilite"><pre><span class="n">Warning</span><span class="o">:</span> <span class="n">assert</span><span class="o">():</span> <span class="n">Assertion</span> <span class="n">failed</span> <span class="k">in</span> <span class="sr">/home/rkiteratai/</span><span class="n">add</span><span class="o">.</span><span class="na">php</span> <span class="n">on</span> <span class="n">line</span> <span class="mi">6</span>
+</pre></div>
+
+
+<p>Aah, sekarang anda sudah dapat melihat bagaimana komputer sudah mula mengambil peranan manusia dalam menguji kod aturcara.</p>
+<p>Kod automated testing boleh ditulis dengan 2 cara, sama ada selepas kod aturcara perisian siap ditulis atau sebelum kod aturcara perisian ditulis.</p>
+<h2 id="kategori-test">Kategori <em>Test</em></h2>
+<ul>
+<li>Unit Test</li>
+<li>Functional Test</li>
+<li>Integration Test</li>
+<li>Stress Test</li>
+</ul>
+<h2 id="test-framework">Test Framework</h2>
+<p>...</p>
+<h2 id="contoh-test-mengikut-bahasa-pengaturcaraan">Contoh Test mengikut bahasa pengaturcaraan</h2>
+<h3 id="unit-test-dalam-c-net">Unit Test dalam C# (.NET)</h3>
+<p>Dalam dunia .NET, antara <em>unit testing framework</em> yang paling awal dan paling meluas digunakan ialah NUnit. Berikut adalah contoh bagaimana ia digunakan.</p>
+<p>Katakan kod yang ingin diuji adalah seperti berikut:</p>
+<div class="codehilite"><pre><span class="k">class</span> <span class="nc">Calculator</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="nf">Add</span><span class="p">(</span><span class="kt">int</span> <span class="n">operand1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">operand2</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">operand1</span> <span class="p">+</span> <span class="n">operand2</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="kt">int</span> <span class="nf">Minus</span><span class="p">(</span><span class="kt">int</span> <span class="n">operand1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">operand2</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">operand1</span> <span class="p">+</span> <span class="n">operand2</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Kita boleh membuat <em>test fixture</em> seperti ini untuk mengujinya:</p>
+<div class="codehilite"><pre><span class="k">using</span> <span class="nn">NUnit.Framework</span>
+
+<span class="na">[TestFixture]</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">CalculatorTest</span>
+<span class="p">{</span>
+<span class="na">    [Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">AddShouldDoSum</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">calc</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Calculator</span><span class="p">();</span>
+        <span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="n">calc</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">1</span><span class="p">);</span>
+
+        <span class="n">Assert</span><span class="p">.</span><span class="n">AreEqual</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="n">result</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="na">    [Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">MinusShouldDoSubtraction</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">calc</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Calculator</span><span class="p">();</span>
+        <span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="n">calc</span><span class="p">.</span><span class="n">Minus</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">1</span><span class="p">);</span>
+
+        <span class="n">Assert</span><span class="p">.</span><span class="n">AreEqual</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="n">result</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Setelah <em>test code</em> di atas dikompil menjadi <em>assembly</em> (DLL) atau <em>executable</em>, larikan ia menggunakan sama ada <em>console runner</em> (nunit-console.exe) atau <em>GUI runner</em> (nunit-gui.exe).</p>
+<p>Di bawah adalah contoh apa bila ia dilarikan menggunakan <em>GUI NUnit runner</em>. Kita dapat lihat bahawa <em>test</em> untuk fungsi <em>Add()</em> berjaya, tetapi <em>test</em> untuk <em>Minus()</em> gagal kerana terdapat kesilapan dalam <em>code</em> kita.</p>
+<p><img alt="Contoh antaramuka NUnit GUI Runner" src="http://i.imgur.com/m8z2n.png" /></p>
+<h3 id="unit-test-python">Unit Test Python</h3>
+<p>Kod untuk testing dalam Python boleh ditulis dengan bantuan module <code>unittest</code> dalam Python Standard Library. Katakan kod yang ingin diuji adalah seperti berikut:</p>
+<div class="codehilite"><pre><span class="k">class</span> <span class="nc">Calculator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num1</span><span class="p">,</span> <span class="n">num2</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">num1</span> <span class="o">+</span> <span class="n">num2</span>
+
+    <span class="k">def</span> <span class="nf">minus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num1</span><span class="p">,</span> <span class="n">num2</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">num1</span> <span class="o">+</span> <span class="n">num2</span>
+</pre></div>
+
+
+<p>Simpan kod di atas dalam fail bernama <code>calculator.py</code>. Seterusnya kod untuk testing boleh ditulis seperti berikut:-</p>
+<div class="codehilite"><pre><span class="kn">import</span> <span class="nn">unittest</span>
+
+<span class="kn">from</span> <span class="nn">calculator</span> <span class="kn">import</span> <span class="n">Calculator</span>
+
+<span class="k">class</span> <span class="nc">CalculatorTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_add_should_do_sum</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">calc</span> <span class="o">=</span> <span class="n">Calculator</span><span class="p">()</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">calc</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">test_minus_should_do_substraction</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">calc</span> <span class="o">=</span> <span class="n">Calculator</span><span class="p">()</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">calc</span><span class="o">.</span><span class="n">minus</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Simpan kod di atas dalam fail bernama <code>tests.py</code>. Seterusnya kita boleh jalankan test dengan melancarkan arahan berikut melalui console:-</p>
+<div class="codehilite"><pre><span class="go">python tests.py</span>
+</pre></div>
+
+
+<p>Anda akan dapati outputnya seperti berikut:-</p>
+<div class="codehilite"><pre><span class="go">.F</span>
+<span class="go">======================================================================</span>
+<span class="go">FAIL: test_minus_should_do_substraction (__main__.CalculatorTest)</span>
+<span class="go">----------------------------------------------------------------------</span>
+<span class="go">Traceback (most recent call last):</span>
+<span class="go">  File &quot;tests.py&quot;, line 16, in test_minus_should_do_substraction</span>
+<span class="go">    self.assertEqual(result, 1)</span>
+<span class="go">AssertionError: 3 != 1</span>
+
+<span class="go">----------------------------------------------------------------------</span>
+<span class="go">Ran 2 tests in 0.000s</span>
+
+<span class="go">FAILED (failures=1)</span>
+</pre></div>
+
+
+<p>Di atas kita dapati satu test gagal kerana terdapat kesilapan dalam kod kita sebelum ini. Setelah kesilapan itu dibetulkan, kita akan dapati outputnya seperti berikut:-</p>
+<div class="codehilite"><pre><span class="go">..</span>
+<span class="go">----------------------------------------------------------------------</span>
+<span class="go">Ran 2 tests in 0.000s</span>
+
+<span class="go">OK</span>
+</pre></div>
+
+
+<h2 id="soalan-lazim">Soalan Lazim</h2>
+<h3 id="apa-itu-assert">Apa itu <em>assert</em> ?</h3>
+<p><em>Assertion</em> merupakan satu proses menguji nilai pada bahagian-bahagian tertentu aturcara bagi memastikan ia sentiasa benar sebagaimana yang diharapkan oleh pengaturcara. Kegagalan pada <em>assertion</em> boleh dianggap sebagai kegagalan langsung aturcara tersebut dan ia mesti dibetulkan. Ini berbeza dengan <em>error handling</em> dimana ia sesuatu yang dijangka akan berlaku dan pengaturcara hanya perlu memastikan langkah-langkah sepatutnya dilakukan untuk menangani <em>error</em> tersebut.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup></p>
+<h3 id="apa-itu-regression">Apa itu <em>regression</em> ?</h3>
+<p><em>Regress</em> adalah berlawanan kepada <em>progress</em>, maksudnya kita bergerak ke belakang. Bug yang sudah dibetulkan muncul balik akibat penambahan baru pada code. Ia biasa berlaku dalam development apabila kita fix sesuatu bug dan kemudian deploy code tersebut ke server live, selepas beberapa ketika akan dapat komplen akan isu baru dan bila diselidiki ia adalah disebabkan oleh fix sebelum ini. Satu kelebihan automated tests adalah boleh detect regression dengan lebih cepat, sebelum code sampai ke production.</p>
+<h3 id="bagaimana-menguruskan-test-yang-melibatkan-beberapa-data-berlainan-tapi-logik-yang-sama">Bagaimana menguruskan test yang melibatkan beberapa data berlainan tapi logik yang sama ?</h3>
+<p>Boleh gunakan teknik seperti <a href="http://www.youtube.com/watch?v=84j61_aI0q8&amp;feature=player_embedded#t=1130s">data provider</a> (minit 19:13) atau <a href="https://gist.github.com/k4ml/5165424">test generator</a>.</p>
+<h3 id="boleh-tulis-test-dulu-sebelum-menulis-kode">Boleh tulis test dulu sebelum menulis kode ?</h3>
+<p>Ya boleh. Ia dinamakan Test Driven Development (TDD). Dalam TDD, kita akan mulakan menulis satu set test terhadap komponen yang hendak dibangunkan. Test biasanya akan pass input-input yang diperlukan oleh function atau class terbabit dan akan check <em>return value</em> sama ada menepati requirement atau tidak. Pada peringkat ini kesemua function atau class yang hendak di test adalah stub dan test akan fail. Seterusnya kita akan mula implement function atau class berkenaan sehingga semua test pass. Bagaimanapun secara realiti TDD jarang dapat dipraktikkan sepenuhnya. Code biasanya ditulis tanpa sebarang test dan bila ia mula mencapai peringkat tertentu barulah test ditulis untuk memastikan ia berfungsi sebagaimana diharapkan.</p>
+<h2 id="penulis">Penulis</h2>
+<p>Nama-nama di bawah adalah penyumbang kepada tulisan ini:-</p>
+<ul>
+<li>Mohd. Kamal bin Mustafa (k4ml) - http://k4ml.github.com/</li>
+<li>Mohd Amree (amree) - http://ieatbinary.com/</li>
+<li>Mior Muhammad Zaki (crynobone) - http://crynobone.com/</li>
+<li>Irwan Azam Ahmad (ryzam) - https://github.com/ryzam</li>
+<li>Ikhwan Hayat (ikhwanhayat) - https://github.com/ikhwanhayat</li>
+</ul>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>http://en.wikipedia.org/wiki/Assertion_(computing)&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+  </div>
+
+  
+<div class="article-tag-list">
+<span class="label label-default">Tags</span>
+	<a href="http://www.mydev.my/tag/testing.html"><i class="fa fa-tag"></i>testing</a>&nbsp;
+	<a href="http://www.mydev.my/tag/automated.html"><i class="fa fa-tag"></i>automated</a>&nbsp;
+</div>
+  <hr />
+    
+MyDev adalah komuniti pembangun perisian dan web di Malaysia. Anda dijemput untuk menyertai kami dan menyumbang dalam perbincangan sekitar topik pembangunan perisian dan web, teknologi maklumat, kerjaya, dan sebagainya. Atau paling tidak boleh melepak dengan geng-geng sekepala :)
+  </article>
+                                </div><!-- /content -->
+
+        <div class="col-md-3 sidebar-nav" id="sidebar">
+                      
+<div class="row">
+<div class="col-xs-6 col-md-12">
+<h4><i class="fa fa-comment fa-fw fa-lg"></i> Social</h4>
+<ul class="list-unstyled social-links">
+  </ul>
+</div>
+
+<div class="col-xs-6 col-md-12">
+<h4><i class="fa fa-folder fa-fw fa-lg"></i> Categories</h4>
+<ul class="list-unstyled category-links">
+  <li><a href="http://www.mydev.my/category/misc.html" >
+    <i class="fa fa-folder-open fa-fw fa-lg"></i> misc</a></li>
+</ul>
+</div>
+
+</div> <!-- /row -->
+
+<h4><i class="fa fa-tags fa-fw fa-lg"></i> Tags</h4>
+<p class="tag-cloud">
+<span class="tag-4">
+    <a href="http://www.mydev.my/tag/testing.html">
+        <i class="fa fa-tag fa-fw fa-lg"></i>testing
+    </a>
+</span>
+<span class="tag-4">
+    <a href="http://www.mydev.my/tag/php.html">
+        <i class="fa fa-tag fa-fw fa-lg"></i>php
+    </a>
+</span>
+<span class="tag-4">
+    <a href="http://www.mydev.my/tag/session.html">
+        <i class="fa fa-tag fa-fw fa-lg"></i>session
+    </a>
+</span>
+<span class="tag-4">
+    <a href="http://www.mydev.my/tag/jargon.html">
+        <i class="fa fa-tag fa-fw fa-lg"></i>jargon
+    </a>
+</span>
+<span class="tag-4">
+    <a href="http://www.mydev.my/tag/http.html">
+        <i class="fa fa-tag fa-fw fa-lg"></i>http
+    </a>
+</span>
+<span class="tag-4">
+    <a href="http://www.mydev.my/tag/automated.html">
+        <i class="fa fa-tag fa-fw fa-lg"></i>automated
+    </a>
+</span>
+<span class="tag-4">
+    <a href="http://www.mydev.my/tag/programming.html">
+        <i class="fa fa-tag fa-fw fa-lg"></i>programming
+    </a>
+</span>
+</p>
+
+<h4><i class="fa fa-rss fa-fw fa-lg"></i> Feeds</h4>
+<ul class="list-unstyled">
+      <li><a href="http://www.mydev.my/feeds/all.atom.xml" 
+		   type="application/atom+xml" rel="alternate">
+		<i class="fa fa-rss-square fa-fw fa-lg"></i> Atom Feed</a></li>
+    </ul>
+
+<hr />
+
+                  </div><!--/sidebar -->
+      </div><!--/row-->
+    </div><!--/container-->
+
+    <div class="container">
+      <footer id="page-footer">
+		 
+        <address id="colophon">
+          Blog powered by <a href="http://getpelican.com/">Pelican</a>
+                      and <a href="http://python.org">Python</a>  
+		  &nbsp;&bull;&nbsp;
+		  <a href="https://github.com/robulouski/voidy-bootstrap"
+			 target="_blank">VoidyBootstrap</a> theme by 
+		  <a href="http://www.voidynullness.net"
+			 target="_blank">RKI</a>  
+        </address><!-- /colophon  -->
+      </footer>
+	</div>
+
+        
+    <!-- javascript -->
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+        </body>
+</html>

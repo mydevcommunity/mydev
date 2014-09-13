@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Memahami Dependency Injection - Laman Kolaboratif MyDev</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="team@mydev.my" />
+	    	    	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
+    	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />	
+    	
+              <link rel="stylesheet" href="http://www.mydev.my/theme/css/pygment.css" />
+	      
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="shortcut icon" href="http://www.mydev.my/favicon.ico" />
+
+            <link href="http://www.mydev.my/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Laman Kolaboratif MyDev Atom Feed" />
+            <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-41580964-1', '');
+  ga('send', 'pageview');
+
+</script>
+  </head>
+
+  <body>
+    <div class="navbar navbar-default" role="navigation">
+      <div class="container">
+	   <div class="navbar-header">
+		<button type="button" class="navbar-toggle" 
+				data-toggle="collapse" data-target="#main-navbar-collapse">
+		  <span class="sr-only">Toggle navigation</span>
+		  <span class="icon-bar"></span>
+		  <span class="icon-bar"></span>
+		  <span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="http://www.mydev.my/" rel="home">Home</a>
+       </div>
+
+      <div class="collapse navbar-collapse" id="main-navbar-collapse">
+        <ul class="nav navbar-nav">
+          <!-- <li> <a href="http://www.mydev.my/">Home</a> </li> -->
+                                               <li><a href="http://www.mydev.my/pages/tentang-kami.html">Tentang Kami</a></li>
+                        <li class="divider"></li>
+                    <li><a href="http://www.mydev.my/archives.html">Archives</a></li>
+          <li class="divider"></li>
+                      <li><a href="http://www.mydev.my/feeds/all.atom.xml" 
+                   type="application/atom+xml" rel="alternate">
+                <i class="fa fa-rss fa-fw fa-lg"></i> </a></li>
+                  </ul> <!-- /nav -->
+      </div> <!-- /navbar-collapse -->
+	  </div> <!-- /container -->
+    </div> <!-- /navbar -->
+
+	<div class="jumbotron" id="overview">
+	  <div class="container">
+		<h1><a href="http://www.mydev.my/">Laman Kolaboratif MyDev</a></h1>
+		<p class="lead"></p>
+	  </div>
+	</div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9" id="content">
+		                  <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting">
+  <header>
+  	<div class="article-header">
+    <abbr class="article-prehead">
+	  Fri 22 March 2013
+	</abbr> <!-- /.article-prehead -->
+	<h1>
+	  <a href="http://www.mydev.my/memahami-dependency-injection.html" rel="bookmark"
+		 title="Permalink to Memahami Dependency Injection">
+		Memahami Dependency Injection
+	  </a>
+	</h1>
+    <div class="article-posthead">
+	  <p>
+                  Posted by <a href="http://www.mydev.my/author/ikhwanhayat.html">ikhwanhayat</a>
+        		in 
+		<a href="http://www.mydev.my/category/misc.html">
+		  misc</a>
+		&nbsp;&nbsp;
+					  </p>
+	</div> <!-- /.article-posthead -->
+</div> <!-- /.article-header -->    </header>
+  <div class="content-body" itemprop="text articleBody">
+        	<div class="toc">
+<ul>
+<li><a href="#apa-itu-dependency">Apa Itu Dependency</a></li>
+<li><a href="#mengurus-dependency">Mengurus Dependency</a></li>
+<li><a href="#lebih-panjang-dan-sukar">Lebih Panjang dan Sukar?</a></li>
+<li><a href="#dependency-injection-container">Dependency Injection Container</a></li>
+<li><a href="#kesimpulan">Kesimpulan</a></li>
+</ul>
+</div>
+<p><strong>Dependency Injection</strong> adalah suatu teknik rekabentuk perisian untuk menjadikannya lebih <em>modular</em> dan <em>flexible</em>. Ia kadangkala juga disebut sebagai <strong>Dependency Inversion</strong> atau <strong>Inversion of Control (IoC)</strong>. Maksud sebenar setiap satu frasa sedikit berbeza, namun untuk permulaan bolehlah dianggap semuanya membawa maksud yang hampir serupa.</p>
+<h2 id="apa-itu-dependency">Apa Itu Dependency</h2>
+<p>Untuk memahami apa itu <em>Dependency Injection</em> (DI), kita perlu terlebih dahulu mengetahui apa yang dimaksudkan dengan <em>dependency</em>.</p>
+<p>Dalam suatu sistem yang besar, perkara pertama yang perlu dilakukan ialah pecahkan ia kepada bahagian-bahagian yang lebih kecil supaya mudah untuk kita selesaikan dan yang lebih penting mudah untuk kita senggara (<em>mantainable</em>).</p>
+<p>Katakan kita ingin membina suatu sistem <em>online</em> yang akan memaparkan cuaca bagi suatu tempat. Keperluan yang telah ditetapkan ialah sistem mesti mampu memberitahu pengguna cuaca di bandar mereka melalui alamat IP yang dikesan.</p>
+<p>Jadi kita akan buatkan suatu <em>class</em> <code>WeatherService</code> untuk tujuan ini. Katakan kita sudah mempunyai pangkalan data yang akan memberikan kita nama bandar berdasarkan IP. Ada pangkalan data lain pula yang diberikan pada kita oleh Jabatan Meteorologi yang menyenaraikan ramalan cuaca untuk satu-satu bandar.</p>
+<p>Untuk memudahkan pemahaman, kita buatkan dulu ia sebagai applikasi konsol. Kita akan gunakan bahasa C# untuk contoh ini.</p>
+<div class="codehilite"><pre><span class="k">public</span> <span class="k">class</span> <span class="nc">WeatherService</span>
+<span class="p">{</span>   
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">ShowForIp</span><span class="p">(</span><span class="kt">string</span> <span class="n">ip</span><span class="p">)</span>
+    <span class="p">{</span>       
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Your IP is &quot;</span> <span class="p">+</span> <span class="n">ip</span><span class="p">);</span>      
+
+        <span class="c1">// Hubungi pangkalan data geolocation</span>
+        <span class="c1">// Dan larikan query untuk dapatkan bandar berdasarkan IP</span>
+
+        <span class="kt">var</span> <span class="n">connGeo</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlConnection</span><span class="p">(</span><span class="s">&quot;server1...&quot;</span><span class="p">);</span>
+        <span class="n">connGeo</span><span class="p">.</span><span class="n">Open</span><span class="p">();</span>     
+        <span class="kt">var</span> <span class="n">sqlCity</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlCommand</span><span class="p">(</span><span class="s">&quot;select top 1 city from IpCity where ip=&#39;&quot;</span> <span class="p">+</span> <span class="n">ip</span> <span class="p">+</span> <span class="s">&quot;&#39;&quot;</span><span class="p">,</span> <span class="n">connGeo</span><span class="p">);</span>
+
+        <span class="kt">var</span> <span class="n">city</span> <span class="p">=</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span><span class="n">sqlCity</span><span class="p">.</span><span class="n">ExecuteScalar</span><span class="p">();</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;City: &quot;</span> <span class="p">+</span> <span class="n">city</span><span class="p">);</span>
+
+        <span class="n">connGeo</span><span class="p">.</span><span class="n">Close</span><span class="p">();</span>
+
+        <span class="c1">// Hubungi pula pangakalan data untuk cuaca</span>
+        <span class="c1">// Dan dapatkan cuaca terkini untuk bandar</span>
+
+        <span class="kt">var</span> <span class="n">connWeather</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlConnection</span><span class="p">(</span><span class="s">&quot;server2...&quot;</span><span class="p">);</span>
+        <span class="n">connWeather</span><span class="p">.</span><span class="n">Open</span><span class="p">();</span>     
+        <span class="kt">var</span> <span class="n">sqlWeather</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlCommand</span><span class="p">(</span><span class="s">&quot;select top 1 weather from CityWeather where city=&#39;&quot;</span> <span class="p">+</span> <span class="n">city</span> <span class="p">+</span> <span class="s">&quot;&#39; and day=&quot;</span> <span class="p">+</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">Now</span><span class="p">.</span><span class="n">DayOfYear</span><span class="p">,</span> <span class="n">connWeather</span><span class="p">);</span>
+
+        <span class="kt">var</span> <span class="n">weather</span> <span class="p">=</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span><span class="n">sqlWeather</span><span class="p">.</span><span class="n">ExecuteScalar</span><span class="p">();</span> 
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Weather: &quot;</span> <span class="p">+</span> <span class="n">weather</span><span class="p">);</span>
+
+        <span class="n">connWeather</span><span class="p">.</span><span class="n">Close</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Panggil dari applikasi utama</span>
+
+<span class="kt">var</span> <span class="n">svc</span> <span class="p">=</span> <span class="k">new</span> <span class="n">WeatherService</span><span class="p">();</span>
+<span class="n">svc</span><span class="p">.</span><span class="n">ShowForIp</span><span class="p">(</span><span class="s">&quot;10.10.10.10&quot;</span><span class="p">);</span>
+
+<span class="c1">// Contoh output</span>
+<span class="n">Your</span> <span class="n">IP</span> <span class="k">is</span> <span class="m">10.10</span><span class="p">.</span><span class="m">10.10</span>
+<span class="n">City</span><span class="p">:</span> <span class="n">Kuala</span> <span class="n">Lumpur</span>
+<span class="n">Weather</span><span class="p">:</span> <span class="n">Heavy</span> <span class="n">Rain</span>
+</pre></div>
+
+
+<p>Kita dapati <em>class</em> ini perlu melakukan beberapa perkara iaitu pertama ia menerima input, kemudian ia mencari bandar pengguna, lalu mencari cuaca, dan akhirnya memaparkannya.</p>
+<p>Bila dilihat kembali, terlalu banyak kerja yang perlu dilakukan oleh <em>class</em> ini. <em>Class</em> yang baik ialah ianya fokus pada kerjanya sahaja. Bila kita kecilkan skop tugas suatu <em>class</em>, kita dapat menjadikan ia lebih "cohesive", tugasnya lebih fokus.</p>
+<p>Tugas asasi <em>class</em> ini ialah menerima IP dan memaparkan cuaca bagi IP tersebut. Namun ia tidak dapat berfungsi jika ia tidak dapat mencari bandar untuk IP itu dan seterusnya mencari cuaca untuk bandar tersebut. Apa kata jika kita buatkan <em>class</em> lain untuk melakukan dua tugas tersebut untuknya. <em>Class</em> <code>WeatherService</code> pula nanti hanya perlu gunakan <em>class</em> baru yang kita akan buat ini supaya objektifnya dapat dicapai.</p>
+<div class="codehilite"><pre><span class="k">public</span> <span class="k">class</span> <span class="nc">CityFinder</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="nf">FindFromIp</span><span class="p">(</span><span class="kt">string</span> <span class="n">ip</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// Hubungi pangkalan data geolocation</span>
+        <span class="c1">// Dan larikan query untuk dapatkan bandar berdasarkan IP</span>
+
+        <span class="kt">var</span> <span class="n">connGeo</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlConnection</span><span class="p">(</span><span class="s">&quot;server1...&quot;</span><span class="p">);</span>
+        <span class="n">connGeo</span><span class="p">.</span><span class="n">Open</span><span class="p">();</span>     
+        <span class="kt">var</span> <span class="n">sqlCity</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlCommand</span><span class="p">(</span><span class="s">&quot;select top 1 city from IpCity where ip=&#39;&quot;</span> <span class="p">+</span> <span class="n">ip</span> <span class="p">+</span> <span class="s">&quot;&#39;&quot;</span><span class="p">,</span> <span class="n">connGeo</span><span class="p">);</span>
+
+        <span class="kt">var</span> <span class="n">city</span> <span class="p">=</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span><span class="n">sqlCity</span><span class="p">.</span><span class="n">ExecuteScalar</span><span class="p">();</span>
+
+        <span class="n">connGeo</span><span class="p">.</span><span class="n">Close</span><span class="p">();</span>
+
+        <span class="k">return</span> <span class="n">city</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">WeatherFinder</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="nf">FindForCity</span><span class="p">(</span><span class="kt">string</span> <span class="n">city</span><span class="p">)</span>
+    <span class="p">{</span>   
+        <span class="c1">// Hubungi pangakalan data untuk cuaca</span>
+        <span class="c1">// Dan dapatkan cuaca terkini untuk bandar</span>
+
+        <span class="kt">var</span> <span class="n">connWeather</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlConnection</span><span class="p">(</span><span class="s">&quot;server2...&quot;</span><span class="p">);</span>
+        <span class="n">connWeather</span><span class="p">.</span><span class="n">Open</span><span class="p">();</span>     
+        <span class="kt">var</span> <span class="n">sqlWeather</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlCommand</span><span class="p">(</span><span class="s">&quot;select top 1 weather from CityWeather where city=&#39;&quot;</span> <span class="p">+</span> <span class="n">city</span> <span class="p">+</span> <span class="s">&quot;&#39; and day=&quot;</span> <span class="p">+</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">Now</span><span class="p">.</span><span class="n">DayOfYear</span><span class="p">,</span> <span class="n">connWeather</span><span class="p">);</span>
+
+        <span class="kt">var</span> <span class="n">weather</span> <span class="p">=</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span><span class="n">sqlWeather</span><span class="p">.</span><span class="n">ExecuteScalar</span><span class="p">();</span> 
+
+        <span class="n">connWeather</span><span class="p">.</span><span class="n">Close</span><span class="p">();</span>
+
+        <span class="k">return</span> <span class="n">weather</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">WeatherService</span>
+<span class="p">{</span>   
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">ShowForIp</span><span class="p">(</span><span class="kt">string</span> <span class="n">ip</span><span class="p">)</span>
+    <span class="p">{</span>       
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Your IP is &quot;</span> <span class="p">+</span> <span class="n">ip</span><span class="p">);</span>
+
+        <span class="kt">var</span> <span class="n">city</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CityFinder</span><span class="p">().</span><span class="n">FindFromIp</span><span class="p">(</span><span class="n">ip</span><span class="p">);</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;City: &quot;</span> <span class="p">+</span> <span class="n">city</span><span class="p">);</span>
+
+        <span class="kt">var</span> <span class="n">weather</span> <span class="p">=</span> <span class="k">new</span> <span class="n">WeatherFinder</span><span class="p">().</span><span class="n">FindForCity</span><span class="p">(</span><span class="n">city</span><span class="p">);</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Weather: &quot;</span> <span class="p">+</span> <span class="n">weather</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Panggil dari applikasi utama</span>
+
+<span class="kt">var</span> <span class="n">svc</span> <span class="p">=</span> <span class="k">new</span> <span class="n">WeatherService</span><span class="p">();</span>
+<span class="n">svc</span><span class="p">.</span><span class="n">ShowForIp</span><span class="p">(</span><span class="s">&quot;10.10.10.10&quot;</span><span class="p">);</span>
+</pre></div>
+
+
+<p>Cuba lihat, <em>class</em> <code>WeatherService</code> nampak lebih bersih bukan? Kurang berserabut apabila tugasnya telah dipecahkan kepada <em>class</em> lain. Baik, pada tahap ini anda dapat lihat bagaimana satu <em>class</em> besar dipecahkan kepada <em>class</em> lebih kecil. Aturcara yang baru ini boleh dikatakan lebih <em>modular</em> dari sebelumnya.</p>
+<p>Namun, <em>class</em> <code>WeatherService</code> ini <strong>bergantung kepada</strong> <em>class</em> <code>CityFinder</code> dan <code>WeatherFinder</code> untuk berfungsi. Untuk mencapai <em>modularity</em>, kita menghadapi satu masalah lain pula iaitu <em>dependency</em> (kebergantungan). Adanya <em>dependency</em> membuatkan perubahan sukar dilakukan, kerana perubahan pada satu tempat akan mempengaruhi tempat lain. Namun jika tiada <em>dependency</em> langsung maka <em>class</em> <code>WeatherService</code> ini langsung tidak dapat berfungsi!</p>
+<h2 id="mengurus-dependency">Mengurus Dependency</h2>
+<p>Kita perlukan cara untuk menguruskan <em>dependency</em> ini. Salah satu caranya ialah menggunakan teknik <em>Dependency Injection</em>.</p>
+<p>Dalam <em>class</em> <code>WeatherService</code> ini, <em>dependency</em> pada CityFinder dan WeatherFinder adalah kuat kerana ia perlu <em>instantiate</em> <em>class-class</em> ini sendiri sebelum menggunakannya. Jika kita ingin mengubahnya pada masa akan datang, kita perlu korek semula <em>class</em> <code>WeatherService</code> ini dan lakukan perubahan di dalamnya.</p>
+<p>Lebih baik jika tugas untuk <em>instantiate</em> <em>class-class</em> ini dilakukan oleh "orang lain". "Orang lain" ini kemudiannya akan memberikan <em>instance</em> <em>class-class</em> yang diperlukan kepada <code>WeatherService</code> untuk digunakan. Mari kita lihat apa yang saya maksudkan.</p>
+<div class="codehilite"><pre><span class="c1">// Anggapkan tiada perubahan pada class CityFinder dan WeatherFinder</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">WeatherService</span>
+<span class="p">{</span>   
+    <span class="k">private</span> <span class="n">CityFinder</span> <span class="n">cityFinder</span><span class="p">;</span>
+    <span class="k">private</span> <span class="n">WeatherFinder</span> <span class="n">weatherFinder</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="nf">WeatherService</span><span class="p">(</span><span class="n">CityFinder</span> <span class="n">cityFinder</span><span class="p">,</span> <span class="n">WeatherFinder</span> <span class="n">weatherFinder</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="n">cityFinder</span> <span class="p">=</span> <span class="n">cityFinder</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="n">weatherFinder</span> <span class="p">=</span> <span class="n">weatherFinder</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">ShowForIp</span><span class="p">(</span><span class="kt">string</span> <span class="n">ip</span><span class="p">)</span>
+    <span class="p">{</span>       
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Your IP is &quot;</span> <span class="p">+</span> <span class="n">ip</span><span class="p">);</span>
+
+        <span class="kt">var</span> <span class="n">city</span> <span class="p">=</span> <span class="n">cityFinder</span><span class="p">.</span><span class="n">FindFromIp</span><span class="p">(</span><span class="n">ip</span><span class="p">);</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;City: &quot;</span> <span class="p">+</span> <span class="n">city</span><span class="p">);</span>
+
+        <span class="kt">var</span> <span class="n">weather</span> <span class="p">=</span> <span class="n">weatherFinder</span><span class="p">.</span><span class="n">FindForCity</span><span class="p">(</span><span class="n">city</span><span class="p">);</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Weather: &quot;</span> <span class="p">+</span> <span class="n">weather</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Panggil dari applikasi utama</span>
+
+<span class="kt">var</span> <span class="n">cityFinder</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CityFinder</span><span class="p">();</span>
+<span class="kt">var</span> <span class="n">weatherFinder</span> <span class="p">=</span> <span class="k">new</span> <span class="n">WeatherFinder</span><span class="p">();</span>
+
+<span class="kt">var</span> <span class="n">svc</span> <span class="p">=</span> <span class="k">new</span> <span class="n">WeatherService</span><span class="p">(</span><span class="n">cityFinder</span><span class="p">,</span> <span class="n">weatherFinder</span><span class="p">);</span>
+<span class="n">svc</span><span class="p">.</span><span class="n">ShowForIp</span><span class="p">(</span><span class="s">&quot;10.10.10.10&quot;</span><span class="p">);</span>
+</pre></div>
+
+
+<p>Kita dapat lihat, applikasi utama yang perlu <em>instantiate</em> <em>class</em> <code>CityFinder</code> dan <code>WeatherFinder</code>, dan kemudiannya <em>inject</em> mereka ke dalam <code>WeatherService</code>. Nah, inilah yang dinamakan <strong>Dependency Inversion</strong> (mengalihkan tugas mengurus <em>dependency</em> ke tempat lain) atau <strong>Dependency Injection</strong> (memasukkan <em>dependency</em> ke dalam <em>class</em> yang memerlukannya).</p>
+<p>Tugas mengawal <em>dependency</em> biasanya diserahkan kepada kod yang berada lebih atas dalam hierarki panggilan kerana ia lebih mudah dikonfigurasikan.</p>
+<h2 id="lebih-panjang-dan-sukar">Lebih Panjang dan Sukar?</h2>
+<p>Nampaknya ia hanya memanjangkan kod aturcara kita sahaja? Apa bagusnya begini? Untuk mendemonstrasikan kelebihannya, mari kita wujudkan satu situasi perubahan yang biasa berlaku dalam sistem perisian. </p>
+<p>Katakan pada suatu hari, Jabatan Meteorologi telah meningkat taraf perkhidmatan IT mereka. Cuaca sekarang boleh diperolehi menggunakan web service yang telah mereka sediakan. Lebih tepat dan terkini. Kita ingin mengubahkan sistem kita supaya dapat menggunakan web service ini dan tidak perlu bersusah-payah mengambil data dari mereka setiap minggu :)</p>
+<div class="codehilite"><pre><span class="c1">//</span>
+<span class="c1">// Dalam C#, cara yang saya tunjukkan ini menggunakan interface. Dalam bahasa lain mungkin ia tidak diperlukan.</span>
+<span class="c1">//</span>
+<span class="k">public</span> <span class="k">interface</span> <span class="n">IWeatherFinder</span>
+<span class="p">{</span>
+    <span class="kt">string</span> <span class="nf">FindForCity</span><span class="p">(</span><span class="kt">string</span> <span class="n">city</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">//</span>
+<span class="c1">// Ubah sedikit untuk class WeatherFinder asal supaya ia masih dapat digunakan</span>
+<span class="c1">//</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">WeatherFinderFromDb</span> <span class="p">:</span> <span class="n">IWeatherFinder</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="nf">FindForCity</span><span class="p">(</span><span class="kt">string</span> <span class="n">city</span><span class="p">)</span>
+    <span class="p">{</span>   
+        <span class="c1">// ... kod sama</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">//</span>
+<span class="c1">// Class yang baru untuk mencari menggunakan web service</span>
+<span class="c1">//</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">WeatherWebService</span> <span class="p">:</span> <span class="n">IWeatherFinder</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="nf">FindForCity</span><span class="p">(</span><span class="kt">string</span> <span class="n">city</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// Hubungi web service</span>
+        <span class="c1">// Dapatkan cuaca untuk bandar yang diberi</span>
+        <span class="c1">// Anggaplah kod selengkapnya ada di sini :)</span>
+
+        <span class="k">return</span> <span class="n">weather</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">WeatherService</span>
+<span class="p">{</span>   
+    <span class="k">private</span> <span class="n">CityFinder</span> <span class="n">cityFinder</span><span class="p">;</span>
+
+    <span class="k">private</span> <span class="n">IWeatherFinder</span> <span class="n">weatherFinder</span><span class="p">;</span> <span class="c1">// gunakan interface, bukan concrete class lagi</span>
+
+    <span class="k">public</span> <span class="nf">WeatherService</span><span class="p">(</span><span class="n">CityFinder</span> <span class="n">cityFinder</span><span class="p">,</span> <span class="n">IWeatherFinder</span> <span class="n">weatherFinder</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="n">cityFinder</span> <span class="p">=</span> <span class="n">cityFinder</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="n">weatherFinder</span> <span class="p">=</span> <span class="n">weatherFinder</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">ShowForIp</span><span class="p">(</span><span class="kt">string</span> <span class="n">ip</span><span class="p">)</span>
+    <span class="p">{</span>       
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Your IP is &quot;</span> <span class="p">+</span> <span class="n">ip</span><span class="p">);</span>
+
+        <span class="kt">var</span> <span class="n">city</span> <span class="p">=</span> <span class="n">cityFinder</span><span class="p">.</span><span class="n">FindFromIp</span><span class="p">(</span><span class="n">ip</span><span class="p">);</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;City: &quot;</span> <span class="p">+</span> <span class="n">city</span><span class="p">);</span>
+
+        <span class="kt">var</span> <span class="n">weather</span> <span class="p">=</span> <span class="n">weatherFinder</span><span class="p">.</span><span class="n">FindForCity</span><span class="p">(</span><span class="n">city</span><span class="p">);</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Weather: &quot;</span> <span class="p">+</span> <span class="n">weather</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Panggil dari applikasi utama</span>
+
+<span class="kt">var</span> <span class="n">cityFinder</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CityFinder</span><span class="p">();</span>
+<span class="kt">var</span> <span class="n">weatherFinder</span> <span class="p">=</span> <span class="k">new</span> <span class="n">WeatherWebService</span><span class="p">();</span> <span class="c1">// gunakan class yang baru</span>
+
+<span class="kt">var</span> <span class="n">svc</span> <span class="p">=</span> <span class="k">new</span> <span class="n">WeatherService</span><span class="p">(</span><span class="n">cityFinder</span><span class="p">,</span> <span class="n">weatherFinder</span><span class="p">);</span>
+<span class="n">svc</span><span class="p">.</span><span class="n">ShowForIp</span><span class="p">(</span><span class="s">&quot;10.10.10.10&quot;</span><span class="p">);</span>
+</pre></div>
+
+
+<p>Kita dapat lihat bahawa hanya perubahan yang sedikit perlu dilakukan pada <code>WeatherService</code>. Malah jika anda menggunakan interface dari awal (satu lagi prinsip yang baik untuk digunakan), maka perubahan langsung tidak dilakukan dalam <em>class</em> <code>WeatherService</code> tersebut.</p>
+<p>Melalui teknik ini juga, pengujian dapat dilakukan dengan lebih mudah. Katakan kita buatkan satu <em>unit test</em> untuk <code>WeatherService</code> ini. Kita tidak mahu web service itu dipanggil setiap kali, kerana ia pastilah lambat. Kita anggapkan sahaja web service ini sudah terbukti berfungsi kerana kita telah lakukan satu lagi <em>unit test</em> untuknya ditempat lain.</p>
+<p>Maka kita buatkan satu <code>WeatherFinderStub</code> yang memulangkan cuaca yang sudah kita tentukan. <em>Stub</em> ini kemudiannya kita gunakan untuk menguji <code>WeatherService</code>.</p>
+<div class="codehilite"><pre><span class="k">public</span> <span class="k">class</span> <span class="nc">WeatherFinderStub</span> <span class="p">:</span> <span class="n">IWeatherFinder</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="nf">FindForCity</span><span class="p">(</span><span class="kt">string</span> <span class="n">city</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="s">&quot;Cloudy&quot;</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="c1">// Dalam unit test</span>
+
+<span class="k">void</span> <span class="nf">TestWeatherServiceCanReturnWeatherForIp</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">var</span> <span class="n">svc</span> <span class="p">=</span> <span class="k">new</span> <span class="n">WeatherService</span><span class="p">(</span><span class="k">new</span> <span class="n">CityFinder</span><span class="p">(),</span> <span class="k">new</span> <span class="n">WeatherFinderStub</span><span class="p">());</span> <span class="c1">// gunakan stub</span>
+
+    <span class="c1">// Lakukan asserts</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2 id="dependency-injection-container">Dependency Injection Container</h2>
+<p><em>Depedency</em> mungkin boleh jadi kompleks contohnya jika <code>WeatherFinder</code> itu sendiri perlu bergantung pada <em>value</em> atau <em>object</em> lain. Namun <em>dependency chain</em> seperti ini sebenarnya adalah perkara biasa dalam sistem perisian. Agak sukar sebenarnya jika kita perlu susun sendiri semua <em>dependency</em> ini setiap kali ingin menggunakan <em>class</em> kita.</p>
+<p>Katakan <em>class</em> <code>CityFinder</code> telah kita ubah supaya <em>constructor_nya menerima suatu <code>ConnectionPool</code> yang menguruskan hubungan ke pangkalan data. Jadi <code>CityFinder</code> tidak perlu tahu server mana yang perlu dihubungi. <code>WeatherWebService</code> pula menerima URL untuk webservice itu supaya kita mudah melakukan konfigurasi. Ini bermakna _dependency</em> kepada hubungan pangkalan data atau URL ditelah dilonggarkan dari <em>class</em> yang asal.</p>
+<p>Situasi seperti ini dapat dipermudahkan dengan menggunakan <em>framework-framework</em> <em>DI Container</em> atau kadangkala disebut <em>IoC Container</em>. <em>DI Container</em> biasanya ada fungsi automatic injection untuk menguruskan <em>dependency</em> secara automatik. Contoh <em>framework</em> seperti ini yang ada di dalam dunia .NET adalah seperti Castle Windsor, Autofac, Ninject, dan sebagainya.</p>
+<p><em>Container</em> ini biasanya berfungsi seperti berikut:</p>
+<div class="codehilite"><pre><span class="c1">// DiContainer adalah sebuah framework khayalan</span>
+
+<span class="kt">var</span> <span class="n">container</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DiContainer</span><span class="p">();</span>
+
+<span class="n">container</span><span class="p">.</span><span class="n">Register</span><span class="p">&lt;</span><span class="n">IConnectionPool</span><span class="p">&gt;().</span><span class="n">Using</span><span class="p">&lt;</span><span class="n">ConnectionPool</span><span class="p">&gt;()</span>
+    <span class="p">.</span><span class="n">WithParamater</span><span class="p">(</span><span class="s">&quot;connString&quot;</span><span class="p">,</span> <span class="s">&quot;server1...&quot;</span><span class="p">);</span>
+
+<span class="n">container</span><span class="p">.</span><span class="n">Register</span><span class="p">&lt;</span><span class="n">ICityFinder</span><span class="p">&gt;().</span><span class="n">Using</span><span class="p">&lt;</span><span class="n">CityFinder</span><span class="p">&gt;();</span>
+
+<span class="n">container</span><span class="p">.</span><span class="n">Register</span><span class="p">&lt;</span><span class="n">IWeatherFinder</span><span class="p">&gt;().</span><span class="n">Using</span><span class="p">&lt;</span><span class="n">WeatherWebService</span><span class="p">&gt;()</span>
+    <span class="p">.</span><span class="n">WithParameter</span><span class="p">(</span><span class="s">&quot;url&quot;</span><span class="p">,</span> <span class="s">&quot;http://webservice/...&quot;</span><span class="p">);</span>
+
+<span class="n">container</span><span class="p">.</span><span class="n">Register</span><span class="p">&lt;</span><span class="n">IWeatherService</span><span class="p">&gt;().</span><span class="n">Using</span><span class="p">&lt;</span><span class="n">WeatherService</span><span class="p">&gt;();</span>
+
+<span class="c1">// Panggil dari applikasi utama</span>
+
+<span class="kt">var</span> <span class="n">svc</span> <span class="p">=</span> <span class="n">container</span><span class="p">.</span><span class="n">GetObject</span><span class="p">&lt;</span><span class="n">IWeatherService</span><span class="p">&gt;();</span> <span class="c1">// Dapatkan WeatherService dari container</span>
+<span class="n">svc</span><span class="p">.</span><span class="n">ShowForIp</span><span class="p">(</span><span class="s">&quot;10.10.10.10&quot;</span><span class="p">);</span>
+</pre></div>
+
+
+<p>Container akan mengambil tugas membina <code>WeatherService</code> dan menyambungkan semua <em>dependency</em> nya supaya ia dapat hidup dan berfungsi. Kita tidak perlu menguruskannya sendiri.</p>
+<h2 id="kesimpulan">Kesimpulan</h2>
+<p><em>Dependency Injection</em> tidak akan dapat difahami jika kita tidak memahami apa itu <em>dependency</em> dan bagaimana ia boleh wujud. Setelah memahaminya, <em>Dependency Injection</em> dapat digunakan untuk mengurus <em>dependency</em> dan seterusnya membantu kita mencapai <em>modularity</em> dan <em>flexibility</em> yang diidam-idamkan dalam sistem kita. Gunakan juga <em>DI Container</em> untuk memudahkan tugas kita menghubungkan <em>dependency</em> antara <em>object</em>.</p>
+<p><em>NOTA: Kod dalam artikel ini adalah khusus untuk memahami Dependency Injection. Ia mungkin mengabaikan aspek lain seperti keselamatan dan sebagainya.</em></p>
+<p>Perbincangan mengenai artikel ini ada di <a href="https://plus.google.com/105721265741813048018/posts/Av85xxdHXUx">sini</a>.</p>
+  </div>
+
+  
+<div class="article-tag-list">
+</div>
+  <hr />
+    
+<div class="panel panel-info">
+  <div class="panel-heading">Biodata Penulis</div>
+  <div class="panel-body">
+    <img align="left" style="margin:5px" src="https://www.linkedin.com/mpr/pub/image-1DO7sqVdaGYQIGHO5I5hUW5IQjdWz7sri-OC8gPmQLKqcs_Z1DOC2_bdQ9CdcIWX7rwU/ikhwan-hayat.jpg"></img>
+<a href="http://www.ikhwanhayat.net">Ikhwan Hayat</a> telah membina perisian secara professional sejak 2004. Kebanyakan masa dia 
+bergelumang dalam platform .NET. Namun kadangkala tersesat pergi ke dunia PHP, Python, Ruby, Java, 
+dan bahasa-bahasa pengaturcaraan lain. Sekarang berkerja sebagai pengaturcara secara <i>freelance</i> sepenuh masa.
+<br /><br />
+<i>
+<a href="http://www.ikhwanhayat.net">Ikhwan Hayat</a> has been developing softwares professionally since 2004. Main area of expertise is .NET, 
+but often found getting lost in the world of PHP, Python, Ruby, Java, or some esoteric programming language. Available as a full-time freelance developer.
+</i>
+  </div>
+</div>
+  </article>
+                                </div><!-- /content -->
+
+        <div class="col-md-3 sidebar-nav" id="sidebar">
+                      
+<div class="row">
+<div class="col-xs-6 col-md-12">
+<h4><i class="fa fa-comment fa-fw fa-lg"></i> Social</h4>
+<ul class="list-unstyled social-links">
+  </ul>
+</div>
+
+<div class="col-xs-6 col-md-12">
+<h4><i class="fa fa-folder fa-fw fa-lg"></i> Categories</h4>
+<ul class="list-unstyled category-links">
+  <li><a href="http://www.mydev.my/category/misc.html" >
+    <i class="fa fa-folder-open fa-fw fa-lg"></i> misc</a></li>
+</ul>
+</div>
+
+</div> <!-- /row -->
+
+<h4><i class="fa fa-tags fa-fw fa-lg"></i> Tags</h4>
+<p class="tag-cloud">
+<span class="tag-4">
+    <a href="http://www.mydev.my/tag/testing.html">
+        <i class="fa fa-tag fa-fw fa-lg"></i>testing
+    </a>
+</span>
+<span class="tag-4">
+    <a href="http://www.mydev.my/tag/php.html">
+        <i class="fa fa-tag fa-fw fa-lg"></i>php
+    </a>
+</span>
+<span class="tag-4">
+    <a href="http://www.mydev.my/tag/session.html">
+        <i class="fa fa-tag fa-fw fa-lg"></i>session
+    </a>
+</span>
+<span class="tag-4">
+    <a href="http://www.mydev.my/tag/jargon.html">
+        <i class="fa fa-tag fa-fw fa-lg"></i>jargon
+    </a>
+</span>
+<span class="tag-4">
+    <a href="http://www.mydev.my/tag/http.html">
+        <i class="fa fa-tag fa-fw fa-lg"></i>http
+    </a>
+</span>
+<span class="tag-4">
+    <a href="http://www.mydev.my/tag/automated.html">
+        <i class="fa fa-tag fa-fw fa-lg"></i>automated
+    </a>
+</span>
+<span class="tag-4">
+    <a href="http://www.mydev.my/tag/programming.html">
+        <i class="fa fa-tag fa-fw fa-lg"></i>programming
+    </a>
+</span>
+</p>
+
+<h4><i class="fa fa-rss fa-fw fa-lg"></i> Feeds</h4>
+<ul class="list-unstyled">
+      <li><a href="http://www.mydev.my/feeds/all.atom.xml" 
+		   type="application/atom+xml" rel="alternate">
+		<i class="fa fa-rss-square fa-fw fa-lg"></i> Atom Feed</a></li>
+    </ul>
+
+<hr />
+
+                  </div><!--/sidebar -->
+      </div><!--/row-->
+    </div><!--/container-->
+
+    <div class="container">
+      <footer id="page-footer">
+		 
+        <address id="colophon">
+          Blog powered by <a href="http://getpelican.com/">Pelican</a>
+                      and <a href="http://python.org">Python</a>  
+		  &nbsp;&bull;&nbsp;
+		  <a href="https://github.com/robulouski/voidy-bootstrap"
+			 target="_blank">VoidyBootstrap</a> theme by 
+		  <a href="http://www.voidynullness.net"
+			 target="_blank">RKI</a>  
+        </address><!-- /colophon  -->
+      </footer>
+	</div>
+
+        
+    <!-- javascript -->
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+        </body>
+</html>

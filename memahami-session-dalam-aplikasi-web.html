@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Memahami Session dalam Aplikasi Web - Laman Kolaboratif MyDev</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Menerangkan konsep asas di sebalik session dalam aplikasi web." />
+    <meta name="author" content="team@mydev.my" />
+	    	    	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
+    	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />	
+    	
+              <link rel="stylesheet" href="http://www.mydev.my/theme/css/pygment.css" />
+	      
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="shortcut icon" href="http://www.mydev.my/favicon.ico" />
+
+            <link href="http://www.mydev.my/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Laman Kolaboratif MyDev Atom Feed" />
+            <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-41580964-1', '');
+  ga('send', 'pageview');
+
+</script>
+  </head>
+
+  <body>
+    <div class="navbar navbar-default" role="navigation">
+      <div class="container">
+	   <div class="navbar-header">
+		<button type="button" class="navbar-toggle" 
+				data-toggle="collapse" data-target="#main-navbar-collapse">
+		  <span class="sr-only">Toggle navigation</span>
+		  <span class="icon-bar"></span>
+		  <span class="icon-bar"></span>
+		  <span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="http://www.mydev.my/" rel="home">Home</a>
+       </div>
+
+      <div class="collapse navbar-collapse" id="main-navbar-collapse">
+        <ul class="nav navbar-nav">
+          <!-- <li> <a href="http://www.mydev.my/">Home</a> </li> -->
+                                               <li><a href="http://www.mydev.my/pages/tentang-kami.html">Tentang Kami</a></li>
+                        <li class="divider"></li>
+                    <li><a href="http://www.mydev.my/archives.html">Archives</a></li>
+          <li class="divider"></li>
+                      <li><a href="http://www.mydev.my/feeds/all.atom.xml" 
+                   type="application/atom+xml" rel="alternate">
+                <i class="fa fa-rss fa-fw fa-lg"></i> </a></li>
+                  </ul> <!-- /nav -->
+      </div> <!-- /navbar-collapse -->
+	  </div> <!-- /container -->
+    </div> <!-- /navbar -->
+
+	<div class="jumbotron" id="overview">
+	  <div class="container">
+		<h1><a href="http://www.mydev.my/">Laman Kolaboratif MyDev</a></h1>
+		<p class="lead"></p>
+	  </div>
+	</div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9" id="content">
+		                  <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting">
+  <header>
+  	<div class="article-header">
+    <abbr class="article-prehead">
+	  Sat 13 September 2014
+	</abbr> <!-- /.article-prehead -->
+	<h1>
+	  <a href="http://www.mydev.my/memahami-session-dalam-aplikasi-web.html" rel="bookmark"
+		 title="Permalink to Memahami Session dalam Aplikasi Web">
+		Memahami Session dalam Aplikasi Web
+	  </a>
+	</h1>
+    <div class="article-posthead">
+	  <p>
+                  Posted by <a href="http://www.mydev.my/author/kamalmustafa.html">kamalmustafa</a>
+        		in 
+		<a href="http://www.mydev.my/category/misc.html">
+		  misc</a>
+		&nbsp;&nbsp;
+					  </p>
+	</div> <!-- /.article-posthead -->
+</div> <!-- /.article-header -->    </header>
+  <div class="content-body" itemprop="text articleBody">
+        	<p><em>Session</em> dalam aplikasi web adalah untuk mengatasi masalah yang berkaitan dengan sifat <em>stateless</em> dalam protokol HTTP. Contohnya apabila kita melayari satu laman web, dan membuka laman utama dan kemudian laman yang kedua, server tidak akan dapat mengenalpasti orang yang mengakses laman kedua adalah orang yang sama mengakses laman pertama tadi. Ini menyebabkan masalah apabila kita ingin membangunkan aplikasi di mana sebahagian daripada laman kita adalah untuk pengguna tertentu sahaja.</p>
+<p>Atau pun aplikasi yang perlu menyimpan data apa yang user lakukan pada laman pertama, dan seterusnya memaparkan di laman yang kedua atau seterusnya. Contohnya sebuah laman <em>e-commerce</em> yang mempunyai fungsi <em>shopping cart</em>. Di laman pertama, pengguna akan <em>add</em> barangan yang ingin dibeli ke dalam <em>cart</em>. Bila pengguna membuka laman lain di website tersebut, kita mungkin ingin memaparkan kepada pengguna apa yang telah mereka masukkan ke dalam <em>cart</em>.</p>
+<p><a href="http://tools.ietf.org/html/rfc2616">Protokol HTTP</a> mempunyai konsep <em>cookie</em>, di mana apabila pengguna mengakses laman web kita, kita boleh 'tanam' data yang akan disimpan dalam komputer pengguna. Setiap kali mereka mengakses laman kita, data tersebut akan dihantar sekali. Ini membolehkan kita mengenalpasti pengguna ini telah pun melawat laman kita sebelum ini. Jadi secara teori, kita boleh menggunakan <em>cookie</em> ini untuk menyelesaikan masalah berkaitan <em>shopping cart</em> sebelum ini. Kita boleh simpan barang yang pengguna masukkan ke dalam <em>cart</em> di dalam <em>cookie</em>. <em>Cookie</em> bagaimana pun mempunyai beberapa masalah seperti saiz yang terhad (4K) dan juga pengguna boleh mengubah data yang disimpan di dalam <em>cookie</em> sesuka hati mereka. Ada cara untuk mengelakkan data dalam <em>cookie</em> diubah namun ia di luar skop artikel ini.</p>
+<p>Jadi satu teknik baru untuk menyimpan data pengguna digunakan - ia dipanggil <em>session</em>. Ia masih menggunakan <em>cookie</em> tetapi tidak menyimpan kesemua data ke dalam cookie. Sebaliknya apa yang disimpan dalam <em>cookie</em> hanyalah rujukan (reference / pointer) kepada data sebenar yang di simpan di bahagian server. Apa yang disimpan dalam <em>cookie</em> hanyalah ID unik yang boleh digunakan untuk <em>query</em> <em>data store</em> di server bagi mendapatkan data sebenar. <em>data store</em> ini boleh jadi berbentuk <em>file</em> (default storage PHP session), row dalam database dan sebagainya. Dalam tulisan ini, saya cuba menunjukkan konsep asas implementasi <em>session</em> menggunakan bahasa pengaturcaraan PHP.</p>
+<p>Berikut adalah kod utama yang akan <em>implement</em> <em>session</em> bagi web aplikasi kita. Kod ini boleh disimpan dalam fail bernama <code>mysession.php</code>:-</p>
+<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<span class="cm">/* This is for learning purpose only - just to show how session in theory being </span>
+<span class="cm">implemented. For real session usage, use the session provided by your web framework.</span>
+<span class="cm">*/</span>
+
+<span class="nv">$HERE</span> <span class="o">=</span> <span class="nb">realpath</span><span class="p">(</span><span class="nb">dirname</span><span class="p">(</span><span class="k">__FILE__</span><span class="p">));</span>
+<span class="nv">$SESSION_CLOSED</span> <span class="o">=</span> <span class="k">False</span><span class="p">;</span>
+
+<span class="k">function</span> <span class="nf">end_session</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$GLOBALS</span><span class="p">[</span><span class="s1">&#39;SESSION_CLOSED&#39;</span><span class="p">])</span> <span class="p">{</span>
+        <span class="nv">$session_file</span> <span class="o">=</span> <span class="nv">$GLOBALS</span><span class="p">[</span><span class="s1">&#39;HERE&#39;</span><span class="p">]</span> <span class="o">.</span> <span class="s1">&#39;/&#39;</span> <span class="o">.</span> <span class="nv">$GLOBALS</span><span class="p">[</span><span class="s1">&#39;_MYSESSID&#39;</span><span class="p">]</span> <span class="o">.</span> <span class="s1">&#39;.session&#39;</span><span class="p">;</span>
+        <span class="nb">file_put_contents</span><span class="p">(</span><span class="nv">$session_file</span><span class="p">,</span> <span class="nb">serialize</span><span class="p">(</span><span class="nv">$GLOBALS</span><span class="p">[</span><span class="s1">&#39;_MYSESSION&#39;</span><span class="p">]));</span>
+        <span class="nv">$GLOBALS</span><span class="p">[</span><span class="s1">&#39;SESSION_CLOSED&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">True</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">function</span> <span class="nf">start_session</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">array_key_exists</span><span class="p">(</span><span class="s1">&#39;mysessid&#39;</span><span class="p">,</span> <span class="nv">$_COOKIE</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nv">$mysessid</span> <span class="o">=</span> <span class="nv">$_COOKIE</span><span class="p">[</span><span class="s1">&#39;mysessid&#39;</span><span class="p">];</span>
+        <span class="nv">$session_file</span> <span class="o">=</span> <span class="nv">$GLOBALS</span><span class="p">[</span><span class="s1">&#39;HERE&#39;</span><span class="p">]</span> <span class="o">.</span> <span class="s1">&#39;/&#39;</span> <span class="o">.</span> <span class="nv">$mysessid</span> <span class="o">.</span> <span class="s1">&#39;.session&#39;</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">file_exists</span><span class="p">(</span><span class="nv">$session_file</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nv">$GLOBALS</span><span class="p">[</span><span class="s1">&#39;_MYSESSION&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">unserialize</span><span class="p">(</span><span class="nb">file_get_contents</span><span class="p">(</span><span class="nv">$session_file</span><span class="p">));</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="p">{</span>
+            <span class="nv">$GLOBALS</span><span class="p">[</span><span class="s1">&#39;_MYSESSION&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+        <span class="nv">$mysessid</span> <span class="o">=</span> <span class="nb">uniqid</span><span class="p">(</span><span class="s1">&#39;MYSESSID&#39;</span><span class="p">);</span>
+        <span class="nx">setcookie</span><span class="p">(</span><span class="s1">&#39;mysessid&#39;</span><span class="p">,</span> <span class="nv">$mysessid</span><span class="p">);</span>
+        <span class="nv">$GLOBALS</span><span class="p">[</span><span class="s1">&#39;_MYSESSION&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="nv">$GLOBALS</span><span class="p">[</span><span class="s1">&#39;_MYSESSID&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$mysessid</span><span class="p">;</span>
+    <span class="nb">register_shutdown_function</span><span class="p">(</span><span class="s1">&#39;end_session&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Dan bagi setiap <em>page</em> yang ingin menggunakan fungsi <em>session</em> ini, contohnya <code>index.php</code>:-</p>
+<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+
+<span class="k">include</span> <span class="s1">&#39;mysession.php&#39;</span><span class="p">;</span>
+
+<span class="nx">start_session</span><span class="p">();</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$_MYSESSION</span><span class="p">);</span>
+<span class="nv">$_MYSESSION</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;kamal&#39;</span><span class="p">;</span>
+</pre></div>
+
+
+<p>Page yang kedua, <code>index2.php</code>:-</p>
+<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+
+<span class="k">include</span> <span class="s1">&#39;mysession.php&#39;</span><span class="p">;</span>
+
+<span class="nx">start_session</span><span class="p">();</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$_MYSESSION</span><span class="p">);</span>
+<span class="nv">$_MYSESSION</span><span class="p">[</span><span class="s1">&#39;on_index2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">True</span><span class="p">;</span>
+</pre></div>
+
+
+<p>Dalam contoh di atas, apabila pengguna melawat <code>index2.php</code>, data dalam <code>$_MYSESSION['name']</code> yang disetkan pada laman pertama akan dipaparkan. Dalam function <code>start_session()</code>, apa yang berlaku adalah kita check jika pengguna mempunyai nilai cookie <code>mysessid</code>, jika ada kita akan cuba load data yang disimpan dalam <em>file</em> <code>$mysessid.session</code> ke dalam <em>variable</em> global <code>$_MYSESSION</code>. Manakala setiap kali <em>script</em> tersebut berakhir, kita akan simpan balik data dalam variable <code>$_MYSESSION</code> ke dalam <em>file</em> <code>$mysessid.session</code>. Ini adalah konsep asas bagaimana <em>session</em> berfungsi. Di sini kita menyimpan data di dalam <em>file</em> namun boleh saja data tersebut disimpan di dalam database table dengan <code>mysessid</code> berfungsi sebagai <em>primary key</em> bagi rekod tersebut.</p>
+  </div>
+
+  
+<div class="article-tag-list">
+<span class="label label-default">Tags</span>
+	<a href="http://www.mydev.my/tag/php.html"><i class="fa fa-tag"></i>php</a>&nbsp;
+	<a href="http://www.mydev.my/tag/session.html"><i class="fa fa-tag"></i>session</a>&nbsp;
+	<a href="http://www.mydev.my/tag/http.html"><i class="fa fa-tag"></i>http</a>&nbsp;
+</div>
+  <hr />
+    
+<div class="panel panel-info">
+  <div class="panel-heading">Biodata Penulis</div>
+  <div class="panel-body">
+    <img align="left" style="margin:5px" src="http://m.c.lnkd.licdn.com/mpr/pub/image-Xi3rdNhL21LXnFhIZ9ai-2TuhAQVtL47Xi3e-Ut6hszrbxGYXi3eI8yLh7vHUjxRwIF7/mohd-kamal-mustafa.jpg"></img>
+<a href="http://my.linkedin.com/in/mk4ml">Kamal Mustafa</a> adalah Web developer dengan lebih 10 tahun pengalaman dalam bidang pembangunan aplikasi web (PHP/Python) dan IT secara umum. Bersedia untuk berkongsi ilmu berkaitan IT dan pengaturcaraan melalui penulisan, bengkel, seminar atau <i>personal coaching</i>. Aktif menulis di blog peribadi <a href="http://k4ml.blogspot.com/">Tadika Hidup</a> dan Twitter <a href="http://twitter.com/k4ml">@k4ml</a>.
+<br /><br />
+<i>
+<a href="http://my.linkedin.com/in/mk4ml">Kamal Mustafa</a> is a Web Developer with more than 10 years experience in web application development (PHP/Python) and IT in general. Interested in sharing knowledge about IT and programming through writing, workshop, seminar or personal coaching. Actively sharing his thought at personal blog <a href="http://k4ml.blogspot.com/">Tadika Hidup</a> and Twitter <a href="http://twitter.com/k4ml">@k4ml</a>.
+
+</i>
+  </div>
+</div>
+  </article>
+                                </div><!-- /content -->
+
+        <div class="col-md-3 sidebar-nav" id="sidebar">
+                      
+<div class="row">
+<div class="col-xs-6 col-md-12">
+<h4><i class="fa fa-comment fa-fw fa-lg"></i> Social</h4>
+<ul class="list-unstyled social-links">
+  </ul>
+</div>
+
+<div class="col-xs-6 col-md-12">
+<h4><i class="fa fa-folder fa-fw fa-lg"></i> Categories</h4>
+<ul class="list-unstyled category-links">
+  <li><a href="http://www.mydev.my/category/misc.html" >
+    <i class="fa fa-folder-open fa-fw fa-lg"></i> misc</a></li>
+</ul>
+</div>
+
+</div> <!-- /row -->
+
+<h4><i class="fa fa-tags fa-fw fa-lg"></i> Tags</h4>
+<p class="tag-cloud">
+<span class="tag-4">
+    <a href="http://www.mydev.my/tag/testing.html">
+        <i class="fa fa-tag fa-fw fa-lg"></i>testing
+    </a>
+</span>
+<span class="tag-4">
+    <a href="http://www.mydev.my/tag/php.html">
+        <i class="fa fa-tag fa-fw fa-lg"></i>php
+    </a>
+</span>
+<span class="tag-4">
+    <a href="http://www.mydev.my/tag/session.html">
+        <i class="fa fa-tag fa-fw fa-lg"></i>session
+    </a>
+</span>
+<span class="tag-4">
+    <a href="http://www.mydev.my/tag/jargon.html">
+        <i class="fa fa-tag fa-fw fa-lg"></i>jargon
+    </a>
+</span>
+<span class="tag-4">
+    <a href="http://www.mydev.my/tag/http.html">
+        <i class="fa fa-tag fa-fw fa-lg"></i>http
+    </a>
+</span>
+<span class="tag-4">
+    <a href="http://www.mydev.my/tag/automated.html">
+        <i class="fa fa-tag fa-fw fa-lg"></i>automated
+    </a>
+</span>
+<span class="tag-4">
+    <a href="http://www.mydev.my/tag/programming.html">
+        <i class="fa fa-tag fa-fw fa-lg"></i>programming
+    </a>
+</span>
+</p>
+
+<h4><i class="fa fa-rss fa-fw fa-lg"></i> Feeds</h4>
+<ul class="list-unstyled">
+      <li><a href="http://www.mydev.my/feeds/all.atom.xml" 
+		   type="application/atom+xml" rel="alternate">
+		<i class="fa fa-rss-square fa-fw fa-lg"></i> Atom Feed</a></li>
+    </ul>
+
+<hr />
+
+                  </div><!--/sidebar -->
+      </div><!--/row-->
+    </div><!--/container-->
+
+    <div class="container">
+      <footer id="page-footer">
+		 
+        <address id="colophon">
+          Blog powered by <a href="http://getpelican.com/">Pelican</a>
+                      and <a href="http://python.org">Python</a>  
+		  &nbsp;&bull;&nbsp;
+		  <a href="https://github.com/robulouski/voidy-bootstrap"
+			 target="_blank">VoidyBootstrap</a> theme by 
+		  <a href="http://www.voidynullness.net"
+			 target="_blank">RKI</a>  
+        </address><!-- /colophon  -->
+      </footer>
+	</div>
+
+        
+    <!-- javascript -->
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+        </body>
+</html>
