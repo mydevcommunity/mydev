@@ -28,3 +28,5 @@ DEFAULT_PAGINATION = 5
 MD_EXTENSIONS = ['toc', 'codehilite', 'extra']
 
 STYLESHEETS = ('pygment.css',)
+
+GOOGLE_ANALYTICS = 'UA-41580964-1'
