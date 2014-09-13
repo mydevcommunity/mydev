@@ -20,8 +20,7 @@
         {% if article.standfirst %}
           <p class="standfirst">{{ article.standfirst|e }}</p>
         {% endif %}
-		{{ article.content }}
-		{% include "includes/comments.html" %}
+		{{ article.summary }}
 	  </div>
 	  {% else %}
       <div class="summary">
