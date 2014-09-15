@@ -1,5 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Laman Kolaboratif MyDev</title><link href="http://www.mydev.my/" rel="alternate"></link><link href="http://www.mydev.my/feeds/all-en.atom.xml" rel="self"></link><id>http://www.mydev.my/</id><updated>2014-09-13T00:00:00+08:00</updated><entry><title>Memahami Session dalam Aplikasi Web</title><link href="http://www.mydev.my/memahami-session-dalam-aplikasi-web.html" rel="alternate"></link><updated>2014-09-13T00:00:00+08:00</updated><author><name>kamalmustafa</name></author><id>tag:www.mydev.my,2014-09-13:memahami-session-dalam-aplikasi-web.html</id><summary type="html">&lt;p&gt;&lt;em&gt;Session&lt;/em&gt; dalam aplikasi web adalah untuk mengatasi masalah yang berkaitan dengan sifat &lt;em&gt;stateless&lt;/em&gt; dalam protokol HTTP. Contohnya apabila kita melayari satu laman web, dan membuka laman utama dan kemudian laman yang kedua, server tidak akan dapat mengenalpasti orang yang mengakses laman kedua adalah orang yang sama mengakses laman pertama tadi. Ini menyebabkan masalah apabila kita ingin membangunkan aplikasi di mana sebahagian daripada laman kita adalah untuk pengguna tertentu sahaja.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Laman Kolaboratif MyDev</title><link href="http://www.mydev.my/" rel="alternate"></link><link href="http://www.mydev.my/feeds/all-en.atom.xml" rel="self"></link><id>http://www.mydev.my/</id><updated>2014-09-15T00:00:00+08:00</updated><entry><title>Belajar Javascript: Bhg 1</title><link href="http://www.mydev.my/belajar-javascript-bhg-1.html" rel="alternate"></link><updated>2014-09-15T00:00:00+08:00</updated><author><name>kamalmustafa</name></author><id>tag:www.mydev.my,2014-09-15:belajar-javascript-bhg-1.html</id><summary type="html">&lt;p&gt;Memetik kata-kata &lt;a href="http://javascript.crockford.com/"&gt;Douglas Crockford&lt;/a&gt;, JavaScript adalah bahasa 
+pengaturcaraan yang sering disalahfahami walaupun ianya merupakan bahasa 
+pengaturcaraan yang paling popular sekali dengan penggunaan yang paling meluas.  &lt;/p&gt;
+&lt;p&gt;JavaScript, sebelum penggunaannya yang begitu meluas seperti sekarang biasanya 
+menjadi bahasa kelas kedua bagi kebanyakkan programmer. Saya katakan kelas 
+kedua kerana ia jarang dipelajari secara formal sepertimana bahasa lain seperti 
+PHP, Python, Ruby, Perl, Java, C dan sebagainya. Maksud 'formal' disini ialah 
+kita mengambil masa untuk berkenalan dengan bahasa tersebut bermula daripada 
+ciri-ciri asas seperti &lt;em&gt;data type&lt;/em&gt;, &lt;em&gt;control structure&lt;/em&gt; dan sebagainya.  &lt;/p&gt;
+&lt;p&gt;Seringkali apabila terpaksa menggunakan JavaScript, kita akan mendapatkan 
+library ataupun &lt;em&gt;code snippet&lt;/em&gt; di Internet, ubah beberapa baris dan sekiranya 
+ia melakukan apa yang kita kehendaki, selesai ! Akhirnya JavaScript sering 
+menjadi cercaan apabila beberapa masalahnya yang tidak dijangka kita temui 
+dalam aplikasi yang kita bangunkan.&lt;/p&gt;
+&lt;p&gt;Saya bercadang untuk mula mempelajari JavaScript secara lebih tersusun dan 
+berharap dapat berkongsi pengalaman tersebut melalui beberapa siri tulisan 
+dalam blog ini. Untuk proses pembelajaran ini, saya akan cuba membina sebuah 
+aplikasi JavaScript ringkas dan akan cuba meneroka ciri-ciri asas JavaScript.  &lt;/p&gt;
+&lt;p&gt;Ini bagi saya lebih menarik dan tidak menjemukan berbanding mencuba satu demi 
+satu contoh kod bagi setiap &lt;em&gt;features&lt;/em&gt; yang ada. Sebaliknya kita akan 
+mengenalpasti masalah yang perlu diselesaikan dan cuba cari &lt;em&gt;features&lt;/em&gt; 
+JavaScript yang boleh digunakan untuk menyelesaikan masalah tersebut.&lt;/p&gt;
+&lt;p&gt;Aplikasi yang saya ingin bangunkan adalah fungsi &lt;em&gt;autocomplete&lt;/em&gt; ringkas. Kita 
+selalu temui &lt;em&gt;features&lt;/em&gt; ini dalam banyak laman web, terutamanya yang melibatkan 
+fungsi carian. Saya juga banyak menggunakan &lt;em&gt;autocomplete&lt;/em&gt; dalam aplikasi yang 
+saya bangunkan. Namun sehingga ke hari ini saya tidak pernah mengambil tahu 
+bagaimana sebenarya fungsi autocomplete ini berfungsi dalam JavaScript.&lt;/p&gt;
+&lt;p&gt;Kita mulakan aplikasi ini dengan kod html ringkas seperti berikut:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;script&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;app.js&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;input&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;keyword&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;keyword&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;value=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;size=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;20&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;app.js&lt;/code&gt; pula akan kelihatan seperti di bawah:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;alert&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}());&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Daripada kod seringkas ini pun sebenarnya banyak yang dapat dipelajari 
+berkaitan JavaScript. Pertama sekali adalah cara kod itu sendiri ditulis. Ia 
+mungkin sedikit pelik bagi yang telah biasa menulis kod aturcara dalam bahasa 
+pengaturcaraan lain seperti PHP, Python, Perl, Java atau C. Sebenarnya kod
+JavaScript digalakkan ditulis dalam bentuk sedemikian rupa untuk mengelakkan 
+&lt;em&gt;variable-variable&lt;/em&gt; yang digunakan daripada bocor (&lt;em&gt;leaked&lt;/em&gt;) ke dalam skop 
+global program. Ini antara satu kekurangan JavaScript dimana semua unit 
+aturcara hanya boleh wujud dalam satu skop iaitu global. Tidak wujud &lt;em&gt;module&lt;/em&gt; 
+atau &lt;em&gt;namespace&lt;/em&gt; dalam JavaScript. Bagaimanapun kita agak bernasib baik kerana 
+&lt;em&gt;function&lt;/em&gt; dalam JavaScript adalah agak fleksibel jadi kita boleh 
+menggunakannya untuk mengehadkan skop variable yang kita gunakan. &lt;/p&gt;
+&lt;p&gt;Walaupun &lt;em&gt;function&lt;/em&gt; dalam JavaScript boleh digunakan untuk mengehadkan skop, 
+masih terdapat satu lagi keburukan JavaScript yang mesti diambil perhatian oleh 
+semua programmer iaitu kesemua variable yang digunakan dalam &lt;em&gt;function&lt;/em&gt; mesti 
+diisytiharkan menggunakan &lt;em&gt;keyword&lt;/em&gt; &lt;code&gt;var&lt;/code&gt; sepertimana yang kita lihat dalam 
+contoh kod di atas. Jika tidak, ia akan turut wujud dalam skop global walaupun 
+hanya digunakan dalam &lt;em&gt;function&lt;/em&gt; ! Sebagai contoh, perhatikan kod di bawah:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;num1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;num2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;_tmp1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;parseInt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;num1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;_tmp2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;parseInt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;num2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;_tmp1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;_tmp2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="nx"&gt;total&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_tmp1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Dalam kod di atas, &lt;code&gt;tmp1&lt;/code&gt; dan &lt;code&gt;_tmp2&lt;/code&gt; hanyalah &lt;em&gt;variable&lt;/em&gt; sementara dan 
+sepatutnya wujud dalam function &lt;code&gt;add&lt;/code&gt; sahaja. Namun anda akan dapati 
+&lt;code&gt;console.log&lt;/code&gt; tetap memaparkan nilai 2 iaitu nilai &lt;code&gt;_tmp2&lt;/code&gt; di dalam function 
+&lt;code&gt;add&lt;/code&gt; ! Ini tidak sepatutnya berlaku kerana dalam satu aturcara yang besar, ia 
+akan menyebabkan bug yang sukar dijejaki di mana puncanya kerana variable 
+&lt;code&gt;_tmp1&lt;/code&gt; kini boleh dicapai oleh mana-mana bahagian aturcara sekalipun. Untuk 
+membetulkan keadaan di atas, &lt;em&gt;keyword&lt;/em&gt; &lt;code&gt;var&lt;/code&gt; mesti sentiasa digunakan untuk 
+mengisytiharkan &lt;em&gt;variable&lt;/em&gt; dalam &lt;em&gt;function&lt;/em&gt;. Contoh:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;num1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;num2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;_tmp1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;parseInt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;num1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;_tmp2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;parseInt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;num2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;_tmp1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;_tmp2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Seterusnya mengapa contoh kod sebelum ini ditulis dalam bentuk function ? Ini 
+juga melibatkan isu berkaitan global variable dalam JavaScript. Untuk 
+meminimumkan bilangan &lt;em&gt;variable&lt;/em&gt; yang didedahkan kepada skop global, kita 
+&lt;em&gt;wrap&lt;/em&gt; kod tersebut dalam function yang terus dipanggil apabila fail tersebut 
+dibuka oleh &lt;em&gt;JavaScript engine&lt;/em&gt;. Kod sebelum ini contohnya, tidak mendedahkan 
+sebarang variable kepada skop global berbanding sekiranya ia ditulis seperti 
+berikut:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;init&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;alert&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="nx"&gt;init&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Dalam contoh ini kita telah mendedahkan satu nama baru ke dalam skop global 
+iaitu &lt;code&gt;init&lt;/code&gt; walaupun &lt;code&gt;init&lt;/code&gt; mungkin hanya akan digunakan sekali iaitu untuk 
+&lt;em&gt;run&lt;/em&gt; kod dalam function tersebut. Jika kita perhatikan library JavaScript yang 
+besar seperti JQuery, YUI, Backbone dan sebagainya mereka hanya mendedahkan 
+satu nama ke dalam skop global seperti jQuery/$ utk JQuery dan YUI untuk YUI.  &lt;em&gt;Function-function&lt;/em&gt; lain kesemuanya diakses melalui &lt;em&gt;top level&lt;/em&gt; namespace 
+tersebut seperti &lt;code&gt;$.getJSON&lt;/code&gt;, &lt;code&gt;YUI.dom&lt;/code&gt; dan sebagainya. Walaupun JavaScript 
+tidak mempunyai sokongan &lt;em&gt;namespace&lt;/em&gt; atau &lt;em&gt;module&lt;/em&gt;, function dan object boleh 
+digunakan untuk &lt;em&gt;simulate&lt;/em&gt; namespace. Lagi yang boleh dipelajari daripada contoh
+ringkas ini adalah perbezaan antara &lt;em&gt;function declaration&lt;/em&gt; dan &lt;em&gt;function expression&lt;/em&gt; tetapi saya tidak bercadang untuk mengulasnya dalam bahagian ini.&lt;/p&gt;
+&lt;p&gt;Setakat ini sahaja untuk bahagian pertama. Saya berharap akan dapat terus menulis dan berkongsi bahagian seterusnya, Insya Allah.&lt;/p&gt;</summary><category term="javascript"></category><category term="tutorial"></category></entry><entry><title>Memahami Session dalam Aplikasi Web</title><link href="http://www.mydev.my/memahami-session-dalam-aplikasi-web.html" rel="alternate"></link><updated>2014-09-13T00:00:00+08:00</updated><author><name>kamalmustafa</name></author><id>tag:www.mydev.my,2014-09-13:memahami-session-dalam-aplikasi-web.html</id><summary type="html">&lt;p&gt;&lt;em&gt;Session&lt;/em&gt; dalam aplikasi web adalah untuk mengatasi masalah yang berkaitan dengan sifat &lt;em&gt;stateless&lt;/em&gt; dalam protokol HTTP. Contohnya apabila kita melayari satu laman web, dan membuka laman utama dan kemudian laman yang kedua, server tidak akan dapat mengenalpasti orang yang mengakses laman kedua adalah orang yang sama mengakses laman pertama tadi. Ini menyebabkan masalah apabila kita ingin membangunkan aplikasi di mana sebahagian daripada laman kita adalah untuk pengguna tertentu sahaja.&lt;/p&gt;
 &lt;p&gt;Atau pun aplikasi yang perlu menyimpan data apa yang user lakukan pada laman pertama, dan seterusnya memaparkan di laman yang kedua atau seterusnya. Contohnya sebuah laman &lt;em&gt;e-commerce&lt;/em&gt; yang mempunyai fungsi &lt;em&gt;shopping cart&lt;/em&gt;. Di laman pertama, pengguna akan &lt;em&gt;add&lt;/em&gt; barangan yang ingin dibeli ke dalam &lt;em&gt;cart&lt;/em&gt;. Bila pengguna membuka laman lain di website tersebut, kita mungkin ingin memaparkan kepada pengguna apa yang telah mereka masukkan ke dalam &lt;em&gt;cart&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://tools.ietf.org/html/rfc2616"&gt;Protokol HTTP&lt;/a&gt; mempunyai konsep &lt;em&gt;cookie&lt;/em&gt;, di mana apabila pengguna mengakses laman web kita, kita boleh 'tanam' data yang akan disimpan dalam komputer pengguna. Setiap kali mereka mengakses laman kita, data tersebut akan dihantar sekali. Ini membolehkan kita mengenalpasti pengguna ini telah pun melawat laman kita sebelum ini. Jadi secara teori, kita boleh menggunakan &lt;em&gt;cookie&lt;/em&gt; ini untuk menyelesaikan masalah berkaitan &lt;em&gt;shopping cart&lt;/em&gt; sebelum ini. Kita boleh simpan barang yang pengguna masukkan ke dalam &lt;em&gt;cart&lt;/em&gt; di dalam &lt;em&gt;cookie&lt;/em&gt;. &lt;em&gt;Cookie&lt;/em&gt; bagaimana pun mempunyai beberapa masalah seperti saiz yang terhad (4K) dan juga pengguna boleh mengubah data yang disimpan di dalam &lt;em&gt;cookie&lt;/em&gt; sesuka hati mereka. Ada cara untuk mengelakkan data dalam &lt;em&gt;cookie&lt;/em&gt; diubah namun ia di luar skop artikel ini.&lt;/p&gt;
 &lt;p&gt;Jadi satu teknik baru untuk menyimpan data pengguna digunakan - ia dipanggil &lt;em&gt;session&lt;/em&gt;. Ia masih menggunakan &lt;em&gt;cookie&lt;/em&gt; tetapi tidak menyimpan kesemua data ke dalam cookie. Sebaliknya apa yang disimpan dalam &lt;em&gt;cookie&lt;/em&gt; hanyalah rujukan (reference / pointer) kepada data sebenar yang di simpan di bahagian server. Apa yang disimpan dalam &lt;em&gt;cookie&lt;/em&gt; hanyalah ID unik yang boleh digunakan untuk &lt;em&gt;query&lt;/em&gt; &lt;em&gt;data store&lt;/em&gt; di server bagi mendapatkan data sebenar. &lt;em&gt;data store&lt;/em&gt; ini boleh jadi berbentuk &lt;em&gt;file&lt;/em&gt; (default storage PHP session), row dalam database dan sebagainya. Dalam tulisan ini, saya cuba menunjukkan konsep asas implementasi &lt;em&gt;session&lt;/em&gt; menggunakan bahasa pengaturcaraan PHP.&lt;/p&gt;
