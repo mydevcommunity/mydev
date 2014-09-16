@@ -34,3 +34,4 @@ GOOGLE_ANALYTICS = 'UA-41580964-1'
 FILES_TO_COPY = (
     ('extra/CNAME', 'CNAME'),
 )
+DISQUS_SITENAME = 'mydevcommunity'
