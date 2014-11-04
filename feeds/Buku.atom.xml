@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Laman Kolaboratif MyDev</title><link href="http://www.mydev.my/" rel="alternate"></link><link href="http://www.mydev.my/feeds/Buku.atom.xml" rel="self"></link><id>http://www.mydev.my/</id><updated>2012-12-22T16:13:00+08:00</updated><entry><title>Buku-buku Pilihan</title><link href="http://www.mydev.my/buku-buku-pilihan.html" rel="alternate"></link><updated>2012-12-22T16:13:00+08:00</updated><author><name>team@mydev.my</name></author><id>tag:www.mydev.my,2012-12-22:buku-buku-pilihan.html</id><summary type="html">&lt;p&gt;Senarai buku-buku yang direkomen oleh ahli-ahli komuniti MyDev. Senarai ini adalah berdasarkan &lt;a href="https://plus.google.com/u/0/105721265741813048018/posts/chsdf4ekQ8S"&gt;topik perbincangan&lt;/a&gt; di laman &lt;a href="https://plus.google.com/u/0/communities/104883828501447858589"&gt;komuniti G+ MyDev&lt;/a&gt;.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="http://www.amazon.com/Pragmatic-Programmer-Journeyman-Master/dp/020161622X"&gt;The Pragmatic Programmer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://shop.oreilly.com/product/9780596007126.do"&gt;Head First Design Patterns&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://pragprog.com/book/prj/ship-it"&gt;Ship It&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.amazon.com/Write-Great-Code-Understanding-Machine/dp/1593270038/ref=pd_sim_b_1"&gt;Write Great Code - Understanding Machine&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.amazon.com/Write-Great-Code-Volume-High-Level/dp/1593270658/ref=pd_sim_b_1"&gt;Write Great Code, Volume 2: Thinking Low-Level, Writing High-Level&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.amazon.com/Eric-Business-Software-Experts-Voice/dp/1590596234"&gt;Eric Sink on the Business of Software&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672"&gt;Refactoring&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.amazon.com/Patterns-Enterprise-Application-Architecture-Martin/dp/0321127420"&gt;Patterns of Enterprise Application Architecture&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/"&gt;Domain-Driven Design&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.amazon.com/Applying-UML-Patterns-Introduction-Object-Oriented/dp/0131489062"&gt;Applying UML and Patterns: An Introduction to Object-Oriented Analysis and Design and Iterative Development (3rd Edition)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.amazon.com/Design-Patterns-Object-Oriented-Professional-Computing/dp/0201634988"&gt;Design Patterns: Elements of Reusable Object-Oriented Software&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.amazon.com/High-Performance-MySQL-Optimization-Replication/dp/1449314287"&gt;High Performance MySQL: Optimization, Backups, and Replication&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.amazon.com/o/asin/0321200683/ref=nosim/enterpriseint-20"&gt;Enterprise Integration Patterns&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Sebarang tambahan kepada senarai di atas adalah dialu-alukan. Anda boleh melakukannya sama ada dengan 'fork' &lt;a href="https://github.com/mydevcommunity/mydev"&gt;repo mydev&lt;/a&gt; di github dan membuat 'pull request' atau menambahnya ke &lt;a href="https://plus.google.com/u/0/105721265741813048018/posts/chsdf4ekQ8S"&gt;topik perbincangan&lt;/a&gt; di &lt;a href="https://plus.google.com/u/0/communities/104883828501447858589"&gt;komuniti G+&lt;/a&gt;.&lt;/p&gt;</summary></entry></feed>
