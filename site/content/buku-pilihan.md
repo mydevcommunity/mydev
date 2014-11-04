@@ -1,5 +1,6 @@
 Title: Buku-buku Pilihan
 Date: 2012-12-22 16:13:00
+Category: Buku
 
 Senarai buku-buku yang direkomen oleh ahli-ahli komuniti MyDev. Senarai ini adalah berdasarkan [topik perbincangan][1] di laman [komuniti G+ MyDev][2].
 

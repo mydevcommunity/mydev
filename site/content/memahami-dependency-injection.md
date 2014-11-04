@@ -1,6 +1,8 @@
 Title: Memahami Dependency Injection
 Date: 2013-03-22
 Author: ikhwanhayat
+Category: Konsep
+Tags: testing, php, .Net, DI, IOC
 
 [TOC]
 

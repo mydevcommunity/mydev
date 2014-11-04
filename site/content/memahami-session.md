@@ -2,6 +2,7 @@ Title: Memahami Session dalam Aplikasi Web
 Date: 2014-09-13
 Author: kamalmustafa
 Tags: php, session, http
+Category: Konsep
 description: Menerangkan konsep asas di sebalik session dalam aplikasi web.
 Slug: memahami-session-dalam-aplikasi-web
 
