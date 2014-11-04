@@ -2,6 +2,7 @@ Title: Belajar Javascript: Bhg 1
 Author: kamalmustafa
 Date: 2014-09-15
 Tags: javascript, tutorial
+Category: Tutorial
 
 Memetik kata-kata [Douglas Crockford][1], JavaScript adalah bahasa 
 pengaturcaraan yang sering disalahfahami walaupun ianya merupakan bahasa 
