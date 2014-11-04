@@ -101,6 +101,12 @@ bahagian ini boleh rujuk perbincangan di laman stackoverflow:-&lt;/p&gt;
 &lt;li&gt;http://stackoverflow.com/questions/3698200/window-onload-vs-document-ready&lt;/li&gt;
 &lt;li&gt;http://stackoverflow.com/questions/3474037/window-onload-vs-body-onload-vs-document-onready&lt;/li&gt;
 &lt;/ol&gt;
+&lt;h2 id="nota"&gt;Nota&lt;/h2&gt;
+&lt;p&gt;Saudara &lt;a href="https://github.com/zulfajuniadi"&gt;Zulfa Juniadi&lt;/a&gt; memberikan komen dalam grup FB &lt;a href="https://www.facebook.com/groups/jomweb/"&gt;JomWeb&lt;/a&gt; bahawa penggunaan
+&lt;code&gt;$.ready()&lt;/code&gt; adalah tidak perlu sekiranya kod JavaScript kita diletakkan pada pengakhiran dokumen, sebelum tag &lt;code&gt;&amp;lt;/body&amp;gt;&lt;/code&gt;. Ini
+kerana apabila kod tersebut dijalankan oleh browser, kesemua kandungan DOM telah pun diproses
+oleh browser, menghasilkan kesan yang sama seperti &lt;code&gt;DOMContentLoaded&lt;/code&gt; yang dibincangkan di atas.
+Perbincangan berkaitan di Stackoverflow - http://stackoverflow.com/q/4643990/139870.&lt;/p&gt;
 &lt;p&gt;Sekian untuk kali ini, sehingga berjumpa lagi untuk siri akan datang, Insya 
 Allah.&lt;/p&gt;</summary><category term="javascript"></category><category term="tutorial"></category></entry><entry><title>Belajar Javascript: Bhg 1</title><link href="http://www.mydev.my/belajar-javascript-bhg-1.html" rel="alternate"></link><updated>2014-09-15T00:00:00+08:00</updated><author><name>kamalmustafa</name></author><id>tag:www.mydev.my,2014-09-15:belajar-javascript-bhg-1.html</id><summary type="html">&lt;p&gt;Memetik kata-kata &lt;a href="http://javascript.crockford.com/"&gt;Douglas Crockford&lt;/a&gt;, JavaScript adalah bahasa 
 pengaturcaraan yang sering disalahfahami walaupun ianya merupakan bahasa 
