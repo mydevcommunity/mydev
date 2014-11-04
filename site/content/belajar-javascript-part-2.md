@@ -101,5 +101,15 @@ bahagian ini boleh rujuk perbincangan di laman stackoverflow:-
 1. 
 http://stackoverflow.com/questions/3474037/window-onload-vs-body-onload-vs-document-onready
 
+## Nota
+Saudara [Zulfa Juniadi][zulfa] memberikan komen dalam grup FB [JomWeb] bahawa penggunaan
+`$.ready()` adalah tidak perlu sekiranya kod JavaScript kita diletakkan pada pengakhiran dokumen, sebelum tag `</body>`. Ini
+kerana apabila kod tersebut dijalankan oleh browser, kesemua kandungan DOM telah pun diproses
+oleh browser, menghasilkan kesan yang sama seperti `DOMContentLoaded` yang dibincangkan di atas.
+Perbincangan berkaitan di Stackoverflow - http://stackoverflow.com/q/4643990/139870.
+
 Sekian untuk kali ini, sehingga berjumpa lagi untuk siri akan datang, Insya 
 Allah.
+
+[zulfa]:https://github.com/zulfajuniadi
+[JomWeb]:https://www.facebook.com/groups/jomweb/
