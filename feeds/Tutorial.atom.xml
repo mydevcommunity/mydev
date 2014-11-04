@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Laman Kolaboratif MyDev</title><link href="http://www.mydev.my/" rel="alternate"></link><link href="http://www.mydev.my/feeds/Tutorial.atom.xml" rel="self"></link><id>http://www.mydev.my/</id><updated>2014-11-04T00:00:00+08:00</updated><entry><title>Belajar Javascript: Bhg 2</title><link href="http://www.mydev.my/belajar-javascript-bhg-2.html" rel="alternate"></link><updated>2014-11-04T00:00:00+08:00</updated><author><name>kamalmustafa</name></author><id>tag:www.mydev.my,2014-11-04:belajar-javascript-bhg-2.html</id><summary type="html">&lt;p&gt;Sebelum ini kita telah menulis kod JavaScript asas seperti berikut:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;alert&lt;/span&gt; &lt;span class="nx"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;})();&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Bagi yang biasa dengan JavaScript pasti menyedari ada masalah dengan kod di 
+atas. Malah jika anda membuka fail &lt;code&gt;index.html&lt;/code&gt; melalui browser, anda akan 
+dapati nilai yang dipaparkan dalam &lt;code&gt;alert&lt;/code&gt; adalah &lt;code&gt;null&lt;/code&gt;. Ini sudah pasti bukan 
+yang kita harapkan kerana nilai yang sepatutnya adalah reference kepada DOM 
+object HTMLInput. Ini adalah disebabkan kod tersebut terus dijalankan apabila 
+ia dibaca dalam browser. Bagaimanapun sentiasa ada kemungkinan semasa kod 
+tersebut dijalankan, DOM element yang kita cuba dapatkan masih belum disediakan 
+sepenuhnya oleh browser.&lt;/p&gt;
+&lt;p&gt;Untuk membetulkan masalah di atas, kita perlu attach function tersebut kepada 
+&lt;code&gt;load&lt;/code&gt; event sama ada pada object &lt;code&gt;window&lt;/code&gt; ataupun pada element &lt;code&gt;body&lt;/code&gt;. Contohnya adalah seperti berikut:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nb"&gt;window&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;onload&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;alert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;using window.onload&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;alert&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Atau:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nx"&gt;function&lt;/span&gt; &lt;span class="nb"&gt;init&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;document.getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;alert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;using body.onload&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;alert&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="c1"&gt;// dalam fail index.html&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;body&lt;/span&gt; &lt;span class="n"&gt;onload&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;init()&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nb"&gt;body&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Tidak ada DOM object untuk &lt;code&gt;body&lt;/code&gt; dan saya pada mulanya mencuba seperti 
+berikut:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;body&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;onload&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;alert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;using document.body.onload&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;alert&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;tetapi mendapat error &lt;code&gt;Uncaught TypeError: Cannot set property 'onload' of 
+null&lt;/code&gt;. Menggunakan &lt;code&gt;body onload=init()&lt;/code&gt; bagaimanapun memerlukan untuk kita 
+declare satu function pada skop global, sesuatu yang kita cuba elakkan seperti 
+yang telah dibincangkan dalam tulisan yang lalu. Bagi browser moden pada hari 
+ini, cara yang direkomenkan adalah dengan menggunakan event listener seperti
+berikut:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nb"&gt;window&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;addEventListener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;load&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;alert&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}());&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Kelebihan cara di atas adalah struktur kod kita masih kekal sebagaimana asal 
+dipermulaan siri ini. Bagaimanapun menggunakan &lt;code&gt;load&lt;/code&gt; event tetap mempunyai 
+satu masalah iaitu kod tersebut hanya akan dijalankan apabila kesemua elemen 
+dan juga &lt;em&gt;resource&lt;/em&gt; seperti imej telah selesai dimuat-turun oleh browser. Kebanyakkan kod JavaScript adalah untuk memanipulasi DOM jadi agak membuang 
+masa dan juga mungkin menghasilkan kesan yang tidak diingini jika terpaksa 
+menunggu kesemua &lt;em&gt;resource&lt;/em&gt; selesai dimuat-turun sebelum kod JavaScript kita 
+boleh memainkan peranan. Alternatif kepada &lt;code&gt;load&lt;/code&gt; event adalah 
+&lt;code&gt;DOMContentLoaded&lt;/code&gt; dan kod di atas boleh ditulis seperti berikut:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nb"&gt;window&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;addEventListener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;DOMContentLoaded&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;alert&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}());&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Kelebihan &lt;code&gt;DOMContentLoaded&lt;/code&gt; adalah ia akan terus &lt;em&gt;execute&lt;/em&gt; kod kita sebaik 
+sahaja kesemua struktur DOM telah dibina dalam memori. Namun hidup dalam dunia 
+JavaScript adalah sangat tidak menentu dan sukar diduga. Tidak semua browser 
+menyokong event &lt;code&gt;DOMContentLoaded&lt;/code&gt; ini jadi kod kita perlu melakukan beberapa 
+adaptasi bagi membolehkan ia berfungsi pada semua browser. Atas sebab inilah 
+library seperti JQuery menyediakan function khas untuk mengatasi masalah ini. Menggunakan JQuery, kod di atas boleh ditulis seperti berikut:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;ready&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="nx"&gt;alert&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;});&lt;/span&gt;
+&lt;span class="p"&gt;}());&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Untuk membaca dengan lebih lanjut berkaitan isu yang dibincangkan dalam 
+bahagian ini boleh rujuk perbincangan di laman stackoverflow:-&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;http://stackoverflow.com/questions/3698200/window-onload-vs-document-ready&lt;/li&gt;
+&lt;li&gt;http://stackoverflow.com/questions/3474037/window-onload-vs-body-onload-vs-document-onready&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Sekian untuk kali ini, sehingga berjumpa lagi untuk siri akan datang, Insya 
+Allah.&lt;/p&gt;</summary><category term="javascript"></category><category term="tutorial"></category></entry><entry><title>Belajar Javascript: Bhg 1</title><link href="http://www.mydev.my/belajar-javascript-bhg-1.html" rel="alternate"></link><updated>2014-09-15T00:00:00+08:00</updated><author><name>kamalmustafa</name></author><id>tag:www.mydev.my,2014-09-15:belajar-javascript-bhg-1.html</id><summary type="html">&lt;p&gt;Memetik kata-kata &lt;a href="http://javascript.crockford.com/"&gt;Douglas Crockford&lt;/a&gt;, JavaScript adalah bahasa 
+pengaturcaraan yang sering disalahfahami walaupun ianya merupakan bahasa 
+pengaturcaraan yang paling popular sekali dengan penggunaan yang paling meluas.  &lt;/p&gt;
+&lt;p&gt;JavaScript, sebelum penggunaannya yang begitu meluas seperti sekarang biasanya 
+menjadi bahasa kelas kedua bagi kebanyakkan programmer. Saya katakan kelas 
+kedua kerana ia jarang dipelajari secara formal sepertimana bahasa lain seperti 
+PHP, Python, Ruby, Perl, Java, C dan sebagainya. Maksud 'formal' disini ialah 
+kita mengambil masa untuk berkenalan dengan bahasa tersebut bermula daripada 
+ciri-ciri asas seperti &lt;em&gt;data type&lt;/em&gt;, &lt;em&gt;control structure&lt;/em&gt; dan sebagainya.  &lt;/p&gt;
+&lt;p&gt;Seringkali apabila terpaksa menggunakan JavaScript, kita akan mendapatkan 
+library ataupun &lt;em&gt;code snippet&lt;/em&gt; di Internet, ubah beberapa baris dan sekiranya 
+ia melakukan apa yang kita kehendaki, selesai ! Akhirnya JavaScript sering 
+menjadi cercaan apabila beberapa masalahnya yang tidak dijangka kita temui 
+dalam aplikasi yang kita bangunkan.&lt;/p&gt;
+&lt;p&gt;Saya bercadang untuk mula mempelajari JavaScript secara lebih tersusun dan 
+berharap dapat berkongsi pengalaman tersebut melalui beberapa siri tulisan 
+dalam blog ini. Untuk proses pembelajaran ini, saya akan cuba membina sebuah 
+aplikasi JavaScript ringkas dan akan cuba meneroka ciri-ciri asas JavaScript.  &lt;/p&gt;
+&lt;p&gt;Ini bagi saya lebih menarik dan tidak menjemukan berbanding mencuba satu demi 
+satu contoh kod bagi setiap &lt;em&gt;features&lt;/em&gt; yang ada. Sebaliknya kita akan 
+mengenalpasti masalah yang perlu diselesaikan dan cuba cari &lt;em&gt;features&lt;/em&gt; 
+JavaScript yang boleh digunakan untuk menyelesaikan masalah tersebut.&lt;/p&gt;
+&lt;p&gt;Aplikasi yang saya ingin bangunkan adalah fungsi &lt;em&gt;autocomplete&lt;/em&gt; ringkas. Kita 
+selalu temui &lt;em&gt;features&lt;/em&gt; ini dalam banyak laman web, terutamanya yang melibatkan 
+fungsi carian. Saya juga banyak menggunakan &lt;em&gt;autocomplete&lt;/em&gt; dalam aplikasi yang 
+saya bangunkan. Namun sehingga ke hari ini saya tidak pernah mengambil tahu 
+bagaimana sebenarya fungsi autocomplete ini berfungsi dalam JavaScript.&lt;/p&gt;
+&lt;p&gt;Kita mulakan aplikasi ini dengan kod html ringkas seperti berikut:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;script&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;app.js&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;input&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;keyword&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;keyword&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;value=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;size=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;20&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;app.js&lt;/code&gt; pula akan kelihatan seperti di bawah:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;alert&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}());&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Daripada kod seringkas ini pun sebenarnya banyak yang dapat dipelajari 
+berkaitan JavaScript. Pertama sekali adalah cara kod itu sendiri ditulis. Ia 
+mungkin sedikit pelik bagi yang telah biasa menulis kod aturcara dalam bahasa 
+pengaturcaraan lain seperti PHP, Python, Perl, Java atau C. Sebenarnya kod
+JavaScript digalakkan ditulis dalam bentuk sedemikian rupa untuk mengelakkan 
+&lt;em&gt;variable-variable&lt;/em&gt; yang digunakan daripada bocor (&lt;em&gt;leaked&lt;/em&gt;) ke dalam skop 
+global program. Ini antara satu kekurangan JavaScript dimana semua unit 
+aturcara hanya boleh wujud dalam satu skop iaitu global. Tidak wujud &lt;em&gt;module&lt;/em&gt; 
+atau &lt;em&gt;namespace&lt;/em&gt; dalam JavaScript. Bagaimanapun kita agak bernasib baik kerana 
+&lt;em&gt;function&lt;/em&gt; dalam JavaScript adalah agak fleksibel jadi kita boleh 
+menggunakannya untuk mengehadkan skop variable yang kita gunakan. &lt;/p&gt;
+&lt;p&gt;Walaupun &lt;em&gt;function&lt;/em&gt; dalam JavaScript boleh digunakan untuk mengehadkan skop, 
+masih terdapat satu lagi keburukan JavaScript yang mesti diambil perhatian oleh 
+semua programmer iaitu kesemua variable yang digunakan dalam &lt;em&gt;function&lt;/em&gt; mesti 
+diisytiharkan menggunakan &lt;em&gt;keyword&lt;/em&gt; &lt;code&gt;var&lt;/code&gt; sepertimana yang kita lihat dalam 
+contoh kod di atas. Jika tidak, ia akan turut wujud dalam skop global walaupun 
+hanya digunakan dalam &lt;em&gt;function&lt;/em&gt; ! Sebagai contoh, perhatikan kod di bawah:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;num1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;num2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;_tmp1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;parseInt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;num1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;_tmp2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;parseInt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;num2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;_tmp1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;_tmp2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="nx"&gt;total&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_tmp1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Dalam kod di atas, &lt;code&gt;tmp1&lt;/code&gt; dan &lt;code&gt;_tmp2&lt;/code&gt; hanyalah &lt;em&gt;variable&lt;/em&gt; sementara dan 
+sepatutnya wujud dalam function &lt;code&gt;add&lt;/code&gt; sahaja. Namun anda akan dapati 
+&lt;code&gt;console.log&lt;/code&gt; tetap memaparkan nilai 2 iaitu nilai &lt;code&gt;_tmp2&lt;/code&gt; di dalam function 
+&lt;code&gt;add&lt;/code&gt; ! Ini tidak sepatutnya berlaku kerana dalam satu aturcara yang besar, ia 
+akan menyebabkan bug yang sukar dijejaki di mana puncanya kerana variable 
+&lt;code&gt;_tmp1&lt;/code&gt; kini boleh dicapai oleh mana-mana bahagian aturcara sekalipun. Untuk 
+membetulkan keadaan di atas, &lt;em&gt;keyword&lt;/em&gt; &lt;code&gt;var&lt;/code&gt; mesti sentiasa digunakan untuk 
+mengisytiharkan &lt;em&gt;variable&lt;/em&gt; dalam &lt;em&gt;function&lt;/em&gt;. Contoh:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;num1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;num2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;_tmp1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;parseInt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;num1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;_tmp2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;parseInt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;num2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;_tmp1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;_tmp2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Seterusnya mengapa contoh kod sebelum ini ditulis dalam bentuk function ? Ini 
+juga melibatkan isu berkaitan global variable dalam JavaScript. Untuk 
+meminimumkan bilangan &lt;em&gt;variable&lt;/em&gt; yang didedahkan kepada skop global, kita 
+&lt;em&gt;wrap&lt;/em&gt; kod tersebut dalam function yang terus dipanggil apabila fail tersebut 
+dibuka oleh &lt;em&gt;JavaScript engine&lt;/em&gt;. Kod sebelum ini contohnya, tidak mendedahkan 
+sebarang variable kepada skop global berbanding sekiranya ia ditulis seperti 
+berikut:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;init&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;alert&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="nx"&gt;init&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Dalam contoh ini kita telah mendedahkan satu nama baru ke dalam skop global 
+iaitu &lt;code&gt;init&lt;/code&gt; walaupun &lt;code&gt;init&lt;/code&gt; mungkin hanya akan digunakan sekali iaitu untuk 
+&lt;em&gt;run&lt;/em&gt; kod dalam function tersebut. Jika kita perhatikan library JavaScript yang 
+besar seperti JQuery, YUI, Backbone dan sebagainya mereka hanya mendedahkan 
+satu nama ke dalam skop global seperti jQuery/$ utk JQuery dan YUI untuk YUI.  &lt;em&gt;Function-function&lt;/em&gt; lain kesemuanya diakses melalui &lt;em&gt;top level&lt;/em&gt; namespace 
+tersebut seperti &lt;code&gt;$.getJSON&lt;/code&gt;, &lt;code&gt;YUI.dom&lt;/code&gt; dan sebagainya. Walaupun JavaScript 
+tidak mempunyai sokongan &lt;em&gt;namespace&lt;/em&gt; atau &lt;em&gt;module&lt;/em&gt;, function dan object boleh 
+digunakan untuk &lt;em&gt;simulate&lt;/em&gt; namespace. Lagi yang boleh dipelajari daripada contoh
+ringkas ini adalah perbezaan antara &lt;em&gt;function declaration&lt;/em&gt; dan &lt;em&gt;function expression&lt;/em&gt; tetapi saya tidak bercadang untuk mengulasnya dalam bahagian ini.&lt;/p&gt;
+&lt;p&gt;Setakat ini sahaja untuk bahagian pertama. Saya berharap akan dapat terus menulis dan berkongsi bahagian seterusnya, Insya Allah.&lt;/p&gt;</summary><category term="javascript"></category><category term="tutorial"></category></entry></feed>

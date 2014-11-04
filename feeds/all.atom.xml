@@ -1,5 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Laman Kolaboratif MyDev</title><link href="http://www.mydev.my/" rel="alternate"></link><link href="http://www.mydev.my/feeds/all.atom.xml" rel="self"></link><id>http://www.mydev.my/</id><updated>2014-09-15T00:00:00+08:00</updated><entry><title>Belajar Javascript: Bhg 1</title><link href="http://www.mydev.my/belajar-javascript-bhg-1.html" rel="alternate"></link><updated>2014-09-15T00:00:00+08:00</updated><author><name>kamalmustafa</name></author><id>tag:www.mydev.my,2014-09-15:belajar-javascript-bhg-1.html</id><summary type="html">&lt;p&gt;Memetik kata-kata &lt;a href="http://javascript.crockford.com/"&gt;Douglas Crockford&lt;/a&gt;, JavaScript adalah bahasa 
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Laman Kolaboratif MyDev</title><link href="http://www.mydev.my/" rel="alternate"></link><link href="http://www.mydev.my/feeds/all.atom.xml" rel="self"></link><id>http://www.mydev.my/</id><updated>2014-11-04T00:00:00+08:00</updated><entry><title>Belajar Javascript: Bhg 2</title><link href="http://www.mydev.my/belajar-javascript-bhg-2.html" rel="alternate"></link><updated>2014-11-04T00:00:00+08:00</updated><author><name>kamalmustafa</name></author><id>tag:www.mydev.my,2014-11-04:belajar-javascript-bhg-2.html</id><summary type="html">&lt;p&gt;Sebelum ini kita telah menulis kod JavaScript asas seperti berikut:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;alert&lt;/span&gt; &lt;span class="nx"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;})();&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Bagi yang biasa dengan JavaScript pasti menyedari ada masalah dengan kod di 
+atas. Malah jika anda membuka fail &lt;code&gt;index.html&lt;/code&gt; melalui browser, anda akan 
+dapati nilai yang dipaparkan dalam &lt;code&gt;alert&lt;/code&gt; adalah &lt;code&gt;null&lt;/code&gt;. Ini sudah pasti bukan 
+yang kita harapkan kerana nilai yang sepatutnya adalah reference kepada DOM 
+object HTMLInput. Ini adalah disebabkan kod tersebut terus dijalankan apabila 
+ia dibaca dalam browser. Bagaimanapun sentiasa ada kemungkinan semasa kod 
+tersebut dijalankan, DOM element yang kita cuba dapatkan masih belum disediakan 
+sepenuhnya oleh browser.&lt;/p&gt;
+&lt;p&gt;Untuk membetulkan masalah di atas, kita perlu attach function tersebut kepada 
+&lt;code&gt;load&lt;/code&gt; event sama ada pada object &lt;code&gt;window&lt;/code&gt; ataupun pada element &lt;code&gt;body&lt;/code&gt;. Contohnya adalah seperti berikut:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nb"&gt;window&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;onload&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;alert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;using window.onload&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;alert&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Atau:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nx"&gt;function&lt;/span&gt; &lt;span class="nb"&gt;init&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;document.getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;alert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;using body.onload&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;alert&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="c1"&gt;// dalam fail index.html&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;body&lt;/span&gt; &lt;span class="n"&gt;onload&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;init()&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nb"&gt;body&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Tidak ada DOM object untuk &lt;code&gt;body&lt;/code&gt; dan saya pada mulanya mencuba seperti 
+berikut:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;body&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;onload&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;alert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;using document.body.onload&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;alert&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;tetapi mendapat error &lt;code&gt;Uncaught TypeError: Cannot set property 'onload' of 
+null&lt;/code&gt;. Menggunakan &lt;code&gt;body onload=init()&lt;/code&gt; bagaimanapun memerlukan untuk kita 
+declare satu function pada skop global, sesuatu yang kita cuba elakkan seperti 
+yang telah dibincangkan dalam tulisan yang lalu. Bagi browser moden pada hari 
+ini, cara yang direkomenkan adalah dengan menggunakan event listener seperti
+berikut:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nb"&gt;window&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;addEventListener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;load&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;alert&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}());&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Kelebihan cara di atas adalah struktur kod kita masih kekal sebagaimana asal 
+dipermulaan siri ini. Bagaimanapun menggunakan &lt;code&gt;load&lt;/code&gt; event tetap mempunyai 
+satu masalah iaitu kod tersebut hanya akan dijalankan apabila kesemua elemen 
+dan juga &lt;em&gt;resource&lt;/em&gt; seperti imej telah selesai dimuat-turun oleh browser. Kebanyakkan kod JavaScript adalah untuk memanipulasi DOM jadi agak membuang 
+masa dan juga mungkin menghasilkan kesan yang tidak diingini jika terpaksa 
+menunggu kesemua &lt;em&gt;resource&lt;/em&gt; selesai dimuat-turun sebelum kod JavaScript kita 
+boleh memainkan peranan. Alternatif kepada &lt;code&gt;load&lt;/code&gt; event adalah 
+&lt;code&gt;DOMContentLoaded&lt;/code&gt; dan kod di atas boleh ditulis seperti berikut:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nb"&gt;window&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;addEventListener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;DOMContentLoaded&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;alert&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}());&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Kelebihan &lt;code&gt;DOMContentLoaded&lt;/code&gt; adalah ia akan terus &lt;em&gt;execute&lt;/em&gt; kod kita sebaik 
+sahaja kesemua struktur DOM telah dibina dalam memori. Namun hidup dalam dunia 
+JavaScript adalah sangat tidak menentu dan sukar diduga. Tidak semua browser 
+menyokong event &lt;code&gt;DOMContentLoaded&lt;/code&gt; ini jadi kod kita perlu melakukan beberapa 
+adaptasi bagi membolehkan ia berfungsi pada semua browser. Atas sebab inilah 
+library seperti JQuery menyediakan function khas untuk mengatasi masalah ini. Menggunakan JQuery, kod di atas boleh ditulis seperti berikut:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;ready&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="nx"&gt;alert&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;});&lt;/span&gt;
+&lt;span class="p"&gt;}());&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Untuk membaca dengan lebih lanjut berkaitan isu yang dibincangkan dalam 
+bahagian ini boleh rujuk perbincangan di laman stackoverflow:-&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;http://stackoverflow.com/questions/3698200/window-onload-vs-document-ready&lt;/li&gt;
+&lt;li&gt;http://stackoverflow.com/questions/3474037/window-onload-vs-body-onload-vs-document-onready&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Sekian untuk kali ini, sehingga berjumpa lagi untuk siri akan datang, Insya 
+Allah.&lt;/p&gt;</summary><category term="javascript"></category><category term="tutorial"></category></entry><entry><title>Belajar Javascript: Bhg 1</title><link href="http://www.mydev.my/belajar-javascript-bhg-1.html" rel="alternate"></link><updated>2014-09-15T00:00:00+08:00</updated><author><name>kamalmustafa</name></author><id>tag:www.mydev.my,2014-09-15:belajar-javascript-bhg-1.html</id><summary type="html">&lt;p&gt;Memetik kata-kata &lt;a href="http://javascript.crockford.com/"&gt;Douglas Crockford&lt;/a&gt;, JavaScript adalah bahasa 
 pengaturcaraan yang sering disalahfahami walaupun ianya merupakan bahasa 
 pengaturcaraan yang paling popular sekali dengan penggunaan yang paling meluas.  &lt;/p&gt;
 &lt;p&gt;JavaScript, sebelum penggunaannya yang begitu meluas seperti sekarang biasanya 

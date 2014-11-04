@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Belajar Javascript: Bhg 1 - Laman Kolaboratif MyDev</title>
+    <title>Belajar Javascript: Bhg 2 - Laman Kolaboratif MyDev</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
     <meta name="author" content="team@mydev.my" />
@@ -74,12 +74,12 @@
   <header>
   	<div class="article-header">
     <abbr class="article-prehead">
-	  Mon 15 September 2014
+	  Tue 04 November 2014
 	</abbr> <!-- /.article-prehead -->
 	<h1>
-	  <a href="http://www.mydev.my/belajar-javascript-bhg-1.html" rel="bookmark"
-		 title="Permalink to Belajar Javascript: Bhg 1">
-		Belajar Javascript: Bhg 1
+	  <a href="http://www.mydev.my/belajar-javascript-bhg-2.html" rel="bookmark"
+		 title="Permalink to Belajar Javascript: Bhg 2">
+		Belajar Javascript: Bhg 2
 	  </a>
 	</h1>
     <div class="article-posthead">
@@ -93,125 +93,110 @@
 	</div> <!-- /.article-posthead -->
 </div> <!-- /.article-header -->    </header>
   <div class="content-body" itemprop="text articleBody">
-        	<p>Memetik kata-kata <a href="http://javascript.crockford.com/">Douglas Crockford</a>, JavaScript adalah bahasa 
-pengaturcaraan yang sering disalahfahami walaupun ianya merupakan bahasa 
-pengaturcaraan yang paling popular sekali dengan penggunaan yang paling meluas.  </p>
-<p>JavaScript, sebelum penggunaannya yang begitu meluas seperti sekarang biasanya 
-menjadi bahasa kelas kedua bagi kebanyakkan programmer. Saya katakan kelas 
-kedua kerana ia jarang dipelajari secara formal sepertimana bahasa lain seperti 
-PHP, Python, Ruby, Perl, Java, C dan sebagainya. Maksud 'formal' disini ialah 
-kita mengambil masa untuk berkenalan dengan bahasa tersebut bermula daripada 
-ciri-ciri asas seperti <em>data type</em>, <em>control structure</em> dan sebagainya.  </p>
-<p>Seringkali apabila terpaksa menggunakan JavaScript, kita akan mendapatkan 
-library ataupun <em>code snippet</em> di Internet, ubah beberapa baris dan sekiranya 
-ia melakukan apa yang kita kehendaki, selesai ! Akhirnya JavaScript sering 
-menjadi cercaan apabila beberapa masalahnya yang tidak dijangka kita temui 
-dalam aplikasi yang kita bangunkan.</p>
-<p>Saya bercadang untuk mula mempelajari JavaScript secara lebih tersusun dan 
-berharap dapat berkongsi pengalaman tersebut melalui beberapa siri tulisan 
-dalam blog ini. Untuk proses pembelajaran ini, saya akan cuba membina sebuah 
-aplikasi JavaScript ringkas dan akan cuba meneroka ciri-ciri asas JavaScript.  </p>
-<p>Ini bagi saya lebih menarik dan tidak menjemukan berbanding mencuba satu demi 
-satu contoh kod bagi setiap <em>features</em> yang ada. Sebaliknya kita akan 
-mengenalpasti masalah yang perlu diselesaikan dan cuba cari <em>features</em> 
-JavaScript yang boleh digunakan untuk menyelesaikan masalah tersebut.</p>
-<p>Aplikasi yang saya ingin bangunkan adalah fungsi <em>autocomplete</em> ringkas. Kita 
-selalu temui <em>features</em> ini dalam banyak laman web, terutamanya yang melibatkan 
-fungsi carian. Saya juga banyak menggunakan <em>autocomplete</em> dalam aplikasi yang 
-saya bangunkan. Namun sehingga ke hari ini saya tidak pernah mengambil tahu 
-bagaimana sebenarya fungsi autocomplete ini berfungsi dalam JavaScript.</p>
-<p>Kita mulakan aplikasi ini dengan kod html ringkas seperti berikut:-</p>
-<div class="codehilite"><pre><span class="nt">&lt;html&gt;</span>
-<span class="nt">&lt;head&gt;</span>
-<span class="nt">&lt;script</span> <span class="na">src=</span><span class="s">&quot;app.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-<span class="nt">&lt;/head&gt;</span>
-<span class="nt">&lt;body&gt;</span>
-<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">name=</span><span class="s">&quot;keyword&quot;</span> <span class="na">id=</span><span class="s">&quot;keyword&quot;</span> <span class="na">value=</span><span class="s">&quot;&quot;</span> <span class="na">size=</span><span class="s">&quot;20&quot;</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span>
+        	<p>Sebelum ini kita telah menulis kod JavaScript asas seperti berikut:-</p>
+<div class="codehilite"><pre><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">keyword</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;keyword&#39;</span><span class="p">);</span>
+    <span class="nx">alert</span> <span class="nx">keyword</span><span class="p">;</span>
+<span class="p">})();</span>
 </pre></div>
 
 
-<p><code>app.js</code> pula akan kelihatan seperti di bawah:-</p>
+<p>Bagi yang biasa dengan JavaScript pasti menyedari ada masalah dengan kod di 
+atas. Malah jika anda membuka fail <code>index.html</code> melalui browser, anda akan 
+dapati nilai yang dipaparkan dalam <code>alert</code> adalah <code>null</code>. Ini sudah pasti bukan 
+yang kita harapkan kerana nilai yang sepatutnya adalah reference kepada DOM 
+object HTMLInput. Ini adalah disebabkan kod tersebut terus dijalankan apabila 
+ia dibaca dalam browser. Bagaimanapun sentiasa ada kemungkinan semasa kod 
+tersebut dijalankan, DOM element yang kita cuba dapatkan masih belum disediakan 
+sepenuhnya oleh browser.</p>
+<p>Untuk membetulkan masalah di atas, kita perlu attach function tersebut kepada 
+<code>load</code> event sama ada pada object <code>window</code> ataupun pada element <code>body</code>. Contohnya adalah seperti berikut:-</p>
+<div class="codehilite"><pre><span class="nb">window</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">keyword</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;keyword&#39;</span><span class="p">);</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;using window.onload&#39;</span><span class="p">);</span>
+    <span class="nx">alert</span> <span class="p">(</span><span class="nx">keyword</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Atau:-</p>
+<div class="codehilite"><pre><span class="nx">function</span> <span class="nb">init</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="n">keyword</span> <span class="o">=</span> <span class="nx">document.getElementById</span><span class="p">(</span><span class="s1">&#39;keyword&#39;</span><span class="p">);</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;using body.onload&#39;</span><span class="p">);</span>
+    <span class="nx">alert</span> <span class="p">(</span><span class="nb">keyword</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// dalam fail index.html</span>
+<span class="o">&lt;</span><span class="nb">body</span> <span class="n">onload</span><span class="o">=</span><span class="s2">&quot;init()&quot;</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nb">body</span><span class="o">&gt;</span>
+</pre></div>
+
+
+<p>Tidak ada DOM object untuk <code>body</code> dan saya pada mulanya mencuba seperti 
+berikut:-</p>
+<div class="codehilite"><pre><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">keyword</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;keyword&#39;</span><span class="p">);</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;using document.body.onload&#39;</span><span class="p">);</span>
+    <span class="nx">alert</span> <span class="p">(</span><span class="nx">keyword</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>tetapi mendapat error <code>Uncaught TypeError: Cannot set property 'onload' of 
+null</code>. Menggunakan <code>body onload=init()</code> bagaimanapun memerlukan untuk kita 
+declare satu function pada skop global, sesuatu yang kita cuba elakkan seperti 
+yang telah dibincangkan dalam tulisan yang lalu. Bagi browser moden pada hari 
+ini, cara yang direkomenkan adalah dengan menggunakan event listener seperti
+berikut:-</p>
 <div class="codehilite"><pre><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;load&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">keyword</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;keyword&#39;</span><span class="p">);</span>
     <span class="nx">alert</span> <span class="p">(</span><span class="nx">keyword</span><span class="p">);</span>
+    <span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
 <span class="p">}());</span>
 </pre></div>
 
 
-<p>Daripada kod seringkas ini pun sebenarnya banyak yang dapat dipelajari 
-berkaitan JavaScript. Pertama sekali adalah cara kod itu sendiri ditulis. Ia 
-mungkin sedikit pelik bagi yang telah biasa menulis kod aturcara dalam bahasa 
-pengaturcaraan lain seperti PHP, Python, Perl, Java atau C. Sebenarnya kod
-JavaScript digalakkan ditulis dalam bentuk sedemikian rupa untuk mengelakkan 
-<em>variable-variable</em> yang digunakan daripada bocor (<em>leaked</em>) ke dalam skop 
-global program. Ini antara satu kekurangan JavaScript dimana semua unit 
-aturcara hanya boleh wujud dalam satu skop iaitu global. Tidak wujud <em>module</em> 
-atau <em>namespace</em> dalam JavaScript. Bagaimanapun kita agak bernasib baik kerana 
-<em>function</em> dalam JavaScript adalah agak fleksibel jadi kita boleh 
-menggunakannya untuk mengehadkan skop variable yang kita gunakan. </p>
-<p>Walaupun <em>function</em> dalam JavaScript boleh digunakan untuk mengehadkan skop, 
-masih terdapat satu lagi keburukan JavaScript yang mesti diambil perhatian oleh 
-semua programmer iaitu kesemua variable yang digunakan dalam <em>function</em> mesti 
-diisytiharkan menggunakan <em>keyword</em> <code>var</code> sepertimana yang kita lihat dalam 
-contoh kod di atas. Jika tidak, ia akan turut wujud dalam skop global walaupun 
-hanya digunakan dalam <em>function</em> ! Sebagai contoh, perhatikan kod di bawah:-</p>
-<div class="codehilite"><pre><span class="kd">function</span> <span class="nx">add</span><span class="p">(</span><span class="nx">num1</span><span class="p">,</span> <span class="nx">num2</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">_tmp1</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">num1</span><span class="p">);</span>
-    <span class="nx">_tmp2</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">num2</span><span class="p">);</span>
-
-    <span class="k">return</span> <span class="nx">_tmp1</span> <span class="o">+</span> <span class="nx">_tmp2</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nx">total</span> <span class="o">=</span> <span class="nx">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">_tmp1</span><span class="p">);</span>
-</pre></div>
-
-
-<p>Dalam kod di atas, <code>tmp1</code> dan <code>_tmp2</code> hanyalah <em>variable</em> sementara dan 
-sepatutnya wujud dalam function <code>add</code> sahaja. Namun anda akan dapati 
-<code>console.log</code> tetap memaparkan nilai 2 iaitu nilai <code>_tmp2</code> di dalam function 
-<code>add</code> ! Ini tidak sepatutnya berlaku kerana dalam satu aturcara yang besar, ia 
-akan menyebabkan bug yang sukar dijejaki di mana puncanya kerana variable 
-<code>_tmp1</code> kini boleh dicapai oleh mana-mana bahagian aturcara sekalipun. Untuk 
-membetulkan keadaan di atas, <em>keyword</em> <code>var</code> mesti sentiasa digunakan untuk 
-mengisytiharkan <em>variable</em> dalam <em>function</em>. Contoh:-</p>
-<div class="codehilite"><pre><span class="kd">function</span> <span class="nx">add</span><span class="p">(</span><span class="nx">num1</span><span class="p">,</span> <span class="nx">num2</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">_tmp1</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">num1</span><span class="p">);</span>
-    <span class="kd">var</span> <span class="nx">_tmp2</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">num2</span><span class="p">);</span>
-
-    <span class="k">return</span> <span class="nx">_tmp1</span> <span class="o">+</span> <span class="nx">_tmp2</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<p>Seterusnya mengapa contoh kod sebelum ini ditulis dalam bentuk function ? Ini 
-juga melibatkan isu berkaitan global variable dalam JavaScript. Untuk 
-meminimumkan bilangan <em>variable</em> yang didedahkan kepada skop global, kita 
-<em>wrap</em> kod tersebut dalam function yang terus dipanggil apabila fail tersebut 
-dibuka oleh <em>JavaScript engine</em>. Kod sebelum ini contohnya, tidak mendedahkan 
-sebarang variable kepada skop global berbanding sekiranya ia ditulis seperti 
-berikut:-</p>
-<div class="codehilite"><pre><span class="kd">function</span> <span class="nx">init</span><span class="p">()</span> <span class="p">{</span>
+<p>Kelebihan cara di atas adalah struktur kod kita masih kekal sebagaimana asal 
+dipermulaan siri ini. Bagaimanapun menggunakan <code>load</code> event tetap mempunyai 
+satu masalah iaitu kod tersebut hanya akan dijalankan apabila kesemua elemen 
+dan juga <em>resource</em> seperti imej telah selesai dimuat-turun oleh browser. Kebanyakkan kod JavaScript adalah untuk memanipulasi DOM jadi agak membuang 
+masa dan juga mungkin menghasilkan kesan yang tidak diingini jika terpaksa 
+menunggu kesemua <em>resource</em> selesai dimuat-turun sebelum kod JavaScript kita 
+boleh memainkan peranan. Alternatif kepada <code>load</code> event adalah 
+<code>DOMContentLoaded</code> dan kod di atas boleh ditulis seperti berikut:-</p>
+<div class="codehilite"><pre><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;DOMContentLoaded&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">keyword</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;keyword&#39;</span><span class="p">);</span>
     <span class="nx">alert</span> <span class="p">(</span><span class="nx">keyword</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="nx">init</span><span class="p">();</span>
+    <span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
+<span class="p">}());</span>
 </pre></div>
 
 
-<p>Dalam contoh ini kita telah mendedahkan satu nama baru ke dalam skop global 
-iaitu <code>init</code> walaupun <code>init</code> mungkin hanya akan digunakan sekali iaitu untuk 
-<em>run</em> kod dalam function tersebut. Jika kita perhatikan library JavaScript yang 
-besar seperti JQuery, YUI, Backbone dan sebagainya mereka hanya mendedahkan 
-satu nama ke dalam skop global seperti jQuery/$ utk JQuery dan YUI untuk YUI.  <em>Function-function</em> lain kesemuanya diakses melalui <em>top level</em> namespace 
-tersebut seperti <code>$.getJSON</code>, <code>YUI.dom</code> dan sebagainya. Walaupun JavaScript 
-tidak mempunyai sokongan <em>namespace</em> atau <em>module</em>, function dan object boleh 
-digunakan untuk <em>simulate</em> namespace. Lagi yang boleh dipelajari daripada contoh
-ringkas ini adalah perbezaan antara <em>function declaration</em> dan <em>function expression</em> tetapi saya tidak bercadang untuk mengulasnya dalam bahagian ini.</p>
-<p>Setakat ini sahaja untuk bahagian pertama. Saya berharap akan dapat terus menulis dan berkongsi bahagian seterusnya, Insya Allah.</p>
+<p>Kelebihan <code>DOMContentLoaded</code> adalah ia akan terus <em>execute</em> kod kita sebaik 
+sahaja kesemua struktur DOM telah dibina dalam memori. Namun hidup dalam dunia 
+JavaScript adalah sangat tidak menentu dan sukar diduga. Tidak semua browser 
+menyokong event <code>DOMContentLoaded</code> ini jadi kod kita perlu melakukan beberapa 
+adaptasi bagi membolehkan ia berfungsi pada semua browser. Atas sebab inilah 
+library seperti JQuery menyediakan function khas untuk mengatasi masalah ini. Menggunakan JQuery, kod di atas boleh ditulis seperti berikut:-</p>
+<div class="codehilite"><pre><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">keyword</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;keyword&#39;</span><span class="p">);</span>
+        <span class="nx">alert</span> <span class="p">(</span><span class="nx">keyword</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">}());</span>
+</pre></div>
+
+
+<p>Untuk membaca dengan lebih lanjut berkaitan isu yang dibincangkan dalam 
+bahagian ini boleh rujuk perbincangan di laman stackoverflow:-</p>
+<ol>
+<li>http://stackoverflow.com/questions/3698200/window-onload-vs-document-ready</li>
+<li>http://stackoverflow.com/questions/3474037/window-onload-vs-body-onload-vs-document-onready</li>
+</ol>
+<p>Sekian untuk kali ini, sehingga berjumpa lagi untuk siri akan datang, Insya 
+Allah.</p>
   </div>
 
   
