@@ -161,13 +161,15 @@ Ia akan meletakkan *scroll bar* pada `div` tersebut tetapi kita masih belum dapa
 seperti fungsi *auto complete* yang biasa kita temui. Ia mungkin sebab *focus* masih
 pada kotak carian. Jadi saya cuba set *fokus* pada *pop-up* tersebut tetapi ini akan
 menghalang saya daripada terus menaip pada kotak carian kerana kini *focus* adalah pada
-*pop-up*. Ini adalah satu masalah yang menarik, saya masih lagi meneliti [script ini][autoComplt] untuk mengenalpasti bagaimana ia menyelesaikan masalah *scroll* ini.
+*pop-up*. Ini adalah satu masalah yang menarik, saya masih lagi meneliti [script ini][autoComplt]
+dan [ini][completely] untuk mengenalpasti bagaimana ia menyelesaikan masalah *scroll* ini.
 
 Sekiranya anda mempunyai sebarang idea, saya mengalu-alukan idea dan cadangan anda !
 
 [eloquent]:http://eloquentjavascript.net/14_event.html
 [settimeout]:http://davidwalsh.name/javascript-settimeout
 [autoComplt]:https://github.com/Fischer-L/autoComplt
+[completely]:http://complete-ly.appspot.com/
 
 ### Rujukan
 * http://stackoverflow.com/questions/9707397/making-a-div-vertically-scrollable-using-css
