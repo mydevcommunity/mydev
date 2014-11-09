@@ -87,7 +87,7 @@ kotak carian untuk dipaparkan sebagai *pop-up*:-
     <head>
     <style>
     #keyword-result {
-        display:hidden;
+        visibility: hidden;
         border: 1px solid;
         width: 170px;
     }
@@ -119,15 +119,15 @@ Kod JavaScript adalah seperti berikut:-
                 }
             }
             keyword_result_elm.appendChild(list_elm);
-            keyword_result_elm.style.display = 'block';
+            keyword_result_elm.style.visibility = 'visible';
         });
     }());
 
 Dalam kod di atas, apa yang ia lakukan adalah bertindak balas terhadap *event* `keyup`
 pada kotak carian dan kemudian secara dinamik membina sebuah *unordered list* (`<ul>`).
 List tersebut kemudian dimasukkan ke dalam elemen `div` yang pada asalnya adalah *hidden*.
-Elemen `div` tersebut kemudian dipaparkan dengan mengeset *properties* *display* kepada
-`block`, memberikan efek seperti element tersebut *pop-up* pada bahagian bawah kotak
+Elemen `div` tersebut kemudian dipaparkan dengan mengeset *properties* *visibility* kepada
+`visible`, memberikan efek seperti element tersebut *pop-up* pada bahagian bawah kotak
 carian.
 
 Setelah dapat memaparkan *pop-up*, kita beralih kepada syarat kedua iaitu membolehkan
