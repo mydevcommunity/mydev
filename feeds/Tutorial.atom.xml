@@ -1,5 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Laman Kolaboratif MyDev</title><link href="http://www.mydev.my/" rel="alternate"></link><link href="http://www.mydev.my/feeds/Tutorial.atom.xml" rel="self"></link><id>http://www.mydev.my/</id><updated>2014-11-04T00:00:00+08:00</updated><entry><title>Belajar Javascript: Bhg 2</title><link href="http://www.mydev.my/belajar-javascript-bhg-2.html" rel="alternate"></link><updated>2014-11-04T00:00:00+08:00</updated><author><name>kamalmustafa</name></author><id>tag:www.mydev.my,2014-11-04:belajar-javascript-bhg-2.html</id><summary type="html">&lt;p&gt;Sebelum ini kita telah menulis kod JavaScript asas seperti berikut:-&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Laman Kolaboratif MyDev</title><link href="http://www.mydev.my/" rel="alternate"></link><link href="http://www.mydev.my/feeds/Tutorial.atom.xml" rel="self"></link><id>http://www.mydev.my/</id><updated>2014-11-09T00:00:00+08:00</updated><entry><title>Belajar Javascript: Bhg 3</title><link href="http://www.mydev.my/belajar-javascript-bhg-3.html" rel="alternate"></link><updated>2014-11-09T00:00:00+08:00</updated><author><name>kamalmustafa</name></author><id>tag:www.mydev.my,2014-11-09:belajar-javascript-bhg-3.html</id><summary type="html">&lt;p&gt;Alhamdulillah, kita dapat bertemu lagi dalam bahagian ke-3, siri belajar bahasa
+pengaturcaraan JavaScript. Untuk bahagian ke-3 ini bagaimanapun saya memohon maaf
+terlebih dahulu kerana fokusnya bukan pada JavaScript secara umum tetapi lebih
+kepada 'browser DOM programming' kerana saya ingin memulakan apa yang saya rancang
+pada bahagian 1 iaitu membina sebuah &lt;em&gt;autocomplete&lt;/em&gt; ringkas.&lt;/p&gt;
+&lt;p&gt;Kita mulakan dengan dokumen HTML ringkas seperti di bawah:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;style&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/style&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;input&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;keyword&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;keyword&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;value=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;size=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;20&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;script &lt;/span&gt;&lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;app.js&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Manakala &lt;code&gt;app.js&lt;/code&gt; adalah seperti berikut:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;keyword_elm&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}());&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;em&gt;&lt;em&gt; Nota: Saya akan menggunakan &lt;/em&gt;suffix&lt;/em&gt; &lt;code&gt;_elm&lt;/code&gt; bagi setiap &lt;em&gt;variable&lt;/em&gt; dalam tutorial ini
+bagi menunjukkan yang ia adalah &lt;em&gt;DOM element&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Sebelum itu mari kita lihat dulu perkara-perkara yang perlu kita lakukan untuk membina
+fungsi &lt;em&gt;auto complete&lt;/em&gt; ini:-&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Apabila pengguna menaip beberapa karakter di dalam kotak carian, satu &lt;em&gt;pop-up&lt;/em&gt; akan
+  dipaparkan di bawah kotak carian tersebut, memaparkan beberapa cadangan yang berkaitan.&lt;/li&gt;
+&lt;li&gt;Pengguna boleh klik mana-mana cadangan yang dipaparkan dan ia akan dimasukkan ke dalam
+  kotak carian.&lt;/li&gt;
+&lt;li&gt;Pengguna juga boleh skroll &lt;em&gt;pop-up&lt;/em&gt; cadangan dan memilih hanya dengan menekan butang
+  Enter pada &lt;em&gt;keyboard&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Bagi keperluan pertama, kita boleh menggunakan &lt;em&gt;event&lt;/em&gt; &lt;code&gt;keyup&lt;/code&gt; pada elemen input kotak
+carian. &lt;em&gt;Event&lt;/em&gt; &lt;code&gt;keyup&lt;/code&gt; ini akan dijana oleh browser apabila pengguna menekan sesuatu
+kekunci pada &lt;em&gt;keyboard&lt;/em&gt; dan melepaskannya. Jadi kita boleh menulis kod JavaScript seperti
+berikut:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;keyword_elm&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;addEventListener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;keyup&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;evt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;evt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;target&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;});&lt;/span&gt;
+&lt;span class="p"&gt;}());&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Setiap &lt;em&gt;event handler function&lt;/em&gt; akan di&lt;em&gt;pass&lt;/em&gt; satu &lt;em&gt;argument&lt;/em&gt; berbentuk &lt;em&gt;event object&lt;/em&gt;
+yang mengandungi maklumat terperinci berkaitan &lt;em&gt;event&lt;/em&gt; yang dijana oleh browser.
+Maklumat lanjut berkaitan &lt;em&gt;event handler&lt;/em&gt; ini boleh dirujuk kepada laman &lt;a href="http://eloquentjavascript.net/14_event.html"&gt;Eloquent 
+JavaScript&lt;/a&gt;. Melalui &lt;em&gt;event object&lt;/em&gt; ini, kita akan dapat merujuk kembali
+kepada elemen asal di mana &lt;em&gt;event&lt;/em&gt; tersebut dijana. Ini membolehkan kita untuk meraih
+nilai yang dimasukkan oleh pengguna pada elemen input kotak carian.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Event&lt;/em&gt; &lt;code&gt;keyup&lt;/code&gt; akan dijana oleh browser setiap kali pengguna menaip sesuatu karakter
+pada &lt;em&gt;keyboard&lt;/em&gt; dan ini juga bermakna setiap kali itulah juga kod JavaScript kita
+perlu &lt;em&gt;handle&lt;/em&gt; dan memproses &lt;em&gt;event&lt;/em&gt; tersebut. Ia agak tidak efisien dan antara cadangan
+yang saya jumpa adalah dengan menggunakan function &lt;code&gt;setTimeout&lt;/code&gt; untuk &lt;a href="http://davidwalsh.name/javascript-settimeout"&gt;mengesan hanya
+setelah pengguna berhenti menaip baru kod JavaScript kita bertindak&lt;/a&gt;. Saya
+bagaimanapun akan mengabaikan isu ini buat seketika.&lt;/p&gt;
+&lt;p&gt;Kita teruskan dengan melaksanakan apa yang diperlukan pada syarat pertama fungsi ini
+iaitu memaparkan &lt;em&gt;pop-up&lt;/em&gt; apabila pengguna menaip sesuatu pada kotak carian. Untuk
+permulaan ini, saya akan menggunakan cara yang paling naif terlebih dahulu. Kita akan
+sama-sama menambah baik menggunakan teknik yang lebih sesuai dan canggih pada siri yang
+akan datang, setelah kita semakin menguasai teknik pengaturcaraan &lt;code&gt;browser DOM&lt;/code&gt;
+menggunakan JavaScript ini.&lt;/p&gt;
+&lt;p&gt;Cara naif pertama yang saya gunakan adalah dengan meletakkan &lt;em&gt;hidden div&lt;/em&gt; di bawah
+kotak carian untuk dipaparkan sebagai &lt;em&gt;pop-up&lt;/em&gt;:-&lt;/p&gt;
+&lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;style&amp;gt;&lt;/span&gt;
+&lt;span class="nf"&gt;#keyword-result&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;visibility&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="k"&gt;hidden&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;border&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;1px&lt;/span&gt; &lt;span class="k"&gt;solid&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;width&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;170px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/style&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;input&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;keyword&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;keyword&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;value=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;size=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;20&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;keyword-result&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;script &lt;/span&gt;&lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;app.js&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;Kod JavaScript adalah seperti berikut:-&lt;/p&gt;
+&lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;keyword_elm&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;addEventListener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;keyup&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;evt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;evt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;target&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;keyword_result_elm&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;keyword-result&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;list_elm&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;createElement&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ul&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nx"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+                &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;list_item_elm&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;createElement&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;li&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+                &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;list_item&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;createTextNode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;result &amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+                &lt;span class="nx"&gt;list_item_elm&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;appendChild&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;list_item&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+                &lt;span class="nx"&gt;list_elm&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;appendChild&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;list_item_elm&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+            &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="nx"&gt;keyword_result_elm&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;appendChild&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;list_elm&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="nx"&gt;keyword_result_elm&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;style&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;visibility&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;visible&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;});&lt;/span&gt;
+&lt;span class="p"&gt;}());&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;Dalam kod di atas, apa yang ia lakukan adalah bertindak balas terhadap &lt;em&gt;event&lt;/em&gt; &lt;code&gt;keyup&lt;/code&gt;
+pada kotak carian dan kemudian secara dinamik membina sebuah &lt;em&gt;unordered list&lt;/em&gt; (&lt;code&gt;&amp;lt;ul&amp;gt;&lt;/code&gt;).
+List tersebut kemudian dimasukkan ke dalam elemen &lt;code&gt;div&lt;/code&gt; yang pada asalnya adalah &lt;em&gt;hidden&lt;/em&gt;.
+Elemen &lt;code&gt;div&lt;/code&gt; tersebut kemudian dipaparkan dengan mengeset &lt;em&gt;properties&lt;/em&gt; &lt;em&gt;visibility&lt;/em&gt; kepada
+&lt;code&gt;visible&lt;/code&gt;, memberikan efek seperti element tersebut &lt;em&gt;pop-up&lt;/em&gt; pada bahagian bawah kotak
+carian.&lt;/p&gt;
+&lt;p&gt;Setelah dapat memaparkan &lt;em&gt;pop-up&lt;/em&gt;, kita beralih kepada syarat kedua iaitu membolehkan
+setiap elemen dalam &lt;em&gt;list&lt;/em&gt; yang kita jana sebelum ini boleh di'klik' dan nilainya
+dipaparkan pada kotak carian. Ianya boleh dilakukan dengan meng'attach' &lt;em&gt;event&lt;/em&gt; &lt;code&gt;click&lt;/code&gt;
+pada setiap item dalam list tersebut:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nx"&gt;list_item_elm&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;addEventListener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;click&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;evt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;keyword_elm&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;evt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;target&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;textContent&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="nx"&gt;keyword_result_elm&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;style&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;display&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;none&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Di sini kita raih nilai string yang ada pada setiap item dalam list dan setkan sebagai
+&lt;em&gt;value&lt;/em&gt; kepada kotak carian. Seterusnya kita set &lt;em&gt;properties&lt;/em&gt; &lt;em&gt;display&lt;/em&gt; pada &lt;em&gt;pop-up&lt;/em&gt;
+kepada &lt;code&gt;none&lt;/code&gt; untuk memberikan kesan seperti ia hilang.&lt;/p&gt;
+&lt;p&gt;Syarat ketiga adalah untuk membolehkan pengguna memilih menggunakan &lt;em&gt;keyboard&lt;/em&gt; berbanding
+mengklik menggunakan &lt;em&gt;mouse&lt;/em&gt;. Saya masih belum dapat mencari penyelesaian kepada masalah
+ini. Cubaan pertama saya adalah dengan &lt;em&gt;properties&lt;/em&gt; &lt;code&gt;scroll&lt;/code&gt; pada &lt;code&gt;div&lt;/code&gt;:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nf"&gt;#keyword-result&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;display&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="k"&gt;hidden&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;border&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;1px&lt;/span&gt; &lt;span class="k"&gt;solid&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;width&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;170px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;overflow-y&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="k"&gt;scroll&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Ia akan meletakkan &lt;em&gt;scroll bar&lt;/em&gt; pada &lt;code&gt;div&lt;/code&gt; tersebut tetapi kita masih belum dapat skroll
+seperti fungsi &lt;em&gt;auto complete&lt;/em&gt; yang biasa kita temui. Ia mungkin sebab &lt;em&gt;focus&lt;/em&gt; masih
+pada kotak carian. Jadi saya cuba set &lt;em&gt;fokus&lt;/em&gt; pada &lt;em&gt;pop-up&lt;/em&gt; tersebut tetapi ini akan
+menghalang saya daripada terus menaip pada kotak carian kerana kini &lt;em&gt;focus&lt;/em&gt; adalah pada
+&lt;em&gt;pop-up&lt;/em&gt;. Ini adalah satu masalah yang menarik, saya masih lagi meneliti &lt;a href="https://github.com/Fischer-L/autoComplt"&gt;script ini&lt;/a&gt;
+dan &lt;a href="http://complete-ly.appspot.com/"&gt;ini&lt;/a&gt; untuk mengenalpasti bagaimana ia menyelesaikan masalah &lt;em&gt;scroll&lt;/em&gt; ini.&lt;/p&gt;
+&lt;p&gt;Sekiranya anda mempunyai sebarang idea, saya mengalu-alukan idea dan cadangan anda !&lt;/p&gt;
+&lt;h3 id="rujukan"&gt;Rujukan&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;http://stackoverflow.com/questions/9707397/making-a-div-vertically-scrollable-using-css&lt;/li&gt;
+&lt;li&gt;http://stackoverflow.com/questions/6754275/set-keyboard-focus-to-a-div&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="javascript"></category><category term="tutorial"></category></entry><entry><title>Belajar Javascript: Bhg 2</title><link href="http://www.mydev.my/belajar-javascript-bhg-2.html" rel="alternate"></link><updated>2014-11-04T00:00:00+08:00</updated><author><name>kamalmustafa</name></author><id>tag:www.mydev.my,2014-11-04:belajar-javascript-bhg-2.html</id><summary type="html">&lt;p&gt;Sebelum ini kita telah menulis kod JavaScript asas seperti berikut:-&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="nx"&gt;alert&lt;/span&gt; &lt;span class="nx"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
