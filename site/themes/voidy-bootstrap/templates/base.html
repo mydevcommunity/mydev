@@ -12,18 +12,14 @@
     {% endif %}
 	{% block open_graph %}
       <!-- Open Graph -->
-      {% if OPEN_GRAPH %}
         <meta property="og:type" content="website"/>
         <meta property="og:title" content="{{ SITENAME }}"/>
         <meta property="og:url" content="{{ SITEURL }}"/>
         {% if DEFAULT_METADESC %}
         <meta property="og:description" content="{{ DEFAULT_METADESC|e }}"/>
         {% endif %}
-        {% if OPEN_GRAPH_IMAGE %}
         <meta property="og:image"
               content="{{ SITEURL }}/images/{{ OPEN_GRAPH_IMAGE }}"/>
-        {% endif %}
-      {% endif %}
     {% endblock %}
     {% if MAIN_LOCAL_STYLESHEET %}	
     <link rel="stylesheet" href="{{ SITEURL }}/theme/css/{{ MAIN_LOCAL_STYLESHEET }}" />

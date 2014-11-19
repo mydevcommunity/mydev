@@ -24,6 +24,9 @@
     {% if article.social_image %}
       <meta property="og:image"
             content="{{ SITEURL }}/images/{{ article.social_image }}"/>
+    {% else %}
+      <meta property="og:image"
+            content="{{ SITEURL }}/images/{{ OPEN_GRAPH_IMAGE }}"/>
     {% endif %}
 {% endif %}
 {% if TWITTER_CARD and TWITTER_USERNAME %}
