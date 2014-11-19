@@ -33,5 +33,9 @@ GOOGLE_ANALYTICS = 'UA-41580964-1'
 
 FILES_TO_COPY = (
     ('extra/CNAME', 'CNAME'),
+    ('images/mydev.jpg', 'images/mydev.jpg'),
 )
 DISQUS_SITENAME = 'mydevcommunity'
+
+OPEN_GRAPH = True
+OPEN_GRAPH_IMAGE = 'mydev.jpg'
