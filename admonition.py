@@ -19,9 +19,9 @@ License: [BSD](http://www.opensource.org/licenses/bsd-license.php)
 
 from __future__ import absolute_import
 from __future__ import unicode_literals
-from . import Extension
-from ..blockprocessors import BlockProcessor
-from ..util import etree
+from markdown.extensions import Extension
+from markdown.blockprocessors import BlockProcessor
+from markdown.util import etree
 import re
 
 
@@ -39,9 +39,9 @@ class AdmonitionExtension(Extension):
 
 class AdmonitionProcessor(BlockProcessor):
 
-    CLASSNAME = 'admonition'
-    CLASSNAME_TITLE = 'admonition-title'
-    RE = re.compile(r'(?:^|\n)!!!\ ?([\w\-]+)(?:\ "(.*?)")?')
+    CLASSNAME = 'alert'
+    CLASSNAME_TITLE = 'alert-info'
+    RE = re.compile(r'(?:^|\n)!!!\ ?([\w\-]+)(?:\ "(.*?)")? ?([\w\-]+)(?:\ "(.*?)")?')
 
     def test(self, parent, block):
         sibling = self.lastChild(parent)
@@ -60,13 +60,20 @@ class AdmonitionProcessor(BlockProcessor):
         block, theRest = self.detab(block)
 
         if m:
-            klass, title = self.get_class_and_title(m)
+            klass, title, glyph_name = self.get_class_and_title(m)
             div = etree.SubElement(parent, 'div')
-            div.set('class', '%s %s' % (self.CLASSNAME, klass))
+            div.set('class', '%s alert-%s' % (self.CLASSNAME, klass))
             if title:
-                p = etree.SubElement(div, 'p')
-                p.text = title
-                p.set('class', self.CLASSNAME_TITLE)
+                span = etree.SubElement(div, 'span')
+                span.text = title
+                span.set('class', 'sr-only')
+
+            # doesn't really work now, we must have the glyph_name
+            # otherwise title and klass matching get wonky
+            if glyph_name:
+                glyph = etree.SubElement(div, 'span')
+                glyph.set('class', 'glyphicon glyphicon-%s' % glyph_name)
+                glyph.set('style', 'float:left; padding-right: 5px;')
         else:
             div = sibling
 
@@ -79,7 +86,7 @@ class AdmonitionProcessor(BlockProcessor):
             blocks.insert(0, theRest)
 
     def get_class_and_title(self, match):
-        klass, title = match.group(1).lower(), match.group(2)
+        klass, title, glyph_name = match.group(1).lower(), match.group(2), match.group(3)
         if title is None:
             # no title was provided, use the capitalized classname as title
             # e.g.: `!!! note` will render `<p class="admonition-title">Note</p>`
@@ -88,7 +95,13 @@ class AdmonitionProcessor(BlockProcessor):
             # an explicit blank title should not be rendered
             # e.g.: `!!! warning ""` will *not* render `p` with a title
             title = None
-        return klass, title
+
+        if glyph_name is None:
+            glyph_name = 'exclamation-sign'
+        elif glyph_name == '':
+            glyph_name = None
+
+        return klass, title, glyph_name
 
 
 def makeExtension(*args, **kwargs):
