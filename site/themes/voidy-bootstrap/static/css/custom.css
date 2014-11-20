@@ -1,3 +1,8 @@
 table.codehilitetable {
     width: 100%;
 }
+
+.alert p {
+    margin-left: 5px;
+    padding-left: 15px;
+}

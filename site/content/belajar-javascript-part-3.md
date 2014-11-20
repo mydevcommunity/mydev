@@ -58,6 +58,11 @@ berikut:-
     });
 }());
 ```
+
+!!! warning "Nota" "info-exclamation-sign"
+    Method `.addEventListener()` tidak disokong oleh IE7 dan IE6. Kebanyakkan contoh dalam
+    tutorial ini menganggap anda menggunakan browser moden yang terkini.
+
 Setiap *event handler function* akan di*pass* satu *argument* berbentuk *event object*
 yang mengandungi maklumat terperinci berkaitan *event* yang dijana oleh browser.
 Maklumat lanjut berkaitan *event handler* ini boleh dirujuk kepada laman [Eloquent 

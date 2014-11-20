@@ -25,7 +25,7 @@ LINKS =  (('Pelican', 'http://docs.notmyidea.org/alexis/pelican/'),
 
 DEFAULT_PAGINATION = 5
 
-MD_EXTENSIONS = ['toc', 'codehilite', 'extra']
+MD_EXTENSIONS = ['toc', 'codehilite', 'extra', 'admonition']
 
 STYLESHEETS = ('pygment.css', 'custom.css')
 
