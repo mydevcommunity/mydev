@@ -59,7 +59,7 @@ berikut:-
 }());
 ```
 
-!!! warning "Nota" "info-exclamation-sign"
+!!! warning "Nota" "exclamation-sign"
     Method `.addEventListener()` tidak disokong oleh IE7 dan IE6. Kebanyakkan contoh dalam
     tutorial ini menganggap anda menggunakan browser moden yang terkini.
 
