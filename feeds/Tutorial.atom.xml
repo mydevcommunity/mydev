@@ -187,7 +187,8 @@ pada kotak carian. Jadi saya cuba set &lt;em&gt;fokus&lt;/em&gt; pada &lt;em&gt;
 menghalang saya daripada terus menaip pada kotak carian kerana kini &lt;em&gt;focus&lt;/em&gt; adalah pada
 &lt;em&gt;pop-up&lt;/em&gt;. Ini adalah satu masalah yang menarik, saya masih lagi meneliti &lt;a href="https://github.com/Fischer-L/autoComplt"&gt;script ini&lt;/a&gt;
 dan &lt;a href="http://complete-ly.appspot.com/"&gt;ini&lt;/a&gt; untuk mengenalpasti bagaimana ia menyelesaikan masalah &lt;em&gt;scroll&lt;/em&gt; ini.&lt;/p&gt;
-&lt;p&gt;Sekiranya anda mempunyai sebarang idea, saya mengalu-alukan idea dan cadangan anda !&lt;/p&gt;
+&lt;p&gt;Sekiranya anda mempunyai sebarang idea, saya mengalu-alukan idea dan cadangan anda ! Kod penuh untuk
+tutorial ini boleh dilihat pada laman &lt;a href="http://codepen.io/k4ml/pen/zxxzJq"&gt;codepen&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id="rujukan"&gt;Rujukan&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;http://stackoverflow.com/questions/9707397/making-a-div-vertically-scrollable-using-css&lt;/li&gt;
