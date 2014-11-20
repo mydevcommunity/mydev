@@ -51,6 +51,9 @@ berikut:-&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;div class="alert alert-warning"&gt;&lt;span class="sr-only"&gt;Nota" &lt;/span&gt;&lt;span class="glyphicon glyphicon-exclamation-sign" style="float:left; padding-right: 5px;"&gt;&lt;/span&gt;&lt;p&gt;Method &lt;code&gt;.addEventListener()&lt;/code&gt; tidak disokong oleh IE7 dan IE6. Kebanyakkan contoh dalam
+tutorial ini menganggap anda menggunakan browser moden yang terkini.&lt;/p&gt;
+&lt;/div&gt;
 &lt;p&gt;Setiap &lt;em&gt;event handler function&lt;/em&gt; akan di&lt;em&gt;pass&lt;/em&gt; satu &lt;em&gt;argument&lt;/em&gt; berbentuk &lt;em&gt;event object&lt;/em&gt;
 yang mengandungi maklumat terperinci berkaitan &lt;em&gt;event&lt;/em&gt; yang dijana oleh browser.
 Maklumat lanjut berkaitan &lt;em&gt;event handler&lt;/em&gt; ini boleh dirujuk kepada laman &lt;a href="http://eloquentjavascript.net/14_event.html"&gt;Eloquent 
