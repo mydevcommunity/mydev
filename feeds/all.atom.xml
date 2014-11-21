@@ -301,6 +301,9 @@ bahagian ini boleh rujuk perbincangan di laman stackoverflow:-&lt;/p&gt;
 kerana apabila kod tersebut dijalankan oleh browser, kesemua kandungan DOM telah pun diproses
 oleh browser, menghasilkan kesan yang sama seperti &lt;code&gt;DOMContentLoaded&lt;/code&gt; yang dibincangkan di atas.
 Perbincangan berkaitan di Stackoverflow - http://stackoverflow.com/q/4643990/139870.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://stackoverflow.com/questions/436411/where-is-the-best-place-to-put-script-tags-in-html-markup/24070373#24070373"&gt;Cadangan lain&lt;/a&gt; di Stackoverflow adalah untuk load JavaScript pada bahagian &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; tapi menggunakan &lt;code&gt;async&lt;/code&gt; atau &lt;code&gt;defer&lt;/code&gt;
+attribute. Cara ini juga tidak akan &lt;em&gt;block&lt;/em&gt; browser daripada terus memproses laman HTML kita dan disokong oleh
+80% browser moden pada hari ini.&lt;/p&gt;
 &lt;p&gt;Sekian untuk kali ini, sehingga berjumpa lagi untuk siri akan datang, Insya 
 Allah.&lt;/p&gt;</summary><category term="javascript"></category><category term="tutorial"></category></entry><entry><title>Belajar Javascript: Bhg 1</title><link href="http://www.mydev.my/belajar-javascript-bhg-1.html" rel="alternate"></link><updated>2014-09-15T00:00:00+08:00</updated><author><name>kamalmustafa</name></author><id>tag:www.mydev.my,2014-09-15:belajar-javascript-bhg-1.html</id><summary type="html">&lt;p&gt;Memetik kata-kata &lt;a href="http://javascript.crockford.com/"&gt;Douglas Crockford&lt;/a&gt;, JavaScript adalah bahasa 
 pengaturcaraan yang sering disalahfahami walaupun ianya merupakan bahasa 
