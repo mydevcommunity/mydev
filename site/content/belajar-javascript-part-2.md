@@ -108,8 +108,13 @@ kerana apabila kod tersebut dijalankan oleh browser, kesemua kandungan DOM telah
 oleh browser, menghasilkan kesan yang sama seperti `DOMContentLoaded` yang dibincangkan di atas.
 Perbincangan berkaitan di Stackoverflow - http://stackoverflow.com/q/4643990/139870.
 
+[Cadangan lain] di Stackoverflow adalah untuk load JavaScript pada bahagian `<head>` tapi menggunakan `async` atau `defer`
+attribute. Cara ini juga tidak akan *block* browser daripada terus memproses laman HTML kita dan disokong oleh
+80% browser moden pada hari ini.
+
 Sekian untuk kali ini, sehingga berjumpa lagi untuk siri akan datang, Insya 
 Allah.
 
 [zulfa]:https://github.com/zulfajuniadi
 [JomWeb]:https://www.facebook.com/groups/jomweb/
+[Cadangan lain]:http://stackoverflow.com/questions/436411/where-is-the-best-place-to-put-script-tags-in-html-markup/24070373#24070373
