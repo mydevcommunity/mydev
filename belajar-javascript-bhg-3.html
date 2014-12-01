@@ -234,7 +234,7 @@ kotak carian untuk dipaparkan sebagai <em>pop-up</em>:-</p>
 17
 18</pre></div></td><td class="code"><div class="codehilite"><pre><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">keyword_elm</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;keyword&#39;</span><span class="p">);</span>
-    <span class="nx">keyword</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;keyup&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">evt</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">keyword_elm</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;keyup&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">evt</span><span class="p">)</span> <span class="p">{</span>
         <span class="kd">var</span> <span class="nx">keyword</span> <span class="o">=</span> <span class="nx">evt</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
         <span class="kd">var</span> <span class="nx">keyword_result_elm</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;keyword-result&#39;</span><span class="p">);</span>
         <span class="kd">var</span> <span class="nx">list_elm</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;ul&#39;</span><span class="p">);</span>
@@ -363,14 +363,19 @@ tutorial ini boleh dilihat pada laman <a href="http://codepen.io/k4ml/pen/zxxzJq
 
 <h4><i class="fa fa-tags fa-fw fa-lg"></i> Tags</h4>
 <p class="tag-cloud">
+<span class="tag-2">
+    <a href="http://www.mydev.my/tag/php.html">
+        <i class="fa fa-tag fa-fw fa-lg"></i>php
+    </a>
+</span>
 <span class="tag-4">
     <a href="http://www.mydev.my/tag/http.html">
         <i class="fa fa-tag fa-fw fa-lg"></i>http
     </a>
 </span>
-<span class="tag-1">
-    <a href="http://www.mydev.my/tag/javascript.html">
-        <i class="fa fa-tag fa-fw fa-lg"></i>javascript
+<span class="tag-4">
+    <a href="http://www.mydev.my/tag/di.html">
+        <i class="fa fa-tag fa-fw fa-lg"></i>DI
     </a>
 </span>
 <span class="tag-4">
@@ -379,28 +384,8 @@ tutorial ini boleh dilihat pada laman <a href="http://codepen.io/k4ml/pen/zxxzJq
     </a>
 </span>
 <span class="tag-4">
-    <a href="http://www.mydev.my/tag/automated.html">
-        <i class="fa fa-tag fa-fw fa-lg"></i>automated
-    </a>
-</span>
-<span class="tag-4">
-    <a href="http://www.mydev.my/tag/session.html">
-        <i class="fa fa-tag fa-fw fa-lg"></i>session
-    </a>
-</span>
-<span class="tag-4">
     <a href="http://www.mydev.my/tag/jargon.html">
         <i class="fa fa-tag fa-fw fa-lg"></i>jargon
-    </a>
-</span>
-<span class="tag-4">
-    <a href="http://www.mydev.my/tag/ioc.html">
-        <i class="fa fa-tag fa-fw fa-lg"></i>IOC
-    </a>
-</span>
-<span class="tag-1">
-    <a href="http://www.mydev.my/tag/tutorial.html">
-        <i class="fa fa-tag fa-fw fa-lg"></i>tutorial
     </a>
 </span>
 <span class="tag-2">
@@ -409,18 +394,33 @@ tutorial ini boleh dilihat pada laman <a href="http://codepen.io/k4ml/pen/zxxzJq
     </a>
 </span>
 <span class="tag-4">
+    <a href="http://www.mydev.my/tag/ioc.html">
+        <i class="fa fa-tag fa-fw fa-lg"></i>IOC
+    </a>
+</span>
+<span class="tag-4">
+    <a href="http://www.mydev.my/tag/automated.html">
+        <i class="fa fa-tag fa-fw fa-lg"></i>automated
+    </a>
+</span>
+<span class="tag-4">
     <a href="http://www.mydev.my/tag/net.html">
         <i class="fa fa-tag fa-fw fa-lg"></i>.Net
     </a>
 </span>
-<span class="tag-4">
-    <a href="http://www.mydev.my/tag/di.html">
-        <i class="fa fa-tag fa-fw fa-lg"></i>DI
+<span class="tag-1">
+    <a href="http://www.mydev.my/tag/tutorial.html">
+        <i class="fa fa-tag fa-fw fa-lg"></i>tutorial
     </a>
 </span>
-<span class="tag-2">
-    <a href="http://www.mydev.my/tag/php.html">
-        <i class="fa fa-tag fa-fw fa-lg"></i>php
+<span class="tag-4">
+    <a href="http://www.mydev.my/tag/session.html">
+        <i class="fa fa-tag fa-fw fa-lg"></i>session
+    </a>
+</span>
+<span class="tag-1">
+    <a href="http://www.mydev.my/tag/javascript.html">
+        <i class="fa fa-tag fa-fw fa-lg"></i>javascript
     </a>
 </span>
 </p>
