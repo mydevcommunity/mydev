@@ -31,8 +31,9 @@ Manakala `app.js` adalah seperti berikut:-
     var keyword_elm = document.getElementById('keyword');
 }());
 ```
-** Nota: Saya akan menggunakan *suffix* `_elm` bagi setiap *variable* dalam tutorial ini
-bagi menunjukkan yang ia adalah *DOM element*.
+!!! info "Nota" "info-sign"
+    Saya akan menggunakan *suffix* `_elm` bagi setiap *variable* dalam tutorial ini
+    bagi menunjukkan yang ia adalah *DOM element*.
 
 Sebelum itu mari kita lihat dulu perkara-perkara yang perlu kita lakukan untuk membina
 fungsi *auto complete* ini:-
