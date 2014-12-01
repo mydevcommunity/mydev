@@ -112,7 +112,7 @@ Kod JavaScript adalah seperti berikut:-
     #!javascript
     (function() {
         var keyword_elm = document.getElementById('keyword');
-        keyword.addEventListener('keyup', function(evt) {
+        keyword_elm.addEventListener('keyup', function(evt) {
             var keyword = evt.target.value;
             var keyword_result_elm = document.getElementById('keyword-result');
             var list_elm = document.createElement('ul');
