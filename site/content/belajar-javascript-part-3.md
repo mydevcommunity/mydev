@@ -52,7 +52,7 @@ berikut:-
 ```js
 (function() {
     var keyword_elm = document.getElementById('keyword');
-    keyword.addEventListener('keyup', function(evt) {
+    keyword_elm.addEventListener('keyup', function(evt) {
         var keyword = evt.target.value;
         console.log(keyword);
     });
