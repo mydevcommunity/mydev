@@ -25,8 +25,9 @@ pada bahagian 1 iaitu membina sebuah &lt;em&gt;autocomplete&lt;/em&gt; ringkas.&
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;em&gt;&lt;em&gt; Nota: Saya akan menggunakan &lt;/em&gt;suffix&lt;/em&gt; &lt;code&gt;_elm&lt;/code&gt; bagi setiap &lt;em&gt;variable&lt;/em&gt; dalam tutorial ini
+&lt;div class="alert alert-info"&gt;&lt;span class="sr-only"&gt;Nota" &lt;/span&gt;&lt;span class="glyphicon glyphicon-info-sign" style="float:left; padding-right: 5px;"&gt;&lt;/span&gt;&lt;p&gt;Saya akan menggunakan &lt;em&gt;suffix&lt;/em&gt; &lt;code&gt;_elm&lt;/code&gt; bagi setiap &lt;em&gt;variable&lt;/em&gt; dalam tutorial ini
 bagi menunjukkan yang ia adalah &lt;em&gt;DOM element&lt;/em&gt;.&lt;/p&gt;
+&lt;/div&gt;
 &lt;p&gt;Sebelum itu mari kita lihat dulu perkara-perkara yang perlu kita lakukan untuk membina
 fungsi &lt;em&gt;auto complete&lt;/em&gt; ini:-&lt;/p&gt;
 &lt;ul&gt;
@@ -43,7 +44,7 @@ kekunci pada &lt;em&gt;keyboard&lt;/em&gt; dan melepaskannya. Jadi kita boleh me
 berikut:-&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;keyword_elm&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-    &lt;span class="nx"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;addEventListener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;keyup&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;evt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;keyword_elm&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;addEventListener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;keyup&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;evt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
         &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;evt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;target&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
         &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="p"&gt;});&lt;/span&gt;
